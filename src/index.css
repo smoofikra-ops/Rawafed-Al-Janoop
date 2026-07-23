@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", ui-sans-serif, system-ui, sans-serif;
+  
+  /* Primary brand colors - Professional and corporate red */
+  --color-primary-50: #fef2f2;
+  --color-primary-100: #fee2e2;
+  --color-primary-200: #fecaca;
+  --color-primary-300: #fca5a5;
+  --color-primary-400: #f87171;
+  --color-primary-500: #ef4444; 
+  --color-primary-600: #dc2626; /* Main brand red */
+  --color-primary-700: #b91c1c;
+  --color-primary-800: #991b1b;
+  --color-primary-900: #7f1d1d;
+  
+  --color-secondary-500: #10b981; /* Example secondary for accents */
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+  }
+
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Use Arabic font when RTL */
+  html[dir="rtl"] body {
+    font-family: var(--font-arabic);
+  }
+  
+  html[dir="ltr"] body {
+    font-family: var(--font-sans);
+  }
+}
+
+@keyframes wave-gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-wave-gradient {
+  animation: wave-gradient 6s ease infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes marquee-rtl {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+html[dir="rtl"] .animate-marquee {
+  animation: marquee-rtl 30s linear infinite;
+}

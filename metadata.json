@@ -1,0 +1,8 @@
+{
+  "name": "Rawafed Al Janoob",
+  "description": "The official corporate website for Rawafed Al Janoob Trading Company, specializing in food and beverage distribution in Saudi Arabia.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
