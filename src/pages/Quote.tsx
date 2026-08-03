@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../hooks/useLanguage';
 import { companyInfo } from '../data';
 import { motion } from 'framer-motion';
 
 export default function Quote() {
-  const { language, t } = useLanguage();
+  const { t } = useTranslation();
+  const { language } = useLanguage();
+
   const [formData, setFormData] = useState({
     name: '',
     type: 'company',

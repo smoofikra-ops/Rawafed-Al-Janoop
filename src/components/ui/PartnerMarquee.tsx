@@ -6,11 +6,13 @@ export function PartnerMarquee() {
   const { language } = useLanguage();
 
   return (
-    <div className="relative max-w-7xl mx-auto overflow-hidden py-4">
-      {/* Fade effect on edges */}
-      <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-gray-50 to-transparent z-10 pointer-events-none"></div>
-      <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-gray-50 to-transparent z-10 pointer-events-none"></div>
-
+    <div 
+      className="relative max-w-7xl mx-auto overflow-hidden py-4"
+      style={{
+        maskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
+      }}
+    >
       <div className="flex w-fit animate-marquee hover:[animation-play-state:paused] gap-8 sm:gap-12 items-center">
         {/* We duplicate the list multiple times to ensure continuous scrolling */}
         {[...successPartners, ...successPartners, ...successPartners, ...successPartners].map((partner, index) => (

@@ -45,6 +45,13 @@ export const stats: Stat[] = [
 
 export const brands: Brand[] = [
   {
+    id: 'estikan',
+    name: { ar: 'شاي استكان', en: 'Estikan Tea' },
+    description: { ar: 'أجود أنواع الشاي السيلاني الفاخر.', en: 'The finest premium Ceylon tea.' },
+    logo: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785765749/istkan-tea_e2phky.jpg',
+    categories: [{ ar: 'شاي', en: 'Tea' }]
+  },
+  {
     id: 'lusail',
     name: { ar: 'لوسيل', en: 'Lusail' },
     description: { ar: 'منتجات عالية الجودة تلبي تطلعات المستهلكين.', en: 'High-quality products meeting consumer expectations.' },
@@ -57,13 +64,6 @@ export const brands: Brand[] = [
     description: { ar: 'علامة تجارية عمانية رائدة في صناعة رقائق البطاطس.', en: 'A leading Omani brand in potato chips.' },
     logo: 'https://muscatchips.com/wp-content/uploads/al_opt_content/IMAGE/muscatchips.com/wp-content/uploads/2025/07/cropped-Logo-512x512-No_BG.png',
     categories: [{ ar: 'وجبات خفيفة', en: 'Snacks' }]
-  },
-  {
-    id: 'alrabie',
-    name: { ar: 'الربيع', en: 'Al Rabie' },
-    description: { ar: 'عصائر طبيعية ومشروبات منعشة بجودة عالية.', en: 'Natural juices and refreshing drinks of high quality.' },
-    logo: '', // We can fall back to text logo
-    categories: [{ ar: 'عصائر', en: 'Juices' }]
   }
 ];
 

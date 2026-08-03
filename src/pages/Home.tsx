@@ -1,12 +1,30 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../hooks/useLanguage';
 import { Link } from 'react-router-dom';
-import { motion, useScroll, useTransform } from 'motion/react';
+import { motion, useScroll, useTransform, useSpring } from 'motion/react';
 import { ArrowRight, ArrowLeft, TrendingUp, Package, Truck, ShieldCheck, Map, MapPin } from 'lucide-react';
 import { stats, brands, services, branches, companyInfo } from '../data';
 import { Counter } from '../components/ui/Counter';
 import { PartnerMarquee } from '../components/ui/PartnerMarquee';
+
+const ScrollReveal = ({ children, direction = "up", delay = 0, className = "" }: { children: React.ReactNode, direction?: "up" | "left" | "right" | "none", delay?: number, className?: string, key?: React.Key }) => {
+  const y = direction === "up" ? 40 : 0;
+  const x = direction === "right" ? 40 : direction === "left" ? -40 : 0;
+  
+  return (
+    <motion.div
+      initial={{ opacity: 0, y, x }}
+      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      viewport={{ once: true, margin: "-10%" }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
 
 export default function Home() {
   const { t } = useTranslation();
@@ -16,19 +34,23 @@ export default function Home() {
   const blurOpacity = useTransform(scrollY, [0, 200], [1, 0]);
 
   return (
-    <div className="flex flex-col gap-8 md:gap-20 pb-8 md:pb-20">
+    <div className="flex flex-col gap-8 md:gap-20 pb-8 md:pb-20 relative">
+      
+
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gray-900 text-white pt-16 pb-20 md:pt-24 md:pb-32">
+      <section className="relative overflow-hidden bg-gray-900 text-white min-h-[90vh] flex items-center pt-20 z-10 shadow-2xl">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-40 mix-blend-overlay"
+            className="w-full h-full object-cover opacity-50 mix-blend-overlay scale-105"
           >
             <source src="https://d.top4top.io/m_3844494b91.mp4" type="video/mp4" />
           </video>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-gray-950"></div>
         </div>
         
         {/* Animated Blur Overlay */}
@@ -42,41 +64,47 @@ export default function Home() {
           }}
         />
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-20">
+          <div className="max-w-4xl">
             <motion.h1 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-[29px] text-center sm:text-start sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+              initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[36px] text-center sm:text-start sm:text-6xl lg:text-7xl font-bold leading-tight mb-8 drop-shadow-xl"
             >
               {t('home.heroTitle')}
             </motion.h1>
             <motion.p 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed"
+              initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+              className="text-xl sm:text-2xl text-gray-200 mb-12 max-w-2xl leading-relaxed drop-shadow-md font-medium text-center sm:text-start"
             >
               {t('home.heroSubtitle')}
             </motion.p>
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="flex flex-wrap gap-4"
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+              className="flex flex-col sm:flex-row flex-wrap gap-4 items-center sm:items-start justify-center sm:justify-start"
             >
               <Link
                 to="/quote"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-primary-600 px-8 text-base font-medium text-white transition-colors hover:bg-primary-700 shadow-lg shadow-primary-600/20"
+                className="inline-flex h-14 items-center justify-center rounded-xl bg-green-600 px-8 text-lg font-bold text-white transition-all hover:bg-green-500 hover:scale-[1.03] shadow-2xl hover:shadow-green-600/40 w-full sm:w-auto"
               >
                 {t('common.requestQuote')}
               </Link>
               <Link
                 to="/brands"
-                className="inline-flex h-12 items-center justify-center rounded-md bg-white/10 px-8 text-base font-medium text-white backdrop-blur transition-colors hover:bg-white/20"
+                className="inline-flex h-14 items-center justify-center rounded-xl bg-white/10 px-8 text-lg font-bold text-white backdrop-blur-md transition-all hover:bg-white/20 hover:scale-[1.03] border border-white/20 w-full sm:w-auto"
               >
                 {t('home.exploreBrands')}
+              </Link>
+              <Link
+                to="/careers"
+                className="inline-flex h-14 items-center justify-center rounded-xl bg-white/5 px-8 text-lg font-bold text-gray-200 backdrop-blur-md transition-all hover:bg-white/10 hover:text-white hover:scale-[1.03] border border-white/10 w-full sm:w-auto"
+              >
+                {language === 'ar' ? 'انضم إلينا الآن' : 'Join Us Now'}
               </Link>
             </motion.div>
           </div>
@@ -84,235 +112,273 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="relative py-12 md:py-20 border-y border-gray-200 bg-white overflow-hidden shadow-2xl z-20">
-        {/* Subtle patterned background for the Stats section */}
-        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-transparent to-gray-50 opacity-90"></div>
-        
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-6 md:p-10 border border-gray-100 backdrop-blur-sm">
-            <div className="grid grid-cols-4 gap-2 lg:gap-8">
+      <section className="relative py-12 md:py-20 overflow-hidden z-20 -mt-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <ScrollReveal direction="up">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto">
               {stats.map((stat, index) => (
-                <div key={stat.id} className="text-center px-1 sm:px-4 relative group">
-                  {index !== stats.length - 1 && (
-                    <div className="absolute top-1/2 -right-1 sm:-right-4 w-px h-8 sm:h-12 bg-gradient-to-b from-transparent via-gray-300 to-transparent transform -translate-y-1/2 rtl:right-auto rtl:-left-1 sm:rtl:-left-4"></div>
-                  )}
-                  <Counter from={0} to={stat.value} duration={1.5 + index * 0.2} suffix={stat.suffix} />
-                  <div className="text-[10px] sm:text-lg font-bold text-gray-700 mt-1 sm:mt-3 leading-tight group-hover:text-primary-600 transition-colors">
-                    {stat.label[language as 'ar' | 'en']}
+                <div 
+                  key={stat.id}
+                  className="text-center p-6 sm:p-8 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/15"
+                >
+                  <div className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 tracking-tight flex justify-center items-center gap-1 drop-shadow-md">
+                    <Counter from={0} to={stat.value} duration={2.5} />
+                    {stat.suffix && <span className="text-green-500">{stat.suffix}</span>}
                   </div>
+                  <div className="text-sm sm:text-base font-bold text-gray-300 uppercase tracking-wider">{stat.label[language as 'ar' | 'en']}</div>
                 </div>
               ))}
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* About Us Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-white rounded-3xl p-8 sm:p-12 lg:p-16 border border-gray-100 shadow-sm flex flex-col lg:flex-row gap-12 items-center">
-          <div className="lg:w-1/2">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.aboutUs')}</h2>
-            <div className="h-1 w-20 bg-primary-600 rounded mb-8"></div>
-            <p className="text-lg text-gray-600 leading-relaxed">
-              {companyInfo.about?.[language as 'ar' | 'en']}
-            </p>
-            <div className="mt-8">
-              <Link to="/about" className="inline-flex items-center gap-2 text-primary-600 font-medium hover:text-primary-700 transition-colors">
-                {t('common.readMore')} <ArrowIcon className="w-5 h-5" />
+      {/* About Section */}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-10">
+        <ScrollReveal direction="left">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center max-w-7xl mx-auto bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 sm:p-16 shadow-2xl">
+            <div className="flex-1 space-y-8">
+              <div>
+                <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-md">{t('home.aboutUs')}</h2>
+                <div className="h-1 w-24 bg-green-500 rounded"></div>
+              </div>
+              <p className="text-lg md:text-xl text-gray-300 leading-relaxed font-medium">
+                {companyInfo.about[language as 'ar' | 'en']}
+              </p>
+              <Link 
+                to="/about"
+                className="inline-flex items-center gap-2 text-green-400 font-bold hover:text-green-300 transition-colors group text-lg"
+              >
+                {t('common.readMore')}
+                <ArrowIcon className="w-5 h-5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" />
               </Link>
             </div>
-          </div>
-          <div className="lg:w-1/2 w-full">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gray-100 relative shadow-lg">
-              <img 
-                src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop" 
-                alt="Rawafed Al Janoob Warehouse" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 border-4 border-white/20 rounded-2xl"></div>
+            
+            <div className="flex-1 w-full max-w-lg lg:max-w-none">
+              <div className="relative aspect-square sm:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
+                <img 
+                  src="https://res.cloudinary.com/x6mkqvcj/image/upload/v1785723389/about-warehouse.heic.jpg" 
+                  alt={t('home.aboutUs')} 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-[10s] ease-out"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent mix-blend-multiply"></div>
+                <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl text-white">
+                  <div className="font-bold text-xl sm:text-2xl mb-1">{t('home.trustedPartner')}</div>
+                  <div className="text-green-400 font-medium">{t('home.since2019')}</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Services Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.ourServices')}</h2>
-          <div className="h-1 w-20 bg-primary-600 mx-auto rounded"></div>
-        </div>
-        <div className="grid grid-cols-3 gap-2 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
-          {services.map((service, index) => (
-            <motion.div
-              key={service.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="relative bg-white/80 backdrop-blur-sm p-3 sm:p-8 rounded-2xl shadow-sm border border-gray-100/50 hover:shadow-2xl hover:border-green-300 hover:-translate-y-2 transition-all duration-500 group overflow-hidden flex flex-col items-center sm:items-start text-center sm:text-start"
-            >
-              {/* Distinctive background effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-green-50 via-transparent to-red-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
-              
-              <div className="w-10 h-10 sm:w-14 sm:h-14 bg-gray-50 rounded-lg sm:rounded-xl flex items-center justify-center text-gray-700 mb-2 sm:mb-6 group-hover:scale-110 group-hover:bg-gradient-to-tr group-hover:from-green-600 group-hover:to-red-600 group-hover:text-white transition-all duration-500 relative z-10 shadow-sm group-hover:shadow-green-900/20">
-                {service.icon === 'Truck' && <Truck className="w-5 h-5 sm:w-7 sm:h-7" />}
-                {service.icon === 'Package' && <Package className="w-5 h-5 sm:w-7 sm:h-7" />}
-                {service.icon === 'TrendingUp' && <TrendingUp className="w-5 h-5 sm:w-7 sm:h-7" />}
-              </div>
-              <h3 className="text-[11px] sm:text-xl font-bold text-gray-900 mb-1 sm:mb-3 group-hover:text-green-700 transition-colors relative z-10 leading-tight">
-                {service.title[language as 'ar' | 'en']}
-              </h3>
-              <p className="text-[9px] sm:text-base text-gray-500 leading-snug sm:leading-relaxed relative z-10 hidden sm:block">
-                {service.description[language as 'ar' | 'en']}
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-10">
+        <ScrollReveal direction="up">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">{t('home.ourServices')}</h2>
+            <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+            {services.map((service, index) => {
+              const Icon = service.icon === 'Package' ? Package : service.icon === 'Truck' ? Truck : TrendingUp;
+              return (
+                <div 
+                  key={service.id} 
+                  className="bg-black/40 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-[2rem] hover:-translate-y-3 hover:bg-black/60 transition-all duration-500 group shadow-2xl"
+                >
+                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500">
+                    <Icon className="w-8 h-8 text-green-400 group-hover:text-green-300 transition-colors" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-sm">{service.title[language as 'ar' | 'en']}</h3>
+                  <p className="text-gray-400 font-medium leading-relaxed group-hover:text-gray-300 transition-colors">
+                    {service.description[language as 'ar' | 'en']}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* Brands Section (Modified Layout) */}
+      <section className="relative py-24 overflow-hidden z-20 my-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ScrollReveal direction="up">
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">{t('home.ourBrands')}</h2>
+              <div className="h-1 w-24 bg-green-500 mx-auto rounded mb-8"></div>
+              <p className="text-xl text-gray-300 leading-relaxed font-medium">
+                {language === 'ar' ? 'نفخر بتقديم أفضل العلامات التجارية التي تضمن الجودة والمذاق الرائع.' : 'We are proud to present the best brands that guarantee quality and great taste.'}
               </p>
-            </motion.div>
-          ))}
+            </div>
+          </ScrollReveal>
+          
+          {/* Row 1 */}
+          <div className="flex justify-center mb-8">
+            <ScrollReveal direction="up">
+              <Link 
+                to="/brands" 
+                className="bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group flex flex-col items-center shadow-2xl min-w-[300px] w-full max-w-md overflow-hidden relative"
+              >
+                {brands[0].logo ? (
+                  <div className="w-full h-48 md:h-56 mb-6 rounded-2xl overflow-hidden">
+                    <img src={brands[0].logo} alt={brands[0].name[language as 'ar' | 'en']} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                  </div>
+                ) : (
+                  <div className="h-32 flex items-center justify-center mb-6 w-full bg-white/5 rounded-2xl p-4">
+                    <h3 className="text-4xl font-bold text-white group-hover:text-green-400 transition-colors text-center">{brands[0].name[language as 'ar' | 'en']}</h3>
+                  </div>
+                )}
+                <h3 className="text-2xl font-bold text-white mb-3 text-center">{brands[0].name[language as 'ar' | 'en']}</h3>
+                <p className="text-gray-400 font-medium text-center">{brands[0].description[language as 'ar' | 'en']}</p>
+              </Link>
+            </ScrollReveal>
+          </div>
+
+          {/* Row 2 */}
+          <div className="flex flex-col sm:flex-row justify-center gap-8">
+            {brands.slice(1).map((brand, index) => (
+              <ScrollReveal direction={index === 0 ? "right" : "left"} key={brand.id}>
+                <Link 
+                  to="/brands" 
+                  className="bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group flex flex-col items-center shadow-2xl min-w-[300px] w-full max-w-md"
+                >
+                  <div className="h-32 flex items-center justify-center mb-6 w-full bg-white/5 rounded-2xl p-4 group-hover:bg-white/10 transition-colors">
+                    {brand.logo ? (
+                      <img src={brand.logo} alt={brand.name[language as 'ar' | 'en']} className="max-h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+                    ) : (
+                      <span className="text-3xl font-bold text-gray-300 group-hover:text-white transition-colors">{brand.name[language as 'ar' | 'en']}</span>
+                    )}
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3 text-center">{brand.name[language as 'ar' | 'en']}</h3>
+                  <p className="text-gray-400 font-medium text-center">{brand.description[language as 'ar' | 'en']}</p>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal direction="up">
+            <div className="text-center mt-16">
+              <Link 
+                to="/brands" 
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white/10 border border-white/20 text-white rounded-full font-bold hover:bg-white/20 transition-all duration-300 hover:scale-105 shadow-xl backdrop-blur-md"
+              >
+                {t('home.exploreBrands')}
+                <ArrowIcon className="w-5 h-5" />
+              </Link>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
-      {/* Brands Section */}
-      <section className="bg-gray-900 py-8 md:py-20 text-white overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-3xl font-bold mb-4">{t('home.ourBrands')}</h2>
-            <div className="h-1 w-20 bg-primary-500 mx-auto rounded"></div>
-          </div>
-          
-          <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-3 gap-3 md:gap-8 items-stretch py-4">
-              {brands.slice(0, 3).map((brand) => (
-                <div
-                  key={brand.id}
-                  className="bg-gray-800 rounded-2xl p-3 md:p-8 border border-gray-700 hover:border-primary-500/50 hover:shadow-2xl hover:shadow-primary-900/50 hover:scale-[1.05] hover:-translate-y-2 transform transition-all duration-300 group flex flex-col items-center text-center cursor-pointer"
-                >
-                  <div className="w-full h-16 sm:h-24 md:h-40 shrink-0 bg-white rounded-lg md:rounded-xl mb-3 md:mb-6 flex items-center justify-center p-2 md:p-6 relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
-                    {brand.logo ? (
-                      <img src={brand.logo} alt={brand.name[language as 'ar' | 'en']} className="w-full h-full object-contain group-hover:scale-125 transition-transform duration-500" />
-                    ) : (
-                      <div className="text-xs sm:text-lg md:text-3xl font-bold text-gray-900">{brand.name[language as 'ar' | 'en']}</div>
-                    )}
-                  </div>
-                  <div className="flex flex-col flex-grow w-full">
-                    <h3 className="text-sm md:text-2xl font-bold mb-1 md:mb-3 group-hover:text-primary-400 transition-colors truncate">{brand.name[language as 'ar' | 'en']}</h3>
-                    <p className="hidden md:flex text-xs md:text-base text-gray-400 mb-0 md:mb-4 flex-grow line-clamp-2">{brand.description[language as 'ar' | 'en']}</p>
-                    
-                    {brand.categories && (
-                      <div className="flex flex-row flex-wrap justify-center gap-1 md:gap-2 mt-auto pt-2 md:pt-4 border-t border-gray-700/50">
-                        {brand.categories.map((cat, i) => (
-                          <span key={i} className="inline-flex items-center rounded-full bg-gray-700/50 px-1.5 py-0.5 md:px-3 md:py-1 text-[8px] md:text-sm font-medium text-gray-300 border border-gray-600 group-hover:border-primary-500/30 group-hover:text-primary-100 transition-colors">
-                            {cat[language as 'ar' | 'en']}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
+      {/* Distribution Network Section */}
+      <section className="relative py-24 overflow-hidden z-20 my-10">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <ScrollReveal direction="right">
+            <div className="max-w-2xl bg-black/50 backdrop-blur-md border border-white/10 p-10 md:p-16 rounded-[3rem] shadow-2xl">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">{t('home.distributionNetwork') || 'Distribution Network'}</h2>
+              <div className="h-1 w-24 bg-green-500 rounded mb-8"></div>
+              <p className="text-xl text-gray-300 leading-relaxed font-medium">
+                {language === 'ar' 
+                  ? 'نمتلك شبكة توزيع ضخمة تغطي جميع أنحاء المملكة العربية السعودية، لضمان وصول منتجاتنا بجودة عالية وفي الوقت المحدد.'
+                  : 'We own a massive distribution network covering all parts of Saudi Arabia, ensuring our products reach you in high quality and on time.'}
+              </p>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
-      
+
       {/* Branches Map Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">{t('home.ourBranches')}</h2>
-          <div className="h-1 w-20 bg-primary-600 mx-auto rounded"></div>
-        </div>
-        <div className="grid grid-cols-2 gap-2 sm:gap-6 md:gap-8 max-w-6xl mx-auto">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 my-10 z-20">
+        <ScrollReveal direction="up">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6 drop-shadow-md">{t('home.ourBranches')}</h2>
+            <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
+          </div>
+        </ScrollReveal>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
           {branches.map((branch, index) => (
-            <motion.div
-              key={branch.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="rounded-xl sm:rounded-2xl p-[2px] sm:p-[3px] bg-gradient-to-tr from-green-600 via-white to-red-600 hover:shadow-2xl hover:shadow-green-900/20 hover:scale-105 transition-all duration-500 group animate-wave-gradient bg-[length:300%_300%]"
-            >
-              <div className="bg-white rounded-[10px] sm:rounded-[13px] overflow-hidden flex flex-col h-full">
-                <div className="h-32 sm:h-64 w-full bg-gray-100 relative overflow-hidden">
+            <ScrollReveal direction="up" key={branch.id}>
+              <div className="rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 shadow-2xl hover:shadow-green-500/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col h-full group">
+                <div className="h-48 sm:h-72 w-full bg-white/5 relative overflow-hidden">
                   {branch.iframe ? (
-                    <div className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full group-hover:scale-105 transition-transform duration-500" dangerouslySetInnerHTML={{ __html: branch.iframe }} />
+                    <div className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full opacity-80 group-hover:opacity-100 transition-opacity duration-700" dangerouslySetInnerHTML={{ __html: branch.iframe }} />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-400">
-                      <Map className="w-8 h-8 sm:w-12 sm:h-12" />
+                    <div className="w-full h-full flex items-center justify-center text-gray-500">
+                      <Map className="w-10 h-10" />
                     </div>
                   )}
+                  <div className="absolute inset-0 bg-black/20 pointer-events-none group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
-                <div className="p-3 sm:p-8 flex-grow">
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-2 sm:gap-4 mb-1 sm:mb-4">
+                <div className="p-6 sm:p-10 flex-grow z-10 relative">
+                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
                     <div>
-                      <h3 className="text-[11px] sm:text-xl font-bold text-gray-900 mb-1 sm:mb-2 group-hover:text-green-600 transition-colors leading-tight">{branch.name[language as 'ar' | 'en']}</h3>
-                      <p className="text-[9px] sm:text-base text-gray-500 flex items-center gap-1 sm:gap-2 leading-snug">
-                        <MapPin className="w-3 h-3 sm:w-4 sm:h-4 shrink-0" /> {branch.address[language as 'ar' | 'en']}
+                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors leading-tight">{branch.name[language as 'ar' | 'en']}</h3>
+                      <p className="text-base text-gray-400 flex items-center gap-2 font-medium">
+                        <MapPin className="w-5 h-5 text-green-500 shrink-0" /> {branch.address[language as 'ar' | 'en']}
                       </p>
                     </div>
-                    <span className="self-start sm:self-auto inline-flex items-center rounded-full bg-green-50 px-2 py-0.5 sm:px-3 sm:py-1 text-[8px] sm:text-xs font-medium text-green-700 whitespace-nowrap">
+                    <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-gray-200 border border-white/20 shadow-sm group-hover:bg-green-500/20 group-hover:text-green-300 group-hover:border-green-500/30 transition-colors">
                       {branch.city[language as 'ar' | 'en']}
                     </span>
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </ScrollReveal>
           ))}
         </div>
       </section>
 
       {/* Success Partners Section */}
-      <section className="py-6 md:py-12 bg-gray-50 border-t border-gray-100">
+      <section className="py-16 md:py-24 my-10 z-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-              {language === 'ar' ? 'شركاء النجاح' : 'Success Partners'}
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
-              {language === 'ar' 
-                ? 'نفخر بخدمة نخبة من أكبر الشركات والعلامات التجارية في المملكة، ونعتز بالثقة التي منحونا إياها.' 
-                : 'We are proud to serve a selection of the largest companies and brands in the Kingdom, and we cherish the trust they have placed in us.'}
-            </p>
+          <ScrollReveal direction="up">
+            <div className="text-center mb-16 bg-black/40 backdrop-blur-md border border-white/10 rounded-[3rem] p-12 max-w-4xl mx-auto shadow-2xl">
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">
+                {language === 'ar' ? 'شركاء النجاح' : 'Success Partners'}
+              </h2>
+              <p className="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl font-medium">
+                {language === 'ar' 
+                  ? 'نفخر بخدمة نخبة من أكبر الشركات والعلامات التجارية في المملكة، ونعتز بالثقة التي منحونا إياها.' 
+                  : 'We are proud to serve a selection of the largest companies and brands in the Kingdom, and we cherish the trust they have placed in us.'}
+              </p>
+            </div>
+          </ScrollReveal>
+          <div className="bg-white/5 backdrop-blur-md border-y border-white/10 py-10 shadow-2xl rounded-[2rem]">
+            <PartnerMarquee />
           </div>
-          <PartnerMarquee />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <div className="relative overflow-hidden rounded-3xl p-8 sm:p-16 text-center max-w-5xl mx-auto shadow-2xl border border-green-200 bg-gradient-to-br from-green-600 via-green-400 to-white animate-wave-gradient bg-[length:300%_300%] group">
-          
-          {/* Wave Shapes */}
-          <div className="absolute top-0 left-0 w-full h-full opacity-30 pointer-events-none overflow-hidden">
-            <div className="absolute -top-1/2 -left-1/4 w-[150%] h-full bg-white/40 rounded-[100%] mix-blend-overlay group-hover:scale-110 transition-transform duration-1000 ease-in-out"></div>
-            <div className="absolute top-1/4 -right-1/4 w-[150%] h-[150%] bg-green-300/30 rounded-[100%] mix-blend-overlay group-hover:scale-110 transition-transform duration-1000 ease-in-out delay-75"></div>
-          </div>
-          
-          <div className="absolute -top-32 -right-32 w-96 h-96 bg-white/60 rounded-full blur-3xl animate-[pulse_6s_ease-in-out_infinite]"></div>
-          <div className="absolute -bottom-32 -left-32 w-96 h-96 bg-green-800/30 rounded-full blur-3xl animate-[pulse_4s_ease-in-out_infinite]"></div>
-          
-          <div className="relative z-10">
-            <ShieldCheck className="w-16 h-16 text-white mx-auto mb-6 drop-shadow-md group-hover:scale-110 transition-transform duration-500" />
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 drop-shadow-md">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-32 z-20">
+        <ScrollReveal direction="up">
+          <div className="relative overflow-hidden rounded-[3rem] p-12 sm:p-24 text-center max-w-5xl mx-auto shadow-2xl group bg-black/50 backdrop-blur-xl border border-white/10">
+            <ShieldCheck className="w-24 h-24 text-green-500 mx-auto mb-10 drop-shadow-2xl" />
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 drop-shadow-md tracking-tight leading-tight max-w-3xl mx-auto">
               {t('home.ctaTitle')}
             </h2>
-            <p className="text-lg text-green-50 mb-10 max-w-2xl mx-auto font-medium drop-shadow-sm">
+            <p className="text-2xl text-gray-300 mb-14 font-medium drop-shadow-sm leading-relaxed max-w-2xl mx-auto">
               {t('home.ctaSubtitle')}
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-center gap-6">
               <Link
                 to="/quote"
-                className="inline-flex h-14 items-center justify-center rounded-xl bg-white px-10 text-lg font-bold text-green-700 transition-all hover:bg-gray-50 hover:scale-105 hover:shadow-xl hover:shadow-green-900/20 shadow-lg"
+                className="inline-flex h-16 items-center justify-center rounded-2xl bg-green-600 px-12 text-xl font-bold text-white transition-all hover:bg-green-500 hover:scale-105 shadow-2xl hover:shadow-green-500/40 w-full sm:w-auto"
               >
                 {t('common.requestQuote')}
               </Link>
               <Link
-                to="/branches"
-                className="inline-flex h-14 items-center justify-center rounded-xl bg-green-800/20 backdrop-blur-md px-10 text-lg font-bold text-white border border-white/40 transition-all hover:bg-green-800/40 hover:scale-105 hover:border-white/60 shadow-lg"
+                to="/contact"
+                className="inline-flex h-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-md px-12 text-xl font-bold text-white border border-white/20 transition-all hover:bg-white/20 hover:scale-105 w-full sm:w-auto shadow-xl"
               >
-                {t('home.ourBranches')}
+                {t('home.contactUs') || 'Contact Us'}
               </Link>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
     </div>
   );

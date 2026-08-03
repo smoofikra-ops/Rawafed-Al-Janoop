@@ -8,37 +8,67 @@ import { cn } from '../../lib/utils';
 import { companyInfo } from '../../data';
 import { TikTokIcon, InstagramIcon, FacebookIcon, XIcon, SnapchatIcon } from '../ui/SocialIcons';
 
+import { GlobalBackground } from './GlobalBackground';
+
 function Header() {
   const { t } = useTranslation();
   const { language, toggleLanguage, isRTL } = useLanguage();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const location = useLocation();
+  const [scrolled, setScrolled] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
+    <header 
+      className={cn(
+        "sticky top-0 z-50 w-full transition-all duration-500",
+        scrolled 
+          ? "bg-white/85 backdrop-blur-xl border-b border-gray-200/60 shadow-sm py-2 sm:py-3" 
+          : "bg-white/60 backdrop-blur-lg border-b border-gray-200/30 py-4 sm:py-5"
+      )}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-20 items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center gap-2">
+        <div className="flex items-center justify-between">
+          
+          {/* Logo & Company Name (Start) */}
+          <div className="flex items-center lg:w-1/4 justify-start">
+            <Link to="/" className="flex flex-col items-start gap-1.5 group">
               <img 
                 src="https://www.rawafedj.com/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75" 
                 alt={companyInfo.name[language as 'ar' | 'en']} 
-                className="h-12 w-auto object-contain"
+                className="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition-transform duration-500 origin-left"
               />
-              <span className="text-xl font-bold text-gray-900 hidden sm:block">
+              <span className="text-[10px] sm:text-[11.5px] font-semibold text-gray-700 tracking-wide transition-colors group-hover:text-primary-700">
                 {companyInfo.name[language as 'ar' | 'en']}
               </span>
             </Link>
           </div>
 
-          <nav className="hidden lg:flex items-center gap-8">
+          {/* Mobile Menu Toggle */}
+          <button
+            className="lg:hidden p-2 -mr-2 text-gray-600 hover:text-primary-600 transition-colors"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+
+          {/* Desktop Navigation (Center) */}
+          <nav className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-8">
             {navigation.map((item) => (
               <Link
                 key={item.id}
                 to={item.href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary-600",
-                  location.pathname === item.href ? "text-primary-600" : "text-gray-600"
+                  "text-[13.5px] xl:text-[14.5px] font-medium whitespace-nowrap transition-colors duration-300 relative py-2",
+                  "after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-primary-600 hover:after:w-full after:transition-all after:duration-300",
+                  location.pathname === item.href ? "text-primary-700 after:w-full" : "text-gray-600 hover:text-primary-700"
                 )}
               >
                 {item.label[language as 'ar' | 'en']}
@@ -46,54 +76,52 @@ function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-4">
+          {/* Controls (End) */}
+          <div className="hidden lg:flex items-center justify-end gap-4 xl:gap-6 lg:w-1/4">
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+              className="flex items-center gap-2 text-[14px] font-medium text-gray-600 hover:text-primary-700 transition-colors group"
             >
-              <Globe className="w-4 h-4" />
-              <span className="hidden sm:inline-block">{t('common.language')}</span>
+              <Globe className="w-4 h-4 group-hover:rotate-12 transition-transform" />
+              <span>{t('common.language')}</span>
             </button>
             <Link
               to="/quote"
-              className="hidden sm:inline-flex h-10 items-center justify-center rounded-md bg-primary-600 px-6 text-sm font-medium text-white transition-colors hover:bg-primary-700"
+              className="h-10 xl:h-11 inline-flex items-center justify-center rounded-lg bg-green-600 px-5 xl:px-6 text-[13px] xl:text-[14px] font-medium text-white transition-all duration-300 hover:bg-green-500 hover:shadow-lg hover:shadow-green-500/25 hover:-translate-y-0.5 whitespace-nowrap"
             >
               {t('common.requestQuote')}
             </Link>
-            <button
-              className="lg:hidden p-2 text-gray-600"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
           </div>
+
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="lg:hidden border-t bg-white">
-          <div className="container mx-auto px-4 py-4 space-y-4">
+        <div className="lg:hidden border-t border-gray-100 bg-white/95 backdrop-blur-xl shadow-xl absolute w-full transition-all">
+          <div className="container mx-auto px-4 py-6 space-y-2">
             {navigation.map((item) => (
               <Link
                 key={item.id}
                 to={item.href}
                 className={cn(
-                  "block text-base font-medium transition-colors hover:text-primary-600",
-                  location.pathname === item.href ? "text-primary-600" : "text-gray-600"
+                  "block text-[15px] font-medium transition-colors hover:text-primary-700 p-3 rounded-lg hover:bg-gray-50",
+                  location.pathname === item.href ? "text-primary-700 bg-primary-50/50" : "text-gray-700"
                 )}
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.label[language as 'ar' | 'en']}
               </Link>
             ))}
-            <Link
-              to="/quote"
-              className="flex h-10 w-full items-center justify-center rounded-md bg-primary-600 px-4 text-sm font-medium text-white transition-colors hover:bg-primary-700"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {t('common.requestQuote')}
-            </Link>
+            <div className="pt-4 mt-2 border-t border-gray-100">
+              <Link
+                to="/quote"
+                className="flex h-12 w-full items-center justify-center rounded-lg bg-green-600 px-4 text-[15px] font-medium text-white transition-all hover:bg-green-500 shadow-md"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {t('common.requestQuote')}
+              </Link>
+            </div>
           </div>
         </div>
       )}
@@ -111,7 +139,7 @@ function Footer() {
   };
 
   return (
-    <footer className="relative bg-gray-950 text-gray-300 py-12 md:py-16 overflow-hidden">
+    <footer className="relative bg-black/40 text-gray-300 py-12 md:py-16 overflow-hidden backdrop-blur-md border-t border-white/10">
       {/* Background animated wave effect with identity colors */}
       <div className="absolute inset-0 pointer-events-none opacity-40">
         <div className="absolute -top-[50%] -left-[20%] w-[150%] h-[150%] bg-gradient-to-br from-green-600/30 via-transparent to-transparent rounded-[40%] mix-blend-screen animate-[spin_25s_linear_infinite] blur-[100px]"></div>
@@ -120,9 +148,9 @@ function Footer() {
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Logo & Social */}
-          <div className="space-y-6 mb-6 lg:mb-0">
+          <div className="space-y-6 mb-6 lg:mb-0 lg:col-span-2">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <img 
@@ -174,13 +202,10 @@ function Footer() {
             </button>
             <div className={`mt-4 space-y-2 overflow-hidden transition-all duration-300 lg:h-auto lg:opacity-100 ${openSection === 'about' ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 lg:max-h-full'}`}>
               <ul className="space-y-2 pb-2 lg:pb-0">
-                {navigation.slice(0, 4).map((item) => (
-                  <li key={item.id}>
-                    <Link to={item.href} className="text-sm hover:text-white transition-colors">
-                      {item.label[language as 'ar' | 'en']}
-                    </Link>
-                  </li>
-                ))}
+                <li><Link to="/about" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'من نحن' : 'About Us'}</Link></li>
+                <li><Link to="/brands" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'العلامات التجارية' : 'Brands'}</Link></li>
+                <li><Link to="/careers" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'التوظيف' : 'Careers'}</Link></li>
+                <li><Link to="/quote" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'طلب عرض سعر' : 'Request a Quote'}</Link></li>
               </ul>
             </div>
           </div>
@@ -198,13 +223,30 @@ function Footer() {
             </button>
             <div className={`mt-4 space-y-2 overflow-hidden transition-all duration-300 lg:h-auto lg:opacity-100 ${openSection === 'services' ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 lg:max-h-full'}`}>
               <ul className="space-y-2 pb-2 lg:pb-0">
-                {navigation.slice(4).map((item) => (
-                  <li key={item.id}>
-                    <Link to={item.href} className="text-sm hover:text-white transition-colors">
-                      {item.label[language as 'ar' | 'en']}
-                    </Link>
-                  </li>
-                ))}
+                <li><Link to="/services" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'الخدمات' : 'Services'}</Link></li>
+                <li><Link to="/branches" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'الفروع والمستودعات' : 'Branches & Warehouses'}</Link></li>
+                <li><Link to="/contact" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'تواصل معنا' : 'Contact Us'}</Link></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Policies (Accordion on mobile) */}
+          <div className="border-t border-gray-800 lg:border-none pt-4 lg:pt-0">
+            <button 
+              className="w-full flex justify-between items-center lg:cursor-default lg:pointer-events-none"
+              onClick={() => toggleSection('policies')}
+            >
+              <h3 className="text-white font-semibold">{language === 'ar' ? 'السياسات' : 'Policies'}</h3>
+              <span className="lg:hidden text-gray-400">
+                {openSection === 'policies' ? '−' : '+'}
+              </span>
+            </button>
+            <div className={`mt-4 space-y-2 overflow-hidden transition-all duration-300 lg:h-auto lg:opacity-100 ${openSection === 'policies' ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 lg:max-h-full'}`}>
+              <ul className="space-y-2 pb-2 lg:pb-0">
+                <li><Link to="/privacy" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}</Link></li>
+                <li><Link to="/terms-use" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'سياسة الاستخدام' : 'Usage Policy'}</Link></li>
+                <li><Link to="/terms" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'الشروط والأحكام' : 'Terms & Conditions'}</Link></li>
+                <li><Link to="/conditions" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'شروط الاستخدام' : 'Conditions of Use'}</Link></li>
               </ul>
             </div>
           </div>
@@ -258,12 +300,15 @@ export function Layout({ children }: { children: React.ReactNode }) {
   useLanguage();
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Header />
-      <main className="flex-grow">
-        {children}
-      </main>
-      <Footer />
+    <div className="min-h-screen flex flex-col bg-transparent relative">
+      <GlobalBackground />
+      <div className="relative z-10 flex flex-col flex-grow">
+        <Header />
+        <main className="flex-grow">
+          {children}
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
