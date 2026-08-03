@@ -23,8 +23,8 @@ const resources = {
         "ourBrands": "العلامات التجارية",
         "ourBranches": "الفروع والمستودعات",
         "whyUs": "لماذا روافد الجنوب؟",
-        "ctaTitle": "تدور على شريك موثوق يورد لك منتجات غذائية؟",
-        "ctaSubtitle": "عندنا شبكة واسعة من الفروع والمستودعات عشان نضمن إن منتجاتنا توصلكم بأعلى جودة وفي وقتها.",
+        "ctaTitle": "نحن شريكك الموثوق الذي يوفر لك منتجات غذائية مطابقة لأعلى المعايير.",
+        "ctaSubtitle": "نمتلك شبكة واسعة من الفروع والمستودعات لنضمن وصول منتجاتنا إليكم بأعلى جودة وفي وقتها المحدد.",
       }
     }
   },
@@ -48,8 +48,8 @@ const resources = {
         "ourBrands": "Our Brands",
         "ourBranches": "Branches & Warehouses",
         "whyUs": "Why Rawafed Al Janoob?",
-        "ctaTitle": "Looking for a reliable food supply partner?",
-        "ctaSubtitle": "We have an extensive network of branches and warehouses to ensure our products reach you with the highest quality and on time.",
+        "ctaTitle": "Your reliable partner providing food products that meet the highest standards.",
+        "ctaSubtitle": "We operate an extensive network of branches and warehouses to ensure our products reach you with the highest quality and on time.",
       }
     }
   }

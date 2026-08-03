@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform } from 'motion/react';
 import { ArrowRight, ArrowLeft, TrendingUp, Package, Truck, ShieldCheck, Map, MapPin } from 'lucide-react';
 import { stats, brands, services, branches, companyInfo } from '../data';
+import { Counter } from '../components/ui/Counter';
+import { PartnerMarquee } from '../components/ui/PartnerMarquee';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -14,9 +16,9 @@ export default function Home() {
   const blurOpacity = useTransform(scrollY, [0, 200], [1, 0]);
 
   return (
-    <div className="flex flex-col gap-20 pb-20">
+    <div className="flex flex-col gap-8 md:gap-20 pb-8 md:pb-20">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gray-900 text-white pt-24 pb-32">
+      <section className="relative overflow-hidden bg-gray-900 text-white pt-16 pb-20 md:pt-24 md:pb-32">
         <div className="absolute inset-0 z-0">
           <video
             autoPlay
@@ -82,27 +84,26 @@ export default function Home() {
       </section>
 
       {/* Stats Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-20">
-        <div className="bg-white rounded-2xl shadow-xl shadow-gray-200/50 p-8 sm:p-12">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-gray-100 rtl:divide-x-reverse">
-            {stats.map((stat, index) => (
-              <motion.div 
-                key={stat.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center px-4"
-              >
-                <div className="text-4xl sm:text-5xl font-bold text-primary-600 mb-2 flex items-center justify-center" dir="ltr">
-                  {stat.value}
-                  {stat.suffix && <span className="text-2xl ml-1">{stat.suffix}</span>}
+      <section className="relative py-12 md:py-20 border-y border-gray-200 bg-white overflow-hidden shadow-2xl z-20">
+        {/* Subtle patterned background for the Stats section */}
+        <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, black 1px, transparent 0)', backgroundSize: '24px 24px' }}></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-50 via-transparent to-gray-50 opacity-90"></div>
+        
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-6 md:p-10 border border-gray-100 backdrop-blur-sm">
+            <div className="grid grid-cols-4 gap-2 lg:gap-8">
+              {stats.map((stat, index) => (
+                <div key={stat.id} className="text-center px-1 sm:px-4 relative group">
+                  {index !== stats.length - 1 && (
+                    <div className="absolute top-1/2 -right-1 sm:-right-4 w-px h-8 sm:h-12 bg-gradient-to-b from-transparent via-gray-300 to-transparent transform -translate-y-1/2 rtl:right-auto rtl:-left-1 sm:rtl:-left-4"></div>
+                  )}
+                  <Counter from={0} to={stat.value} duration={1.5 + index * 0.2} suffix={stat.suffix} />
+                  <div className="text-[10px] sm:text-lg font-bold text-gray-700 mt-1 sm:mt-3 leading-tight group-hover:text-primary-600 transition-colors">
+                    {stat.label[language as 'ar' | 'en']}
+                  </div>
                 </div>
-                <div className="text-sm sm:text-base font-medium text-gray-600">
-                  {stat.label[language as 'ar' | 'en']}
-                </div>
-              </motion.div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -171,39 +172,35 @@ export default function Home() {
       </section>
 
       {/* Brands Section */}
-      <section className="bg-gray-900 py-20 text-white overflow-hidden">
+      <section className="bg-gray-900 py-8 md:py-20 text-white overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-3xl font-bold mb-4">{t('home.ourBrands')}</h2>
             <div className="h-1 w-20 bg-primary-500 mx-auto rounded"></div>
           </div>
           
-          <div className="relative max-w-7xl mx-auto">
-            {/* Fade effect on edges */}
-            <div className="absolute inset-y-0 left-0 w-16 sm:w-32 bg-gradient-to-r from-gray-900 to-transparent z-10 pointer-events-none"></div>
-            <div className="absolute inset-y-0 right-0 w-16 sm:w-32 bg-gradient-to-l from-gray-900 to-transparent z-10 pointer-events-none"></div>
-
-            <div className="flex w-fit animate-marquee hover:[animation-play-state:paused] gap-6 sm:gap-10 items-stretch py-4">
-              {[...brands, ...brands, ...brands, ...brands].map((brand, index) => (
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-3 gap-3 md:gap-8 items-stretch py-4">
+              {brands.slice(0, 3).map((brand) => (
                 <div
-                  key={`${brand.id}-${index}`}
-                  className="flex-shrink-0 w-64 sm:w-80 bg-gray-800 rounded-2xl p-6 sm:p-8 border border-gray-700 hover:border-primary-500/50 hover:shadow-2xl hover:shadow-primary-900/50 hover:scale-[1.03] hover:-translate-y-1 transform transition-all duration-300 group flex flex-col items-center text-center cursor-pointer"
+                  key={brand.id}
+                  className="bg-gray-800 rounded-2xl p-3 md:p-8 border border-gray-700 hover:border-primary-500/50 hover:shadow-2xl hover:shadow-primary-900/50 hover:scale-[1.05] hover:-translate-y-2 transform transition-all duration-300 group flex flex-col items-center text-center cursor-pointer"
                 >
-                  <div className="w-full h-32 sm:h-40 shrink-0 bg-white rounded-lg sm:rounded-xl mb-4 sm:mb-6 flex items-center justify-center p-4 sm:p-6 relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
+                  <div className="w-full h-16 sm:h-24 md:h-40 shrink-0 bg-white rounded-lg md:rounded-xl mb-3 md:mb-6 flex items-center justify-center p-2 md:p-6 relative overflow-hidden group-hover:scale-105 transition-transform duration-300">
                     {brand.logo ? (
-                      <img src={brand.logo} alt={brand.name[language as 'ar' | 'en']} className="w-full h-full object-contain group-hover:scale-110 transition-transform duration-500" />
+                      <img src={brand.logo} alt={brand.name[language as 'ar' | 'en']} className="w-full h-full object-contain group-hover:scale-125 transition-transform duration-500" />
                     ) : (
-                      <div className="text-sm sm:text-3xl font-bold text-gray-900">{brand.name[language as 'ar' | 'en']}</div>
+                      <div className="text-xs sm:text-lg md:text-3xl font-bold text-gray-900">{brand.name[language as 'ar' | 'en']}</div>
                     )}
                   </div>
                   <div className="flex flex-col flex-grow w-full">
-                    <h3 className="text-lg sm:text-2xl font-bold mb-1 sm:mb-3 group-hover:text-primary-400 transition-colors truncate">{brand.name[language as 'ar' | 'en']}</h3>
-                    <p className="text-xs sm:text-base text-gray-400 mb-0 sm:mb-4 flex-grow line-clamp-2">{brand.description[language as 'ar' | 'en']}</p>
+                    <h3 className="text-sm md:text-2xl font-bold mb-1 md:mb-3 group-hover:text-primary-400 transition-colors truncate">{brand.name[language as 'ar' | 'en']}</h3>
+                    <p className="hidden md:flex text-xs md:text-base text-gray-400 mb-0 md:mb-4 flex-grow line-clamp-2">{brand.description[language as 'ar' | 'en']}</p>
                     
                     {brand.categories && (
-                      <div className="flex flex-row flex-wrap justify-center gap-1 sm:gap-2 mt-auto pt-2 sm:pt-4 border-t border-gray-700/50">
+                      <div className="flex flex-row flex-wrap justify-center gap-1 md:gap-2 mt-auto pt-2 md:pt-4 border-t border-gray-700/50">
                         {brand.categories.map((cat, i) => (
-                          <span key={i} className="inline-flex items-center rounded-full bg-gray-700/50 px-2 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-sm font-medium text-gray-300 border border-gray-600 group-hover:border-primary-500/30 group-hover:text-primary-100 transition-colors">
+                          <span key={i} className="inline-flex items-center rounded-full bg-gray-700/50 px-1.5 py-0.5 md:px-3 md:py-1 text-[8px] md:text-sm font-medium text-gray-300 border border-gray-600 group-hover:border-primary-500/30 group-hover:text-primary-100 transition-colors">
                             {cat[language as 'ar' | 'en']}
                           </span>
                         ))}
@@ -259,6 +256,23 @@ export default function Home() {
               </div>
             </motion.div>
           ))}
+        </div>
+      </section>
+
+      {/* Success Partners Section */}
+      <section className="py-6 md:py-12 bg-gray-50 border-t border-gray-100">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-2">
+              {language === 'ar' ? 'شركاء النجاح' : 'Success Partners'}
+            </h2>
+            <p className="text-gray-600 max-w-2xl mx-auto text-sm md:text-base">
+              {language === 'ar' 
+                ? 'نفخر بخدمة نخبة من أكبر الشركات والعلامات التجارية في المملكة، ونعتز بالثقة التي منحونا إياها.' 
+                : 'We are proud to serve a selection of the largest companies and brands in the Kingdom, and we cherish the trust they have placed in us.'}
+            </p>
+          </div>
+          <PartnerMarquee />
         </div>
       </section>
 

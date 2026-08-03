@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../../hooks/useLanguage';
 import { navigation } from '../../data';
@@ -104,7 +104,12 @@ function Header() {
 function Footer() {
   const { t } = useTranslation();
   const { language } = useLanguage();
-  
+  const [openSection, setOpenSection] = useState<string | null>(null);
+
+  const toggleSection = (section: string) => {
+    setOpenSection(openSection === section ? null : section);
+  };
+
   return (
     <footer className="relative bg-gray-950 text-gray-300 py-12 md:py-16 overflow-hidden">
       {/* Background animated wave effect with identity colors */}
@@ -115,14 +120,15 @@ function Footer() {
       </div>
       
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
-          <div className="space-y-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 lg:gap-12">
+          {/* Logo & Social */}
+          <div className="space-y-6 mb-6 lg:mb-0">
             <div className="space-y-4">
               <div className="flex items-center gap-2">
                 <img 
                   src="https://www.rawafedj.com/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75" 
                   alt={companyInfo.name[language as 'ar' | 'en']} 
-                  className="h-10 w-auto brightness-0 invert"
+                  className="h-10 w-auto"
                 />
                 <span className="text-xl font-bold text-white">
                   {companyInfo.name[language as 'ar' | 'en']}
@@ -136,71 +142,104 @@ function Footer() {
             <div>
               <h4 className="text-white font-medium mb-4 text-sm">{language === 'ar' ? 'الصفحات الرسمية للشركة' : 'Official Company Pages'}</h4>
               <div className="flex flex-wrap items-center gap-4">
-                <a href={companyInfo.social.tiktok} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-black hover:text-white transition-all duration-300 hover:-translate-y-1" aria-label="TikTok">
+                <a href={companyInfo.social.tiktok} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white hover:opacity-80 transition-all duration-300 hover:-translate-y-1" aria-label="TikTok">
                   <TikTokIcon className="w-5 h-5" />
                 </a>
-                <a href={companyInfo.social.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-gradient-to-tr hover:from-yellow-500 hover:via-pink-500 hover:to-purple-500 hover:text-white transition-all duration-300 hover:-translate-y-1" aria-label="Instagram">
+                <a href={companyInfo.social.instagram} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-500 flex items-center justify-center text-white hover:opacity-80 transition-all duration-300 hover:-translate-y-1" aria-label="Instagram">
                   <InstagramIcon className="w-5 h-5" />
                 </a>
-                <a href={companyInfo.social.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#1877F2] hover:text-white transition-all duration-300 hover:-translate-y-1" aria-label="Facebook">
+                <a href={companyInfo.social.facebook} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#1877F2] flex items-center justify-center text-white hover:opacity-80 transition-all duration-300 hover:-translate-y-1" aria-label="Facebook">
                   <FacebookIcon className="w-5 h-5" />
                 </a>
-                <a href={companyInfo.social.x} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-black hover:text-white transition-all duration-300 hover:-translate-y-1" aria-label="X (Twitter)">
+                <a href={companyInfo.social.x} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white hover:opacity-80 transition-all duration-300 hover:-translate-y-1" aria-label="X (Twitter)">
                   <XIcon className="w-4 h-4" />
                 </a>
-                <a href={companyInfo.social.snapchat} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-[#FFFC00] hover:text-black transition-all duration-300 hover:-translate-y-1" aria-label="Snapchat">
+                <a href={companyInfo.social.snapchat} target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-[#FFFC00] flex items-center justify-center text-black hover:opacity-80 transition-all duration-300 hover:-translate-y-1" aria-label="Snapchat">
                   <SnapchatIcon className="w-5 h-5" />
                 </a>
               </div>
             </div>
           </div>
           
-          <div>
-            <h3 className="text-white font-semibold mb-4">{t('home.aboutUs')}</h3>
-            <ul className="space-y-2">
-              {navigation.slice(0, 4).map((item) => (
-                <li key={item.id}>
-                  <Link to={item.href} className="text-sm hover:text-white transition-colors">
-                    {item.label[language as 'ar' | 'en']}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* About Us (Accordion on mobile) */}
+          <div className="border-t border-gray-800 lg:border-none pt-4 lg:pt-0">
+            <button 
+              className="w-full flex justify-between items-center lg:cursor-default lg:pointer-events-none"
+              onClick={() => toggleSection('about')}
+            >
+              <h3 className="text-white font-semibold">{t('home.aboutUs')}</h3>
+              <span className="lg:hidden text-gray-400">
+                {openSection === 'about' ? '−' : '+'}
+              </span>
+            </button>
+            <div className={`mt-4 space-y-2 overflow-hidden transition-all duration-300 lg:h-auto lg:opacity-100 ${openSection === 'about' ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 lg:max-h-full'}`}>
+              <ul className="space-y-2 pb-2 lg:pb-0">
+                {navigation.slice(0, 4).map((item) => (
+                  <li key={item.id}>
+                    <Link to={item.href} className="text-sm hover:text-white transition-colors">
+                      {item.label[language as 'ar' | 'en']}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           
-          <div>
-            <h3 className="text-white font-semibold mb-4">{t('home.ourServices')}</h3>
-            <ul className="space-y-2">
-              {navigation.slice(4).map((item) => (
-                <li key={item.id}>
-                  <Link to={item.href} className="text-sm hover:text-white transition-colors">
-                    {item.label[language as 'ar' | 'en']}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Services (Accordion on mobile) */}
+          <div className="border-t border-gray-800 lg:border-none pt-4 lg:pt-0">
+            <button 
+              className="w-full flex justify-between items-center lg:cursor-default lg:pointer-events-none"
+              onClick={() => toggleSection('services')}
+            >
+              <h3 className="text-white font-semibold">{t('home.ourServices')}</h3>
+              <span className="lg:hidden text-gray-400">
+                {openSection === 'services' ? '−' : '+'}
+              </span>
+            </button>
+            <div className={`mt-4 space-y-2 overflow-hidden transition-all duration-300 lg:h-auto lg:opacity-100 ${openSection === 'services' ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 lg:max-h-full'}`}>
+              <ul className="space-y-2 pb-2 lg:pb-0">
+                {navigation.slice(4).map((item) => (
+                  <li key={item.id}>
+                    <Link to={item.href} className="text-sm hover:text-white transition-colors">
+                      {item.label[language as 'ar' | 'en']}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           
-          <div>
-            <h3 className="text-white font-semibold mb-4">{t('common.contactUs')}</h3>
-            <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
-                <span className="leading-snug">{companyInfo.address[language as 'ar' | 'en']}</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-gray-400 shrink-0" />
-                <a dir="ltr" href={`tel:${companyInfo.phone}`} className="hover:text-white transition-colors">{companyInfo.phone}</a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-gray-400 shrink-0" />
-                <a href={`mailto:${companyInfo.email}`} className="hover:text-white transition-colors">{companyInfo.email}</a>
-              </li>
-            </ul>
+          {/* Contact (Accordion on mobile) */}
+          <div className="border-t border-gray-800 lg:border-none pt-4 lg:pt-0">
+            <button 
+              className="w-full flex justify-between items-center lg:cursor-default lg:pointer-events-none"
+              onClick={() => toggleSection('contact')}
+            >
+              <h3 className="text-white font-semibold">{t('common.contactUs')}</h3>
+              <span className="lg:hidden text-gray-400">
+                {openSection === 'contact' ? '−' : '+'}
+              </span>
+            </button>
+            <div className={`mt-4 space-y-4 text-sm overflow-hidden transition-all duration-300 lg:h-auto lg:opacity-100 ${openSection === 'contact' ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0 lg:max-h-full'}`}>
+              <ul className="space-y-4 pb-2 lg:pb-0">
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-5 h-5 text-gray-400 shrink-0 mt-0.5" />
+                  <span className="leading-snug">{companyInfo.address[language as 'ar' | 'en']}</span>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Phone className="w-5 h-5 text-gray-400 shrink-0" />
+                  <a dir="ltr" href={`tel:${companyInfo.phone}`} className="hover:text-white transition-colors">{companyInfo.phone}</a>
+                </li>
+                <li className="flex items-center gap-3">
+                  <Mail className="w-5 h-5 text-gray-400 shrink-0" />
+                  <a href={`mailto:${companyInfo.email}`} className="hover:text-white transition-colors">{companyInfo.email}</a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-gray-800/60 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
+        <div className="mt-8 lg:mt-12 pt-8 border-t border-gray-800/60 text-sm text-gray-400 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
           <p>© {new Date().getFullYear()} {companyInfo.name[language as 'ar' | 'en']}. {t('common.allRightsReserved')}</p>
           <p className="flex items-center gap-2">
             {language === 'ar' ? 'تطوير' : 'Developed by'}

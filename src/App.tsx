@@ -4,6 +4,7 @@ import { Layout } from './components/layout/Layout';
 import Home from './pages/Home';
 import Branches from './pages/Branches';
 import About from './pages/About';
+import Quote from './pages/Quote';
 
 // Lazy loading for other pages can be added here
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -28,7 +29,7 @@ export default function App() {
           <Route path="/brands" element={<PlaceholderPage title="العلامات التجارية" />} />
           <Route path="/products" element={<PlaceholderPage title="المنتجات" />} />
           <Route path="/branches" element={<Branches />} />
-          <Route path="/quote" element={<PlaceholderPage title="طلب عرض سعر" />} />
+          <Route path="/quote" element={<Quote />} />
           <Route path="/contact" element={<PlaceholderPage title="تواصل معنا" />} />
         </Routes>
       </Layout>

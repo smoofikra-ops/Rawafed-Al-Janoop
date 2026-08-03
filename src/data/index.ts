@@ -37,20 +37,13 @@ export const companyInfo = {
 };
 
 export const stats: Stat[] = [
-  { id: 'experience', value: 5, label: { ar: 'سنوات من الخبرة', en: 'Years of Experience' }, suffix: '+' },
-  { id: 'brands', value: 2, label: { ar: 'علامات تجارية', en: 'Brands' }, suffix: '+' },
+  { id: 'brands', value: 4, label: { ar: 'علامات تجارية', en: 'Brands' }, suffix: '+' },
+  { id: 'regions', value: 13, label: { ar: 'مناطق المملكة', en: 'Regions of the Kingdom' } },
+  { id: 'cities', value: 100, label: { ar: 'مدينة مغطاة', en: 'Covered Cities' }, suffix: '+' },
   { id: 'branches', value: 2, label: { ar: 'فروع ومستودعات', en: 'Branches & Warehouses' } },
-  { id: 'cities', value: 10, label: { ar: 'مدن نغطيها', en: 'Cities Covered' }, suffix: '+' },
 ];
 
 export const brands: Brand[] = [
-  {
-    id: 'nof',
-    name: { ar: 'نوف', en: 'NOF' },
-    description: { ar: 'علامة تجارية رائدة في مجال المنتجات الغذائية.', en: 'A leading brand in food products.' },
-    logo: nofLogo,
-    categories: [{ ar: 'أسماك', en: 'Fish' }, { ar: 'معلبات', en: 'Canned Goods' }]
-  },
   {
     id: 'lusail',
     name: { ar: 'لوسيل', en: 'Lusail' },
@@ -64,8 +57,25 @@ export const brands: Brand[] = [
     description: { ar: 'علامة تجارية عمانية رائدة في صناعة رقائق البطاطس.', en: 'A leading Omani brand in potato chips.' },
     logo: 'https://muscatchips.com/wp-content/uploads/al_opt_content/IMAGE/muscatchips.com/wp-content/uploads/2025/07/cropped-Logo-512x512-No_BG.png',
     categories: [{ ar: 'وجبات خفيفة', en: 'Snacks' }]
+  },
+  {
+    id: 'alrabie',
+    name: { ar: 'الربيع', en: 'Al Rabie' },
+    description: { ar: 'عصائر طبيعية ومشروبات منعشة بجودة عالية.', en: 'Natural juices and refreshing drinks of high quality.' },
+    logo: '', // We can fall back to text logo
+    categories: [{ ar: 'عصائر', en: 'Juices' }]
   }
 ];
+
+export const successPartners = [
+  { id: 'othaim', name: { ar: 'أسواق العثيم', en: 'Othaim Markets' }, logo: 'https://upload.wikimedia.org/wikipedia/ar/2/23/Othaim_Markets_Logo.png' },
+  { id: 'panda', name: { ar: 'بنده', en: 'Panda' }, logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4f/Panda_Retail_Company_Logo.svg' },
+  { id: 'lulu', name: { ar: 'لولو هايبر ماركت', en: 'LuLu Hypermarket' }, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Lulu_Hypermarket_Logo.svg/512px-Lulu_Hypermarket_Logo.svg.png' },
+  { id: 'danube', name: { ar: 'الدانوب', en: 'Danube' }, logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/f/f6/Danube_Company_logo.svg/512px-Danube_Company_logo.svg.png' },
+  { id: 'carrefour', name: { ar: 'كارفور', en: 'Carrefour' }, logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Carrefour_logo.svg/512px-Carrefour_logo.svg.png' },
+  { id: 'tamimi', name: { ar: 'أسواق التميمي', en: 'Tamimi Markets' }, logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/0/0f/Tamimi_Markets_Logo.svg/512px-Tamimi_Markets_Logo.svg.png' },
+];
+
 
 export const branches: Branch[] = [
   {
