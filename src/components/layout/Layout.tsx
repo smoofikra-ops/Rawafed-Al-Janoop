@@ -9,6 +9,7 @@ import { companyInfo } from '../../data';
 import { TikTokIcon, InstagramIcon, FacebookIcon, XIcon, SnapchatIcon } from '../ui/SocialIcons';
 
 import { GlobalBackground } from './GlobalBackground';
+import { AnnouncementBar } from './AnnouncementBar';
 
 function Header() {
   const { t } = useTranslation();
@@ -35,40 +36,49 @@ function Header() {
       )}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          
-          {/* Logo & Company Name (Start) */}
-          <div className="flex items-center lg:w-1/4 justify-start">
-            <Link to="/" className="flex flex-col items-start gap-1.5 group">
+        <div className="flex items-center justify-between">          
+          {/* Mobile Navigation Toggle (Start on Mobile) */}
+          <div className="lg:hidden flex items-center justify-start w-1/3">
+            <button
+              className="p-2 -mx-2 text-gray-600 hover:text-primary-600 transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X className="w-7 h-7" /> : <Menu className="w-7 h-7" />}
+            </button>
+          </div>
+
+          {/* Logo & Company Name */}
+          <div className="flex items-center justify-center lg:justify-start w-1/3 lg:w-1/4">
+            <Link to="/" className="flex flex-col items-center lg:items-start gap-1 group">
               <img 
                 src="https://www.rawafedj.com/_next/image?url=%2Fimages%2Flogo.png&w=256&q=75" 
                 alt={companyInfo.name[language as 'ar' | 'en']} 
-                className="h-9 sm:h-11 w-auto object-contain group-hover:scale-105 transition-transform duration-500 origin-left"
+                className="h-10 sm:h-11 w-auto object-contain group-hover:scale-105 transition-transform duration-500 origin-center lg:origin-left"
               />
-              <span className="text-[10px] sm:text-[11.5px] font-semibold text-gray-700 tracking-wide transition-colors group-hover:text-primary-700">
-                {companyInfo.name[language as 'ar' | 'en']}
-              </span>
             </Link>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button
-            className="lg:hidden p-2 -mr-2 text-gray-600 hover:text-primary-600 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          {/* Mobile Language Switch (End on Mobile) */}
+          <div className="lg:hidden flex items-center justify-end w-1/3">
+            <button
+              onClick={toggleLanguage}
+              className="p-2 -mx-2 text-gray-600 hover:text-primary-700 transition-colors"
+            >
+              <Globe className="w-6 h-6" />
+            </button>
+          </div>
 
           {/* Desktop Navigation (Center) */}
-          <nav className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-8">
+          <nav className="hidden lg:flex flex-1 items-center justify-center gap-3 xl:gap-4">
             {navigation.map((item) => (
               <Link
                 key={item.id}
                 to={item.href}
                 className={cn(
-                  "text-[13.5px] xl:text-[14.5px] font-medium whitespace-nowrap transition-colors duration-300 relative py-2",
-                  "after:content-[''] after:absolute after:bottom-0 after:left-1/2 after:-translate-x-1/2 after:w-0 after:h-[2px] after:bg-primary-600 hover:after:w-full after:transition-all after:duration-300",
-                  location.pathname === item.href ? "text-primary-700 after:w-full" : "text-gray-600 hover:text-primary-700"
+                  "px-4 py-2.5 rounded-full text-[13.5px] xl:text-[14.5px] font-medium whitespace-nowrap transition-all duration-300 backdrop-blur-md border shadow-sm",
+                  location.pathname === item.href 
+                    ? "bg-white/80 border-primary-200 text-primary-700 shadow-md" 
+                    : "bg-white/30 border-white/50 text-gray-700 hover:bg-white/60 hover:border-white/80 hover:text-primary-600 hover:-translate-y-0.5 hover:shadow-md"
                 )}
               >
                 {item.label[language as 'ar' | 'en']}
@@ -80,19 +90,18 @@ function Header() {
           <div className="hidden lg:flex items-center justify-end gap-4 xl:gap-6 lg:w-1/4">
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-2 text-[14px] font-medium text-gray-600 hover:text-primary-700 transition-colors group"
+              className="flex items-center gap-2 text-[14px] font-medium text-gray-600 hover:text-primary-700 transition-colors group px-3 py-2 rounded-full bg-white/30 border border-white/50 backdrop-blur-md shadow-sm hover:bg-white/60 hover:-translate-y-0.5 hover:shadow-md"
             >
               <Globe className="w-4 h-4 group-hover:rotate-12 transition-transform" />
               <span>{t('common.language')}</span>
             </button>
             <Link
               to="/quote"
-              className="h-10 xl:h-11 inline-flex items-center justify-center rounded-lg bg-green-600 px-5 xl:px-6 text-[13px] xl:text-[14px] font-medium text-white transition-all duration-300 hover:bg-green-500 hover:shadow-lg hover:shadow-green-500/25 hover:-translate-y-0.5 whitespace-nowrap"
+              className="h-11 inline-flex items-center justify-center rounded-full bg-green-600 px-6 text-[14px] font-bold text-white transition-all duration-300 hover:bg-green-500 hover:shadow-lg hover:shadow-green-500/25 hover:-translate-y-0.5 whitespace-nowrap"
             >
               {t('common.requestQuote')}
             </Link>
           </div>
-
         </div>
       </div>
 
@@ -303,6 +312,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col bg-transparent relative">
       <GlobalBackground />
       <div className="relative z-10 flex flex-col flex-grow">
+        <AnnouncementBar />
         <Header />
         <main className="flex-grow">
           {children}

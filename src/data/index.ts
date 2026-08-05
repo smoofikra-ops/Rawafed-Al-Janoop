@@ -47,23 +47,42 @@ export const brands: Brand[] = [
   {
     id: 'estikan',
     name: { ar: 'شاي استكان', en: 'Estikan Tea' },
-    description: { ar: 'أجود أنواع الشاي السيلاني الفاخر.', en: 'The finest premium Ceylon tea.' },
-    logo: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785765749/istkan-tea_e2phky.jpg',
+    description: { 
+      ar: 'أجود أنواع الشاي السيلاني الفاخر المقطوف يدوياً. يتميز بنكهته الغنية ولونه الذهبي الأصيل ليقدم لك تجربة شاي استثنائية في كل كوب.', 
+      en: 'The finest premium Ceylon tea, hand-picked. It is distinguished by its rich flavor and authentic golden color to offer you an exceptional tea experience in every cup.' 
+    },
+    logo: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785951068/istkan_tea_logo_rqst8e.png',
     categories: [{ ar: 'شاي', en: 'Tea' }]
   },
   {
     id: 'lusail',
     name: { ar: 'لوسيل', en: 'Lusail' },
-    description: { ar: 'منتجات عالية الجودة تلبي تطلعات المستهلكين.', en: 'High-quality products meeting consumer expectations.' },
+    description: { 
+      ar: 'منتجات عالية الجودة تلبي تطلعات المستهلكين. نقدم تشكيلة متنوعة من المشروبات المنعشة المصنعة بأعلى معايير الجودة والسلامة الغذائية.', 
+      en: 'High-quality products meeting consumer expectations. We offer a diverse range of refreshing beverages manufactured with the highest quality and food safety standards.' 
+    },
     logo: lusailLogo,
     categories: [{ ar: 'مشروبات', en: 'Beverages' }]
   },
   {
     id: 'muscat',
     name: { ar: 'شيبس مسقط', en: 'Muscat Chips' },
-    description: { ar: 'علامة تجارية عمانية رائدة في صناعة رقائق البطاطس.', en: 'A leading Omani brand in potato chips.' },
+    description: { 
+      ar: 'علامة تجارية عمانية رائدة في صناعة رقائق البطاطس الطازجة المقرمشة بنكهات متنوعة ترضي جميع الأذواق ومصنوعة من أفضل المكونات الطبيعية.', 
+      en: 'A leading Omani brand in the manufacture of fresh, crispy potato chips in various flavors that satisfy all tastes, made from the best natural ingredients.' 
+    },
     logo: 'https://muscatchips.com/wp-content/uploads/al_opt_content/IMAGE/muscatchips.com/wp-content/uploads/2025/07/cropped-Logo-512x512-No_BG.png',
     categories: [{ ar: 'وجبات خفيفة', en: 'Snacks' }]
+  },
+  {
+    id: 'simak',
+    name: { ar: 'سماك', en: 'Simak' },
+    description: {
+      ar: 'علامة تجارية متميزة تقدم أفضل المنتجات الغذائية والمشروبات المستوحاة من الطبيعة. نلتزم بتقديم الجودة والمذاق الرائع لتلبية احتياجاتك اليومية.',
+      en: 'A premium brand offering the best natural-inspired food and beverage products. We are committed to delivering quality and great taste to meet your daily needs.'
+    },
+    logo: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785951068/simak_logo_vcxta6.png',
+    categories: [{ ar: 'أغذية ومشروبات', en: 'Food & Beverages' }]
   }
 ];
 
@@ -79,15 +98,15 @@ export const successPartners = [
 
 export const branches: Branch[] = [
   {
-    id: 'riyadh',
-    name: { ar: 'المركز الرئيسي - الرياض', en: 'Headquarters - Riyadh' },
-    city: { ar: 'الرياض', en: 'Riyadh' },
-    address: { ar: 'الرياض', en: 'Riyadh' },
+    id: 'jeddah',
+    name: { ar: 'المركز الرئيسي - جدة', en: 'Headquarters - Jeddah' },
+    city: { ar: 'جدة', en: 'Jeddah' },
+    address: { ar: 'جدة', en: 'Jeddah' },
     phone: '+966 56 491 9346',
     mapLink: '#',
     type: 'headquarters',
     hours: { ar: 'الأحد - الخميس: 8 ص - 5 م', en: 'Sun - Thu: 8 AM - 5 PM' },
-    iframe: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4243.179112053647!2d46.754382299999996!3d24.5577575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f09001a69376d%3A0x50e2c394120bb08c!2z2LTYsdmD2Kkg2LHZiNin2YHYryDYp9mE2KzZhtmI2Kgg2YTZhNiq2KzYp9ix2Kkg2YjYp9mE2KXYs9iq2YrYsdin2K8!5e1!3m2!1sar!2ssa!4v1783770337742!5m2!1sar!2ssa" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>'
+    iframe: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118941.52862021575!2d39.1171802!3d21.5434778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d01fb1137e59%3A0xe059579737b118ab!2sJeddah%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1711234567890!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'sabya',

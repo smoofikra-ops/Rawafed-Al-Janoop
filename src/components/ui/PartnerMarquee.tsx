@@ -13,7 +13,7 @@ export function PartnerMarquee() {
         WebkitMaskImage: 'linear-gradient(to right, transparent, black 15%, black 85%, transparent)'
       }}
     >
-      <div className="flex w-fit animate-marquee hover:[animation-play-state:paused] gap-8 sm:gap-12 items-center">
+      <div className="flex w-fit animate-marquee pause-on-hover gap-8 sm:gap-12 items-center">
         {/* We duplicate the list multiple times to ensure continuous scrolling */}
         {[...successPartners, ...successPartners, ...successPartners, ...successPartners].map((partner, index) => (
           <div

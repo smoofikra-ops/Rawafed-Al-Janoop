@@ -134,7 +134,7 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-10">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-6 md:my-10">
         <ScrollReveal direction="left">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center max-w-7xl mx-auto bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 sm:p-16 shadow-2xl">
             <div className="flex-1 space-y-8">
@@ -157,15 +157,11 @@ export default function Home() {
             <div className="flex-1 w-full max-w-lg lg:max-w-none">
               <div className="relative aspect-square sm:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
                 <img 
-                  src="https://res.cloudinary.com/x6mkqvcj/image/upload/v1785723389/about-warehouse.heic.jpg" 
+                  src="https://res.cloudinary.com/x6mkqvcj/image/upload/v1785723389/about-team.jpg.jpg" 
                   alt={t('home.aboutUs')} 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-[10s] ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent mix-blend-multiply"></div>
-                <div className="absolute bottom-6 left-6 right-6 sm:bottom-10 sm:left-10 bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl text-white">
-                  <div className="font-bold text-xl sm:text-2xl mb-1">{t('home.trustedPartner')}</div>
-                  <div className="text-green-400 font-medium">{t('home.since2019')}</div>
-                </div>
+                <div className="absolute inset-0 bg-black/20"></div>
               </div>
             </div>
           </div>
@@ -173,26 +169,26 @@ export default function Home() {
       </section>
 
       {/* Services Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-10">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-6 md:my-10">
         <ScrollReveal direction="up">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">{t('home.ourServices')}</h2>
             <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
+          <div className="grid grid-cols-3 gap-2 sm:gap-8 max-w-7xl mx-auto">
             {services.map((service, index) => {
               const Icon = service.icon === 'Package' ? Package : service.icon === 'Truck' ? Truck : TrendingUp;
               return (
                 <div 
                   key={service.id} 
-                  className="bg-black/40 backdrop-blur-md border border-white/10 p-8 sm:p-10 rounded-[2rem] hover:-translate-y-3 hover:bg-black/60 transition-all duration-500 group shadow-2xl"
+                  className="bg-black/40 backdrop-blur-md border border-white/10 p-4 sm:p-10 rounded-2xl sm:rounded-[2rem] hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group shadow-2xl flex flex-col items-center sm:items-start text-center sm:text-start"
                 >
-                  <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500">
-                    <Icon className="w-8 h-8 text-green-400 group-hover:text-green-300 transition-colors" />
+                  <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/10 flex items-center justify-center mb-3 sm:mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500">
+                    <Icon className="w-5 h-5 sm:w-8 sm:h-8 text-green-400 group-hover:text-green-300 transition-colors" />
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-sm">{service.title[language as 'ar' | 'en']}</h3>
-                  <p className="text-gray-400 font-medium leading-relaxed group-hover:text-gray-300 transition-colors">
+                  <h3 className="text-sm sm:text-2xl font-bold text-white mb-2 sm:mb-4 drop-shadow-sm leading-tight">{service.title[language as 'ar' | 'en']}</h3>
+                  <p className="text-gray-400 font-medium leading-relaxed group-hover:text-gray-300 transition-colors hidden sm:block text-sm sm:text-base">
                     {service.description[language as 'ar' | 'en']}
                   </p>
                 </div>
@@ -203,7 +199,7 @@ export default function Home() {
       </section>
 
       {/* Brands Section (Modified Layout) */}
-      <section className="relative py-24 overflow-hidden z-20 my-10">
+      <section className="relative py-12 md:py-10 md:py-16 overflow-hidden z-20 my-6 md:my-10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal direction="up">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -220,40 +216,40 @@ export default function Home() {
             <ScrollReveal direction="up">
               <Link 
                 to="/brands" 
-                className="bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group flex flex-col items-center shadow-2xl min-w-[300px] w-full max-w-md overflow-hidden relative"
+                className="bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-6 md:p-12 hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group flex flex-col items-center shadow-2xl min-w-[300px] w-full max-w-md overflow-hidden relative"
               >
                 {brands[0].logo ? (
-                  <div className="w-full h-48 md:h-56 mb-6 rounded-2xl overflow-hidden">
-                    <img src={brands[0].logo} alt={brands[0].name[language as 'ar' | 'en']} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" />
+                  <div className="w-full h-32 md:h-48 flex items-center justify-center mb-6 bg-white/5 rounded-2xl p-4 md:p-6 group-hover:bg-white/10 transition-colors">
+                    <img src={brands[0].logo} alt={brands[0].name[language as 'ar' | 'en']} className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-700" loading="lazy" />
                   </div>
                 ) : (
                   <div className="h-32 flex items-center justify-center mb-6 w-full bg-white/5 rounded-2xl p-4">
                     <h3 className="text-4xl font-bold text-white group-hover:text-green-400 transition-colors text-center">{brands[0].name[language as 'ar' | 'en']}</h3>
                   </div>
                 )}
-                <h3 className="text-2xl font-bold text-white mb-3 text-center">{brands[0].name[language as 'ar' | 'en']}</h3>
-                <p className="text-gray-400 font-medium text-center">{brands[0].description[language as 'ar' | 'en']}</p>
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 text-center">{brands[0].name[language as 'ar' | 'en']}</h3>
+                <p className="text-gray-400 font-medium text-center text-sm md:text-base">{brands[0].description[language as 'ar' | 'en']}</p>
               </Link>
             </ScrollReveal>
           </div>
 
           {/* Row 2 */}
-          <div className="flex flex-col sm:flex-row justify-center gap-8">
+          <div className="grid grid-cols-3 gap-3 md:gap-8 justify-center">
             {brands.slice(1).map((brand, index) => (
-              <ScrollReveal direction={index === 0 ? "right" : "left"} key={brand.id}>
+              <ScrollReveal direction="up" key={brand.id}>
                 <Link 
                   to="/brands" 
-                  className="bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 md:p-12 hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group flex flex-col items-center shadow-2xl min-w-[300px] w-full max-w-md"
+                  className="bg-black/40 backdrop-blur-md border border-white/10 rounded-[1rem] md:rounded-[2.5rem] p-3 md:p-8 hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group flex flex-col items-center shadow-2xl w-full h-full"
                 >
-                  <div className="h-32 flex items-center justify-center mb-6 w-full bg-white/5 rounded-2xl p-4 group-hover:bg-white/10 transition-colors">
+                  <div className="h-16 md:h-32 flex items-center justify-center mb-3 md:mb-6 w-full bg-white/5 rounded-lg md:rounded-2xl p-2 md:p-4 group-hover:bg-white/10 transition-colors">
                     {brand.logo ? (
                       <img src={brand.logo} alt={brand.name[language as 'ar' | 'en']} className="max-h-full object-contain group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                     ) : (
-                      <span className="text-3xl font-bold text-gray-300 group-hover:text-white transition-colors">{brand.name[language as 'ar' | 'en']}</span>
+                      <span className="text-sm md:text-3xl font-bold text-gray-300 group-hover:text-white transition-colors">{brand.name[language as 'ar' | 'en']}</span>
                     )}
                   </div>
-                  <h3 className="text-2xl font-bold text-white mb-3 text-center">{brand.name[language as 'ar' | 'en']}</h3>
-                  <p className="text-gray-400 font-medium text-center">{brand.description[language as 'ar' | 'en']}</p>
+                  <h3 className="text-xs md:text-2xl font-bold text-white mb-1 md:mb-3 text-center line-clamp-1">{brand.name[language as 'ar' | 'en']}</h3>
+                  <p className="text-[10px] md:text-base text-gray-400 font-medium text-center line-clamp-2 md:line-clamp-none">{brand.description[language as 'ar' | 'en']}</p>
                 </Link>
               </ScrollReveal>
             ))}
@@ -274,13 +270,23 @@ export default function Home() {
       </section>
 
       {/* Distribution Network Section */}
-      <section className="relative py-24 overflow-hidden z-20 my-10">
+      <section className="relative py-24 md:py-32 overflow-hidden my-6 md:my-10 w-full z-20 shadow-2xl">
+        <div className="absolute inset-0">
+          <img 
+            src="https://res.cloudinary.com/x6mkqvcj/image/upload/v1785953713/c6b6e1ae-1d6e-49ac-a126-fd02ea44228a.png" 
+            alt="Distribution Network" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/80 to-black/60"></div>
+        </div>
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal direction="right">
-            <div className="max-w-2xl bg-black/50 backdrop-blur-md border border-white/10 p-10 md:p-16 rounded-[3rem] shadow-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-white">{t('home.distributionNetwork') || 'Distribution Network'}</h2>
-              <div className="h-1 w-24 bg-green-500 rounded mb-8"></div>
-              <p className="text-xl text-gray-300 leading-relaxed font-medium">
+          <ScrollReveal direction="up">
+            <div className="max-w-4xl">
+              <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-8 tracking-tight text-white leading-tight drop-shadow-lg">
+                {language === 'ar' ? 'نغطي جميع مدن ومناطق المملكة' : 'Covering All Cities and Regions of the Kingdom'}
+              </h2>
+              <div className="h-1.5 w-32 bg-green-500 rounded mb-10 shadow-lg shadow-green-500/20"></div>
+              <p className="text-xl md:text-3xl text-gray-200 leading-relaxed font-medium drop-shadow-md">
                 {language === 'ar' 
                   ? 'نمتلك شبكة توزيع ضخمة تغطي جميع أنحاء المملكة العربية السعودية، لضمان وصول منتجاتنا بجودة عالية وفي الوقت المحدد.'
                   : 'We own a massive distribution network covering all parts of Saudi Arabia, ensuring our products reach you in high quality and on time.'}
@@ -291,17 +297,17 @@ export default function Home() {
       </section>
 
       {/* Branches Map Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 my-10 z-20">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 my-6 md:my-10 z-20">
         <ScrollReveal direction="up">
           <div className="text-center max-w-2xl mx-auto mb-16">
             <h2 className="text-4xl font-bold text-white mb-6 drop-shadow-md">{t('home.ourBranches')}</h2>
             <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
           </div>
         </ScrollReveal>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        <div className="flex overflow-x-auto pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto snap-x snap-mandatory hide-scrollbar">
           {branches.map((branch, index) => (
-            <ScrollReveal direction="up" key={branch.id}>
-              <div className="rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 shadow-2xl hover:shadow-green-500/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col h-full group">
+            <ScrollReveal direction="up" key={branch.id} className="min-w-[85vw] sm:min-w-0 snap-center shrink-0">
+              <div className="rounded-3xl sm:rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 shadow-2xl hover:shadow-green-500/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col h-full group">
                 <div className="h-48 sm:h-72 w-full bg-white/5 relative overflow-hidden">
                   {branch.iframe ? (
                     <div className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full opacity-80 group-hover:opacity-100 transition-opacity duration-700" dangerouslySetInnerHTML={{ __html: branch.iframe }} />
@@ -332,28 +338,34 @@ export default function Home() {
       </section>
 
       {/* Success Partners Section */}
-      <section className="py-16 md:py-24 my-10 z-20">
+      <section className="py-10 md:py-16 my-6 md:my-10 z-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <ScrollReveal direction="up">
-            <div className="text-center mb-16 bg-black/40 backdrop-blur-md border border-white/10 rounded-[3rem] p-12 max-w-4xl mx-auto shadow-2xl">
-              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">
-                {language === 'ar' ? 'شركاء النجاح' : 'Success Partners'}
-              </h2>
-              <p className="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl font-medium">
-                {language === 'ar' 
-                  ? 'نفخر بخدمة نخبة من أكبر الشركات والعلامات التجارية في المملكة، ونعتز بالثقة التي منحونا إياها.' 
-                  : 'We are proud to serve a selection of the largest companies and brands in the Kingdom, and we cherish the trust they have placed in us.'}
-              </p>
+            <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-[3rem] p-8 md:p-12 shadow-2xl overflow-hidden relative">
+              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
+              
+              <div className="text-center mb-12 max-w-4xl mx-auto relative z-10">
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">
+                  {language === 'ar' ? 'شركاء النجاح' : 'Success Partners'}
+                </h2>
+                <div className="h-1 w-24 bg-green-500 mx-auto rounded mb-6 shadow-lg shadow-green-500/20"></div>
+                <p className="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl font-medium">
+                  {language === 'ar' 
+                    ? 'نفخر بخدمة نخبة من أكبر الشركات والعلامات التجارية في المملكة، ونعتز بالثقة التي منحونا إياها.' 
+                    : 'We are proud to serve a selection of the largest companies and brands in the Kingdom, and we cherish the trust they have placed in us.'}
+                </p>
+              </div>
+              
+              <div className="relative z-10 -mx-4 sm:mx-0">
+                <PartnerMarquee />
+              </div>
             </div>
           </ScrollReveal>
-          <div className="bg-white/5 backdrop-blur-md border-y border-white/10 py-10 shadow-2xl rounded-[2rem]">
-            <PartnerMarquee />
-          </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-32 z-20">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-24 z-20">
         <ScrollReveal direction="up">
           <div className="relative overflow-hidden rounded-[3rem] p-12 sm:p-24 text-center max-w-5xl mx-auto shadow-2xl group bg-black/50 backdrop-blur-xl border border-white/10">
             <ShieldCheck className="w-24 h-24 text-green-500 mx-auto mb-10 drop-shadow-2xl" />
