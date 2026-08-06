@@ -3,10 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { useLanguage } from '../hooks/useLanguage';
 import { Link } from 'react-router-dom';
 import { motion, useScroll, useTransform, useSpring } from 'motion/react';
-import { ArrowRight, ArrowLeft, TrendingUp, Package, Truck, ShieldCheck, Map, MapPin } from 'lucide-react';
+import { ArrowRight, ArrowLeft, TrendingUp, Package, Truck, ShieldCheck, Map, MapPin, Mail, Phone } from 'lucide-react';
 import { stats, brands, services, branches, companyInfo } from '../data';
 import { Counter } from '../components/ui/Counter';
-import { PartnerMarquee } from '../components/ui/PartnerMarquee';
+import { BranchContactInfo } from '../components/BranchContactInfo';
 
 const ScrollReveal = ({ children, direction = "up", delay = 0, className = "" }: { children: React.ReactNode, direction?: "up" | "left" | "right" | "none", delay?: number, className?: string, key?: React.Key }) => {
   const y = direction === "up" ? 40 : 0;
@@ -107,6 +107,21 @@ export default function Home() {
                 {language === 'ar' ? 'انضم إلينا الآن' : 'Join Us Now'}
               </Link>
             </motion.div>
+            <motion.div 
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
+              className="mt-8 flex flex-col sm:flex-row items-center sm:items-start justify-center sm:justify-start gap-6 text-gray-300"
+            >
+              <div className="flex items-center gap-2">
+                <Mail className="w-5 h-5 text-green-500" />
+                <a href={`mailto:${companyInfo.email}`} className="hover:text-white transition-colors font-medium">{companyInfo.email}</a>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-5 h-5 text-green-500" />
+                <a dir="ltr" href={`tel:${companyInfo.phone}`} className="hover:text-white transition-colors font-medium">{companyInfo.phone}</a>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -161,7 +176,7 @@ export default function Home() {
                   alt={t('home.aboutUs')} 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-[10s] ease-out"
                 />
-                <div className="absolute inset-0 bg-black/20"></div>
+                <div className="absolute inset-0 bg-black/40"></div>
               </div>
             </div>
           </div>
@@ -304,7 +319,7 @@ export default function Home() {
             <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
           </div>
         </ScrollReveal>
-        <div className="flex overflow-x-auto pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 gap-4 sm:gap-8 max-w-6xl mx-auto snap-x snap-mandatory hide-scrollbar">
+        <div className="flex overflow-x-auto pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 max-w-6xl mx-auto snap-x snap-mandatory hide-scrollbar">
           {branches.map((branch, index) => (
             <ScrollReveal direction="up" key={branch.id} className="min-w-[85vw] sm:min-w-0 snap-center shrink-0">
               <div className="rounded-3xl sm:rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 shadow-2xl hover:shadow-green-500/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col h-full group">
@@ -335,33 +350,11 @@ export default function Home() {
             </ScrollReveal>
           ))}
         </div>
-      </section>
-
-      {/* Success Partners Section */}
-      <section className="py-10 md:py-16 my-6 md:my-10 z-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up">
-            <div className="bg-black/40 backdrop-blur-md border border-white/10 rounded-[3rem] p-8 md:p-12 shadow-2xl overflow-hidden relative">
-              <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-b from-white/5 to-transparent pointer-events-none"></div>
-              
-              <div className="text-center mb-12 max-w-4xl mx-auto relative z-10">
-                <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">
-                  {language === 'ar' ? 'شركاء النجاح' : 'Success Partners'}
-                </h2>
-                <div className="h-1 w-24 bg-green-500 mx-auto rounded mb-6 shadow-lg shadow-green-500/20"></div>
-                <p className="text-gray-300 max-w-2xl mx-auto text-lg md:text-xl font-medium">
-                  {language === 'ar' 
-                    ? 'نفخر بخدمة نخبة من أكبر الشركات والعلامات التجارية في المملكة، ونعتز بالثقة التي منحونا إياها.' 
-                    : 'We are proud to serve a selection of the largest companies and brands in the Kingdom, and we cherish the trust they have placed in us.'}
-                </p>
-              </div>
-              
-              <div className="relative z-10 -mx-4 sm:mx-0">
-                <PartnerMarquee />
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
+        
+        {/* Contact Info Panel inside Branches section */}
+        <ScrollReveal direction="up">
+          <BranchContactInfo />
+        </ScrollReveal>
       </section>
 
       {/* CTA Section */}
@@ -381,12 +374,6 @@ export default function Home() {
                 className="inline-flex h-16 items-center justify-center rounded-2xl bg-green-600 px-12 text-xl font-bold text-white transition-all hover:bg-green-500 hover:scale-105 shadow-2xl hover:shadow-green-500/40 w-full sm:w-auto"
               >
                 {t('common.requestQuote')}
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex h-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-md px-12 text-xl font-bold text-white border border-white/20 transition-all hover:bg-white/20 hover:scale-105 w-full sm:w-auto shadow-xl"
-              >
-                {t('home.contactUs') || 'Contact Us'}
               </Link>
             </div>
           </div>

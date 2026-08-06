@@ -72,7 +72,17 @@ export default function Branches() {
                     <Phone className="w-5 h-5 text-primary-600 mt-1 shrink-0" />
                     <div>
                       <p className="text-sm font-medium text-gray-900">{language === 'ar' ? 'رقم التواصل' : 'Phone Number'}</p>
-                      <p className="text-gray-600" dir="ltr">{branch.phone}</p>
+                      <div className="flex flex-col gap-1 mt-1">
+                        {branch.phones ? branch.phones.map((phone, idx) => (
+                          <a key={idx} href={`tel:${phone}`} className="text-gray-600 hover:text-primary-600 transition-colors" dir="ltr">
+                            {phone}
+                          </a>
+                        )) : (
+                          <a href={`tel:${branch.phone}`} className="text-gray-600 hover:text-primary-600 transition-colors" dir="ltr">
+                            {branch.phone}
+                          </a>
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>

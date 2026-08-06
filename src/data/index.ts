@@ -16,16 +16,16 @@ export const navigation: NavItem[] = [
 export const companyInfo = {
   name: { ar: 'شركة روافد الجنوب للتجارة', en: 'Rawafed Al Janoob Trading Company' },
   founded: 2019,
-  email: 'Info@rawafedj.com',
-  phone: '+966 56 491 9346',
-  whatsapp: '+966564919346',
+  email: 'info@rawafedj.com',
+  phone: '0569083763',
+  whatsapp: '966569083763',
   about: {
     ar: 'تأسست شركة روافد الجنوب للتجارة في العام 2019 في مدينة جدة لتوزيع المنتجات الغذائية والحلويات والعصائر لعدد من المدن السعودية، ومن ثم افتتحت الشركة فروعها ومستودعاتها في مدن جنوب المملكة لتلبية احتياجات المنطقة وتوزيع المنتجات الغذائية.',
     en: 'Rawafed Al Janoob Trading Company was established in 2019 in Jeddah to distribute food products, sweets, and juices to several Saudi cities. The company then opened its branches and warehouses in the southern cities of the Kingdom to meet the region\'s needs and distribute food products.',
   },
   address: {
-    ar: 'المقر الرئيسي، جازان، المملكة العربية السعودية',
-    en: 'Headquarters, Jizan, Saudi Arabia',
+    ar: 'الرياض – حي الدار البيضاء – طريق عرفات',
+    en: 'Riyadh – Al-Dar Al-Baida – Arafat Road',
   },
   social: {
     tiktok: 'https://www.tiktok.com/@rawafedaljanoob?_r=1&_t=ZG-97wlzZmlXBA',
@@ -98,26 +98,40 @@ export const successPartners = [
 
 export const branches: Branch[] = [
   {
-    id: 'jeddah',
-    name: { ar: 'المركز الرئيسي - جدة', en: 'Headquarters - Jeddah' },
-    city: { ar: 'جدة', en: 'Jeddah' },
-    address: { ar: 'جدة', en: 'Jeddah' },
-    phone: '+966 56 491 9346',
+    id: 'riyadh',
+    name: { ar: 'المركز الرئيسي', en: 'Head Office' },
+    city: { ar: 'الرياض', en: 'Riyadh' },
+    address: { ar: 'حي الدار البيضاء – طريق عرفات', en: 'Al-Dar Al-Baida – Arafat Road' },
+    phone: '0569083763',
+    phones: ['0569083763'],
     mapLink: '#',
     type: 'headquarters',
     hours: { ar: 'الأحد - الخميس: 8 ص - 5 م', en: 'Sun - Thu: 8 AM - 5 PM' },
-    iframe: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d118941.52862021575!2d39.1171802!3d21.5434778!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d01fb1137e59%3A0xe059579737b118ab!2sJeddah%20Saudi%20Arabia!5e0!3m2!1sen!2s!4v1711234567890!5m2!1sen!2s" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>'
+    iframe: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4243.179112053647!2d46.754382299999996!3d24.5577575!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e2f09001a69376d%3A0x50e2c394120bb08c!2z2LTYsdmD2Kkg2LHZiNin2YHYryDYp9mE2KzZhtmI2Kgg2YTZhNiq2KzYp9ix2Kkg2YjYp9mE2KXYs9iq2YrYsdin2K8!5e1!3m2!1sar!2ssa!4v1785973566095!5m2!1sar!2ssa" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>'
   },
   {
     id: 'sabya',
-    name: { ar: 'الفرع الأول - صبياء الصناعية', en: 'First Branch - Sabya Industrial' },
+    name: { ar: 'فرع صبيا', en: 'Sabya Branch' },
     city: { ar: 'صبيا', en: 'Sabya' },
-    address: { ar: 'صبيا الصناعية', en: 'Sabya Industrial Area' },
-    phone: '+966 56 491 9346',
+    address: { ar: 'المنطقة الصناعية', en: 'Industrial Area' },
+    phone: '0568737798',
+    phones: ['0568737798', '0566483874'],
     mapLink: '#',
     type: 'branch',
     hours: { ar: 'الأحد - الخميس: 8 ص - 5 م', en: 'Sun - Thu: 8 AM - 5 PM' },
     iframe: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4457.0426023423315!2d42.7416817!3d17.1792705!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15fd450222c82375%3A0xede6d6c80b72189e!2z2YXYs9iq2YjYr9i5INi02LHZg9ipINix2YjYp9mB2K8g2KfZhNis2YbZiNio!5e1!3m2!1sar!2ssa!4v1783733071602!5m2!1sar!2ssa" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>'
+  },
+  {
+    id: 'khamis-mushait',
+    name: { ar: 'فرع خميس مشيط', en: 'Khamis Mushait Branch' },
+    city: { ar: 'خميس مشيط', en: 'Khamis Mushait' },
+    address: { ar: 'المنطقة الصناعية', en: 'Industrial Area' },
+    phone: '0566151995',
+    phones: ['0566151995'],
+    mapLink: '#',
+    type: 'branch',
+    hours: { ar: 'الأحد - الخميس: 8 ص - 5 م', en: 'Sun - Thu: 8 AM - 5 PM' },
+    iframe: '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4429.574418940696!2d42.7280814!3d18.2868771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15fb599ffa41ec0f%3A0xc0484fe2ef626925!2z2YXYpNiz2LPYqSDYsdmI2KfZgdivINin2YTYrNmG2YjYqCDYp9mE2KrYrNin2LHZitip!5e1!3m2!1sar!2ssa!4v1785974693805!5m2!1sar!2ssa" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>'
   }
 ];
 

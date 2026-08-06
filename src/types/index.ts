@@ -5,7 +5,8 @@ export interface Branch {
   name: Record<Language, string>;
   city: Record<Language, string>;
   address: Record<Language, string>;
-  phone: string;
+  phone: string; // Deprecated, keep for backward compatibility
+  phones?: string[];
   mapLink: string;
   type: 'headquarters' | 'branch' | 'warehouse';
   image?: string;
