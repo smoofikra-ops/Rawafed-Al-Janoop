@@ -5,6 +5,11 @@ import Home from './pages/Home';
 import Branches from './pages/Branches';
 import About from './pages/About';
 import Quote from './pages/Quote';
+import AgentApplication from './pages/AgentApplication';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import UsagePolicy from './pages/UsagePolicy';
+import TermsConditions from './pages/TermsConditions';
+import ConditionsOfUse from './pages/ConditionsOfUse';
 
 // Lazy loading for other pages can be added here
 const PlaceholderPage = ({ title }: { title: string }) => (
@@ -30,7 +35,12 @@ export default function App() {
           <Route path="/products" element={<PlaceholderPage title="المنتجات" />} />
           <Route path="/branches" element={<Branches />} />
           <Route path="/quote" element={<Quote />} />
+          <Route path="/agent-application" element={<AgentApplication />} />
           <Route path="/contact" element={<PlaceholderPage title="تواصل معنا" />} />
+          <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms-use" element={<UsagePolicy />} />
+          <Route path="/terms" element={<TermsConditions />} />
+          <Route path="/conditions" element={<ConditionsOfUse />} />
         </Routes>
       </Layout>
     </BrowserRouter>

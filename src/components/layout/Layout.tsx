@@ -29,7 +29,7 @@ function Header() {
   return (
     <header 
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-500",
+        "w-full transition-all duration-500",
         scrolled 
           ? "bg-white/85 backdrop-blur-xl border-b border-gray-200/60 shadow-sm py-2 sm:py-3" 
           : "bg-white/60 backdrop-blur-lg border-b border-gray-200/30 py-4 sm:py-5"
@@ -69,16 +69,16 @@ function Header() {
           </div>
 
           {/* Desktop Navigation (Center) */}
-          <nav className="hidden lg:flex flex-1 items-center justify-center gap-3 xl:gap-4">
+          <nav className="hidden lg:flex flex-1 items-center justify-end gap-6 xl:gap-8 px-4 lg:px-8">
             {navigation.map((item) => (
               <Link
                 key={item.id}
                 to={item.href}
                 className={cn(
-                  "px-4 py-2.5 rounded-full text-[13.5px] xl:text-[14.5px] font-medium whitespace-nowrap transition-all duration-300 backdrop-blur-md border shadow-sm",
+                  "text-[15px] font-bold whitespace-nowrap transition-colors",
                   location.pathname === item.href 
-                    ? "bg-white/80 border-primary-200 text-primary-700 shadow-md" 
-                    : "bg-white/30 border-white/50 text-gray-700 hover:bg-white/60 hover:border-white/80 hover:text-primary-600 hover:-translate-y-0.5 hover:shadow-md"
+                    ? "text-primary-700" 
+                    : "text-gray-700 hover:text-primary-600"
                 )}
               >
                 {item.label[language as 'ar' | 'en']}
@@ -87,7 +87,7 @@ function Header() {
           </nav>
 
           {/* Controls (End) */}
-          <div className="hidden lg:flex items-center justify-end gap-4 xl:gap-6 lg:w-1/4">
+          <div className="hidden lg:flex items-center justify-end gap-4 xl:gap-6">
             <button
               onClick={toggleLanguage}
               className="flex items-center gap-2 text-[14px] font-medium text-gray-600 hover:text-primary-700 transition-colors group px-3 py-2 rounded-full bg-white/30 border border-white/50 backdrop-blur-md shadow-sm hover:bg-white/60 hover:-translate-y-0.5 hover:shadow-md"
@@ -312,8 +312,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex flex-col bg-transparent relative">
       <GlobalBackground />
       <div className="relative z-10 flex flex-col flex-grow">
-        <AnnouncementBar />
-        <Header />
+        <div className="sticky top-0 z-50 flex flex-col w-full">
+          <AnnouncementBar />
+          <Header />
+        </div>
         <main className="flex-grow">
           {children}
         </main>

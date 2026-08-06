@@ -8,14 +8,21 @@ import { stats, brands, services, branches, companyInfo } from '../data';
 import { Counter } from '../components/ui/Counter';
 import { BranchContactInfo } from '../components/BranchContactInfo';
 
-const ScrollReveal = ({ children, direction = "up", delay = 0, className = "" }: { children: React.ReactNode, direction?: "up" | "left" | "right" | "none", delay?: number, className?: string, key?: React.Key }) => {
-  const y = direction === "up" ? 40 : 0;
-  const x = direction === "right" ? 40 : direction === "left" ? -40 : 0;
+const ScrollReveal = ({ children, direction = "up", delay = 0, className = "" }: { children: React.ReactNode, direction?: "up" | "left" | "right" | "none" | "up-left" | "up-right" | "zoom", delay?: number, className?: string, key?: React.Key }) => {
+  let y = 0;
+  let x = 0;
+  
+  if (direction.includes("up")) y = 40;
+  if (direction.includes("right")) x = 40;
+  if (direction.includes("left")) x = -40;
+  
+  const initial = direction === "zoom" ? { opacity: 0, scale: 0.85 } : { opacity: 0, y, x };
+  const whileInView = direction === "zoom" ? { opacity: 1, scale: [1.05, 1] } : { opacity: 1, y: 0, x: 0 };
   
   return (
     <motion.div
-      initial={{ opacity: 0, y, x }}
-      whileInView={{ opacity: 1, y: 0, x: 0 }}
+      initial={initial}
+      whileInView={whileInView}
       viewport={{ once: true, margin: "-10%" }}
       transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay }}
       className={className}
@@ -45,12 +52,12 @@ export default function Home() {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-50 mix-blend-overlay scale-105"
+            className="w-full h-full object-cover opacity-80 scale-105"
           >
             <source src="https://d.top4top.io/m_3844494b91.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-gray-950"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-gray-900"></div>
         </div>
         
         {/* Animated Blur Overlay */}
@@ -70,7 +77,7 @@ export default function Home() {
               initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[36px] text-center sm:text-start sm:text-6xl lg:text-7xl font-bold leading-tight mb-8 drop-shadow-xl"
+              className="text-[45px] text-center sm:text-start sm:text-6xl lg:text-7xl font-bold leading-tight mb-8 drop-shadow-xl"
             >
               {t('home.heroTitle')}
             </motion.h1>
@@ -101,10 +108,10 @@ export default function Home() {
                 {t('home.exploreBrands')}
               </Link>
               <Link
-                to="/careers"
+                to="/agent-application"
                 className="inline-flex h-14 items-center justify-center rounded-xl bg-white/5 px-8 text-lg font-bold text-gray-200 backdrop-blur-md transition-all hover:bg-white/10 hover:text-white hover:scale-[1.03] border border-white/10 w-full sm:w-auto"
               >
-                {language === 'ar' ? 'انضم إلينا الآن' : 'Join Us Now'}
+                {language === 'ar' ? 'كن وكيلنا المعتمد' : 'Become an Agent'}
               </Link>
             </motion.div>
             <motion.div 
@@ -129,12 +136,15 @@ export default function Home() {
       {/* Stats Section */}
       <section className="relative py-12 md:py-20 overflow-hidden z-20 -mt-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <ScrollReveal direction="up">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto">
-              {stats.map((stat, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-6xl mx-auto">
+            {stats.map((stat, index) => (
+              <ScrollReveal 
+                key={stat.id}
+                direction={index % 2 === 0 ? (isRTL ? "up-right" : "up-left") : (isRTL ? "up-left" : "up-right")} 
+                delay={index * 0.1}
+              >
                 <div 
-                  key={stat.id}
-                  className="text-center p-6 sm:p-8 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/15"
+                  className="text-center p-6 sm:p-8 rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 hover:-translate-y-2 hover:bg-white/15 h-full"
                 >
                   <div className="text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 tracking-tight flex justify-center items-center gap-1 drop-shadow-md">
                     <Counter from={0} to={stat.value} duration={2.5} />
@@ -142,9 +152,9 @@ export default function Home() {
                   </div>
                   <div className="text-sm sm:text-base font-bold text-gray-300 uppercase tracking-wider">{stat.label[language as 'ar' | 'en']}</div>
                 </div>
-              ))}
-            </div>
-          </ScrollReveal>
+              </ScrollReveal>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -190,14 +200,20 @@ export default function Home() {
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">{t('home.ourServices')}</h2>
             <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
           </div>
+        </ScrollReveal>
           
-          <div className="grid grid-cols-3 gap-2 sm:gap-8 max-w-7xl mx-auto">
-            {services.map((service, index) => {
-              const Icon = service.icon === 'Package' ? Package : service.icon === 'Truck' ? Truck : TrendingUp;
-              return (
+        <div className="grid grid-cols-3 gap-2 sm:gap-8 max-w-7xl mx-auto">
+          {services.map((service, index) => {
+            const Icon = service.icon === 'Package' ? Package : service.icon === 'Truck' ? Truck : TrendingUp;
+            return (
+              <ScrollReveal 
+                key={service.id} 
+                direction={index % 2 === 0 ? (isRTL ? "up-right" : "up-left") : (isRTL ? "up-left" : "up-right")} 
+                delay={index * 0.1}
+                className="h-full"
+              >
                 <div 
-                  key={service.id} 
-                  className="bg-black/40 backdrop-blur-md border border-white/10 p-4 sm:p-10 rounded-2xl sm:rounded-[2rem] hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group shadow-2xl flex flex-col items-center sm:items-start text-center sm:text-start"
+                  className="bg-black/40 backdrop-blur-md border border-white/10 p-4 sm:p-10 rounded-2xl sm:rounded-[2rem] hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group shadow-2xl flex flex-col items-center sm:items-start text-center sm:text-start h-full"
                 >
                   <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/10 flex items-center justify-center mb-3 sm:mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500">
                     <Icon className="w-5 h-5 sm:w-8 sm:h-8 text-green-400 group-hover:text-green-300 transition-colors" />
@@ -207,10 +223,10 @@ export default function Home() {
                     {service.description[language as 'ar' | 'en']}
                   </p>
                 </div>
-              );
-            })}
-          </div>
-        </ScrollReveal>
+              </ScrollReveal>
+            );
+          })}
+        </div>
       </section>
 
       {/* Brands Section (Modified Layout) */}
@@ -319,9 +335,9 @@ export default function Home() {
             <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
           </div>
         </ScrollReveal>
-        <div className="flex overflow-x-auto pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8 max-w-6xl mx-auto snap-x snap-mandatory hide-scrollbar">
+        <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-7xl mx-auto justify-center">
           {branches.map((branch, index) => (
-            <ScrollReveal direction="up" key={branch.id} className="min-w-[85vw] sm:min-w-0 snap-center shrink-0">
+            <ScrollReveal direction={index % 2 === 0 ? (isRTL ? "up-right" : "up-left") : (isRTL ? "up-left" : "up-right")} delay={index * 0.1} key={branch.id} className="min-w-0 shrink-0">
               <div className="rounded-3xl sm:rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 shadow-2xl hover:shadow-green-500/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col h-full group">
                 <div className="h-48 sm:h-72 w-full bg-white/5 relative overflow-hidden">
                   {branch.iframe ? (
@@ -359,7 +375,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-24 z-20">
-        <ScrollReveal direction="up">
+        <ScrollReveal direction="zoom">
           <div className="relative overflow-hidden rounded-[3rem] p-12 sm:p-24 text-center max-w-5xl mx-auto shadow-2xl group bg-black/50 backdrop-blur-xl border border-white/10">
             <ShieldCheck className="w-24 h-24 text-green-500 mx-auto mb-10 drop-shadow-2xl" />
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-8 drop-shadow-md tracking-tight leading-tight max-w-3xl mx-auto">
