@@ -214,6 +214,8 @@ function Footer() {
                 <li><Link to="/about" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'من نحن' : 'About Us'}</Link></li>
                 <li><Link to="/brands" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'العلامات التجارية' : 'Brands'}</Link></li>
                 <li><Link to="/careers" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'التوظيف' : 'Careers'}</Link></li>
+                <li><Link to="/suppliers" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'كن مورداً لنا' : 'Suppliers'}</Link></li>
+                <li><Link to="/distribution-partner" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'كن شريك توزيع' : 'Distribution Partner'}</Link></li>
                 <li><Link to="/quote" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'طلب عرض سعر' : 'Request a Quote'}</Link></li>
               </ul>
             </div>
@@ -234,6 +236,8 @@ function Footer() {
               <ul className="space-y-2 pb-2 lg:pb-0">
                 <li><Link to="/services" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'الخدمات' : 'Services'}</Link></li>
                 <li><Link to="/branches" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'الفروع والمستودعات' : 'Branches & Warehouses'}</Link></li>
+                <li><Link to="/media" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'المركز الإعلامي' : 'Media Center'}</Link></li>
+                <li><Link to="/downloads" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'مركز التحميل' : 'Download Center'}</Link></li>
                 <li><Link to="/contact" className="text-sm hover:text-white transition-colors">{language === 'ar' ? 'تواصل معنا' : 'Contact Us'}</Link></li>
               </ul>
             </div>

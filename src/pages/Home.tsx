@@ -7,6 +7,14 @@ import { ArrowRight, ArrowLeft, TrendingUp, Package, Truck, ShieldCheck, Map, Ma
 import { stats, brands, services, branches, companyInfo } from '../data';
 import { Counter } from '../components/ui/Counter';
 import { BranchContactInfo } from '../components/BranchContactInfo';
+import { ChairmanMessage } from '../components/corporate/ChairmanMessage';
+import { VisionMission } from '../components/corporate/VisionMission';
+import { WhyUs } from '../components/corporate/WhyUs';
+import { JourneyTimeline } from '../components/corporate/JourneyTimeline';
+import { LogisticsCapabilities } from '../components/corporate/LogisticsCapabilities';
+import { CorporateSocialResponsibility } from '../components/corporate/CorporateSocialResponsibility';
+import { GlobalPartners } from '../components/corporate/GlobalPartners';
+import { WhyClientsChooseUs } from '../components/corporate/WhyClientsChooseUs';
 
 const ScrollReveal = ({ children, direction = "up", delay = 0, className = "" }: { children: React.ReactNode, direction?: "up" | "left" | "right" | "none" | "up-left" | "up-right" | "zoom", delay?: number, className?: string, key?: React.Key }) => {
   let y = 0;
@@ -52,12 +60,12 @@ export default function Home() {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-80 scale-105"
+            className="w-full h-full object-cover opacity-90 brightness-125 contrast-105 scale-105"
           >
             <source src="https://d.top4top.io/m_3844494b91.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-gray-900"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/20 to-transparent"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-gray-900/90"></div>
         </div>
         
         {/* Animated Blur Overlay */}
@@ -193,6 +201,12 @@ export default function Home() {
         </ScrollReveal>
       </section>
 
+      <ChairmanMessage />
+      <VisionMission />
+      <WhyUs />
+      <WhyClientsChooseUs />
+      <JourneyTimeline />
+
       {/* Services Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-6 md:my-10">
         <ScrollReveal direction="up">
@@ -228,6 +242,8 @@ export default function Home() {
           })}
         </div>
       </section>
+
+      <LogisticsCapabilities />
 
       {/* Brands Section (Modified Layout) */}
       <section className="relative py-12 md:py-10 md:py-16 overflow-hidden z-20 my-6 md:my-10">
@@ -299,6 +315,9 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
+
+      <GlobalPartners />
+      <CorporateSocialResponsibility />
 
       {/* Distribution Network Section */}
       <section className="relative py-24 md:py-32 overflow-hidden my-6 md:my-10 w-full z-20 shadow-2xl">

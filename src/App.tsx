@@ -11,6 +11,12 @@ import UsagePolicy from './pages/UsagePolicy';
 import TermsConditions from './pages/TermsConditions';
 import ConditionsOfUse from './pages/ConditionsOfUse';
 
+import Careers from './pages/Careers';
+import Suppliers from './pages/Suppliers';
+import DistributionPartner from './pages/DistributionPartner';
+import MediaCenter from './pages/MediaCenter';
+import DownloadCenter from './pages/DownloadCenter';
+
 // Lazy loading for other pages can be added here
 const PlaceholderPage = ({ title }: { title: string }) => (
   <div className="container mx-auto px-4 py-20 min-h-[60vh] flex items-center justify-center">
@@ -41,6 +47,11 @@ export default function App() {
           <Route path="/terms-use" element={<UsagePolicy />} />
           <Route path="/terms" element={<TermsConditions />} />
           <Route path="/conditions" element={<ConditionsOfUse />} />
+          <Route path="/careers" element={<Careers />} />
+          <Route path="/suppliers" element={<Suppliers />} />
+          <Route path="/distribution-partner" element={<DistributionPartner />} />
+          <Route path="/media" element={<MediaCenter />} />
+          <Route path="/downloads" element={<DownloadCenter />} />
         </Routes>
       </Layout>
     </BrowserRouter>
