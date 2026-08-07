@@ -137,21 +137,51 @@ export const branches: Branch[] = [
 
 export const services: Service[] = [
   {
-    id: 'distribution',
-    title: { ar: 'توزيع المنتجات الغذائية', en: 'Food Products Distribution' },
-    description: { ar: 'شبكة توزيع واسعة لضمان وصول المنتجات طازجة وبأسرع وقت.', en: 'Extensive distribution network ensuring products arrive fresh and fast.' },
+    id: 'import-services',
+    title: { ar: 'خدمات الاستيراد', en: 'Import Services' },
+    description: { ar: 'نقدم خدمات استيراد موثوقة لأجود المنتجات الغذائية من الأسواق العالمية لضمان تنوع وجودة تلبي احتياجات السوق.', en: 'We offer reliable import services for the finest food products from global markets to ensure quality and variety.' },
+    icon: 'Globe'
+  },
+  {
+    id: 'distribution-services',
+    title: { ar: 'خدمات التوزيع', en: 'Distribution Services' },
+    description: { ar: 'شبكة توزيع وطنية واسعة لضمان وصول منتجاتنا إلى مختلف مناطق المملكة بكفاءة وسرعة.', en: 'A vast national distribution network ensuring our products reach various regions of the Kingdom efficiently and swiftly.' },
     icon: 'Truck'
   },
   {
+    id: 'logistics-supply-chain',
+    title: { ar: 'الخدمات اللوجستية وسلاسل الإمداد', en: 'Logistics & Supply Chain' },
+    description: { ar: 'إدارة متكاملة لسلاسل الإمداد وحلول لوجستية مرنة لضمان استمرارية الأعمال وتدفق المنتجات.', en: 'Integrated supply chain management and flexible logistics solutions ensuring business continuity and product flow.' },
+    icon: 'Map'
+  },
+  {
     id: 'warehousing',
-    title: { ar: 'التخزين المبرد والجاف', en: 'Cold and Dry Warehousing' },
-    description: { ar: 'مستودعات مجهزة بأحدث التقنيات لضمان جودة المنتجات.', en: 'Warehouses equipped with latest technologies to ensure product quality.' },
+    title: { ar: 'التخزين', en: 'Warehousing' },
+    description: { ar: 'مستودعات حديثة ومجهزة بأعلى معايير السلامة والجودة لتخزين المنتجات الجافة والمبردة.', en: 'Modern warehouses equipped with the highest safety and quality standards for storing dry and refrigerated products.' },
     icon: 'Package'
   },
   {
-    id: 'brand-management',
-    title: { ar: 'إدارة العلامات التجارية', en: 'Brand Management' },
-    description: { ar: 'خطط تسويقية وبيعية متكاملة لنمو العلامات التجارية في السوق.', en: 'Integrated marketing and sales plans for brand growth in the market.' },
+    id: 'sales-marketing',
+    title: { ar: 'دعم المبيعات والتسويق', en: 'Sales & Marketing Support' },
+    description: { ar: 'فريق محترف يقدم خطط تسويقية مبنية على بيانات السوق لدعم نمو مبيعات العلامات التجارية.', en: 'A professional team providing data-driven marketing plans to support the sales growth of brands.' },
     icon: 'TrendingUp'
+  },
+  {
+    id: 'brand-representation',
+    title: { ar: 'تمثيل العلامات التجارية', en: 'Brand Representation' },
+    description: { ar: 'تمثيل حصري وموثوق للعلامات التجارية العالمية والمحلية في السوق السعودي لبناء حضور قوي.', en: 'Exclusive and reliable representation for global and local brands in the Saudi market to build a strong presence.' },
+    icon: 'Award'
+  },
+  {
+    id: 'exclusive-distribution',
+    title: { ar: 'التوزيع الحصري', en: 'Exclusive Distribution' },
+    description: { ar: 'توزيع حصري لعلامات بارزة مع التزام كامل بتوسيع نطاق انتشارها وزيادة حصتها السوقية.', en: 'Exclusive distribution of prominent brands with a full commitment to expanding their reach and market share.' },
+    icon: 'ShieldCheck'
+  },
+  {
+    id: 'retail-wholesale',
+    title: { ar: 'الإمداد لقطاعات التجزئة والجملة', en: 'Retail & Wholesale Supply' },
+    description: { ar: 'توفير المنتجات والسلع الاستهلاكية لقطاعات التجزئة والجملة بأسعار تنافسية وموثوقية عالية.', en: 'Providing FMCG products to retail and wholesale sectors with competitive pricing and high reliability.' },
+    icon: 'Store'
   }
 ];

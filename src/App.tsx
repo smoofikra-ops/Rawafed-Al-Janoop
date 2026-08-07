@@ -10,6 +10,10 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import UsagePolicy from './pages/UsagePolicy';
 import TermsConditions from './pages/TermsConditions';
 import ConditionsOfUse from './pages/ConditionsOfUse';
+import Services from './pages/Services';
+import Brands from './pages/Brands';
+import Products from './pages/Products';
+import Contact from './pages/Contact';
 
 import Careers from './pages/Careers';
 import Suppliers from './pages/Suppliers';
@@ -36,13 +40,13 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/services" element={<PlaceholderPage title="الخدمات" />} />
-          <Route path="/brands" element={<PlaceholderPage title="العلامات التجارية" />} />
-          <Route path="/products" element={<PlaceholderPage title="المنتجات" />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/brands" element={<Brands />} />
+          <Route path="/products" element={<Products />} />
           <Route path="/branches" element={<Branches />} />
           <Route path="/quote" element={<Quote />} />
           <Route path="/agent-application" element={<AgentApplication />} />
-          <Route path="/contact" element={<PlaceholderPage title="تواصل معنا" />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/privacy" element={<PrivacyPolicy />} />
           <Route path="/terms-use" element={<UsagePolicy />} />
           <Route path="/terms" element={<TermsConditions />} />

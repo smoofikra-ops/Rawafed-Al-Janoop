@@ -10,7 +10,7 @@ export default function Branches() {
   const { language } = useLanguage();
 
   return (
-    <div className="py-20 bg-gray-50 min-h-screen">
+    <div className="pt-32 pb-20 bg-gray-50 min-h-screen">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <motion.h1 
