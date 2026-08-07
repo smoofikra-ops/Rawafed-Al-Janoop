@@ -15,13 +15,13 @@ export const navigation: NavItem[] = [
 
 export const companyInfo = {
   name: { ar: 'شركة روافد الجنوب للتجارة', en: 'Rawafed Al Janoob Trading Company' },
-  founded: 2019,
+  founded: 2018,
   email: 'info@rawafedj.com',
   phone: '0569083763',
   whatsapp: '966569083763',
   about: {
-    ar: 'تأسست شركة روافد الجنوب للتجارة في العام 2019 في مدينة جدة لتوزيع المنتجات الغذائية والحلويات والعصائر لعدد من المدن السعودية، ومن ثم افتتحت الشركة فروعها ومستودعاتها في مدن جنوب المملكة لتلبية احتياجات المنطقة وتوزيع المنتجات الغذائية.',
-    en: 'Rawafed Al Janoob Trading Company was established in 2019 in Jeddah to distribute food products, sweets, and juices to several Saudi cities. The company then opened its branches and warehouses in the southern cities of the Kingdom to meet the region\'s needs and distribute food products.',
+    ar: 'تأسست روافد الجنوب في عام 2018. نحن نفخر بكوننا شركة رائدة في توزيع المنتجات الغذائية والحلويات عبر مناطق الرياض، جازان، ومنطقة عسير. من خلال وجودنا القوي في هذه الأسواق الرئيسية، اكتسبنا سمعة طيبة في تقديم منتجات عالية الجودة، بأسعار تنافسية، وخدمات توزيع موثوقة. ومن خلال الشراكات الاستراتيجية وشبكة لوجستية قوية، نواصل النمو والابتكار لتلبية الاحتياجات المتطورة لعملائنا.',
+    en: 'Rawafed Al Janoob was established in 2018. We take pride in being a leading company in the distribution of food products and sweets across the Riyadh, Jazan, and Asir regions. With our strong presence in these key markets, we have earned a solid reputation for providing high-quality products at competitive prices, along with reliable distribution services. Through strategic partnerships and a strong logistics network, we continue to grow and innovate to meet the evolving needs of our customers.',
   },
   address: {
     ar: 'الرياض – حي الدار البيضاء – طريق عرفات',
