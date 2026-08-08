@@ -40,7 +40,7 @@ export const stats: Stat[] = [
   { id: 'brands', value: 4, label: { ar: 'علامات تجارية', en: 'Brands' }, suffix: '+' },
   { id: 'regions', value: 13, label: { ar: 'مناطق المملكة', en: 'Regions of the Kingdom' } },
   { id: 'cities', value: 100, label: { ar: 'مدينة مغطاة', en: 'Covered Cities' }, suffix: '+' },
-  { id: 'branches', value: 2, label: { ar: 'فروع ومستودعات', en: 'Branches & Warehouses' } },
+  { id: 'branches', value: 3, label: { ar: 'فروع ومستودعات', en: 'Branches & Warehouses' } },
 ];
 
 export const brands: Brand[] = [

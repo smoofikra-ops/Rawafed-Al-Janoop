@@ -5,27 +5,77 @@ import { ShieldCheck, Globe2, Truck, Map, Warehouse, Users, Award, Handshake } f
 
 export function WhyUs() {
   const { language } = useLanguage();
-
+  
   const title = { ar: 'لماذا روافد الجنوب؟', en: 'Why Rawafed Al-Janoob?' };
-
+  
   const strengths = [
-    { icon: ShieldCheck, title: { ar: 'شراكات حصرية', en: 'Exclusive Partnerships' } },
-    { icon: Globe2, title: { ar: 'علامات عالمية', en: 'International Brands' } },
-    { icon: Truck, title: { ar: 'شبكة لوجستية قوية', en: 'Strong Logistics' } },
-    { icon: Map, title: { ar: 'تغطية شاملة', en: 'Nationwide Coverage' } },
-    { icon: Warehouse, title: { ar: 'مستودعات حديثة', en: 'Modern Warehouses' } },
-    { icon: Users, title: { ar: 'فريق مبيعات محترف', en: 'Professional Sales Team' } },
-    { icon: Award, title: { ar: 'ضمان الجودة', en: 'Quality Assurance' } },
-    { icon: Handshake, title: { ar: 'شراكات طويلة الأمد', en: 'Long-Term Partnerships' } }
+    { 
+      icon: ShieldCheck, 
+      title: { ar: 'شراكات حصرية', en: 'Exclusive Partnerships' },
+      className: "col-span-1 md:col-span-2 md:row-span-2 bg-gradient-to-br from-green-900/30 to-black/40 flex flex-col justify-end text-start relative overflow-hidden",
+      iconPlacement: "absolute top-8 rtl:left-8 ltr:right-8 w-24 h-24 opacity-20 text-green-400 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700",
+      contentClass: "mt-32"
+    },
+    { 
+      icon: Globe2, 
+      title: { ar: 'علامات عالمية', en: 'International Brands' },
+      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40 flex flex-col items-center text-center justify-center",
+      iconPlacement: "w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
+      contentClass: ""
+    },
+    { 
+      icon: Truck, 
+      title: { ar: 'شبكة لوجستية قوية', en: 'Strong Logistics' },
+      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40 flex flex-col items-center text-center justify-center",
+      iconPlacement: "w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
+      contentClass: ""
+    },
+    { 
+      icon: Map, 
+      title: { ar: 'تغطية شاملة', en: 'Nationwide Coverage' },
+      className: "col-span-1 md:col-span-2 md:row-span-1 bg-gradient-to-r from-black/40 to-green-900/20 flex flex-row items-center text-start gap-6",
+      iconPlacement: "w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
+      contentClass: "flex-1"
+    },
+    { 
+      icon: Warehouse, 
+      title: { ar: 'مستودعات حديثة', en: 'Modern Warehouses' },
+      className: "col-span-1 md:col-span-1 md:row-span-2 bg-gradient-to-b from-green-900/20 to-black/40 flex flex-col justify-start items-center text-center relative overflow-hidden",
+      iconPlacement: "w-20 h-20 rounded-full bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 mt-4",
+      contentClass: ""
+    },
+    { 
+      icon: Users, 
+      title: { ar: 'فريق مبيعات محترف', en: 'Professional Sales Team' },
+      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40 flex flex-col items-center text-center justify-center",
+      iconPlacement: "w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
+      contentClass: ""
+    },
+    { 
+      icon: Award, 
+      title: { ar: 'ضمان الجودة', en: 'Quality Assurance' },
+      className: "col-span-1 md:col-span-2 md:row-span-1 bg-gradient-to-l from-black/40 to-green-900/20 flex flex-row items-center text-start gap-6",
+      iconPlacement: "w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
+      contentClass: "flex-1"
+    },
+    { 
+      icon: Handshake, 
+      title: { ar: 'شراكات طويلة الأمد', en: 'Long-Term Partnerships' },
+      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40 flex flex-col items-center text-center justify-center",
+      iconPlacement: "w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
+      contentClass: ""
+    }
   ];
 
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-12 md:my-24">
+    <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-16 md:my-32 relative">
+      <div className="absolute top-1/2 left-0 w-96 h-96 bg-green-500/5 rounded-full blur-[100px] -translate-y-1/2 pointer-events-none"></div>
+      
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center max-w-3xl mx-auto mb-16"
+        className="text-center max-w-3xl mx-auto mb-16 relative z-10"
       >
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">
           {title[language as 'ar' | 'en']}
@@ -33,24 +83,53 @@ export function WhyUs() {
         <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
       </motion.div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 auto-rows-[minmax(180px,auto)] gap-4 md:gap-6 max-w-7xl mx-auto relative z-10">
         {strengths.map((item, index) => {
           const Icon = item.icon;
           return (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.5, delay: index * 0.05 }}
-              className="bg-black/40 backdrop-blur-md border border-white/10 rounded-3xl p-6 sm:p-8 flex flex-col items-center text-center hover:bg-white/10 transition-colors group cursor-default shadow-xl"
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              whileInView={{ opacity: 1, scale: 1, y: 0 }}
+              viewport={{ once: true, margin: "-5%" }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
+              className={`backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 sm:p-8 hover:border-green-500/30 transition-all duration-500 group shadow-xl hover:shadow-2xl hover:shadow-green-500/10 cursor-default ${item.className}`}
             >
-              <div className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-white/5 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500">
-                <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 group-hover:text-green-300" />
-              </div>
-              <h3 className="text-lg sm:text-xl font-bold text-white leading-tight">
-                {item.title[language as 'ar' | 'en']}
-              </h3>
+              {item.className.includes('absolute') ? (
+                <>
+                  <Icon className={item.iconPlacement} />
+                  <div className={item.contentClass}>
+                    <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-500/40 transition-all duration-500 relative z-10">
+                       <Icon className="w-8 h-8 text-green-400 group-hover:text-white" />
+                    </div>
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white leading-tight relative z-10 drop-shadow-sm">
+                      {item.title[language as 'ar' | 'en']}
+                    </h3>
+                  </div>
+                </>
+              ) : item.className.includes('flex-row') ? (
+                <>
+                  <div className={item.iconPlacement}>
+                    <Icon className="w-8 h-8 text-green-400 group-hover:text-white" />
+                  </div>
+                  <div className={item.contentClass}>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white leading-tight drop-shadow-sm">
+                      {item.title[language as 'ar' | 'en']}
+                    </h3>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className={item.iconPlacement}>
+                    <Icon className="w-7 h-7 text-green-400 group-hover:text-white" />
+                  </div>
+                  <div className={item.contentClass}>
+                    <h3 className="text-lg sm:text-xl font-bold text-white leading-tight drop-shadow-sm">
+                      {item.title[language as 'ar' | 'en']}
+                    </h3>
+                  </div>
+                </>
+              )}
             </motion.div>
           );
         })}

@@ -5,7 +5,7 @@ import { Eye, Target, Gem, Flag } from 'lucide-react';
 
 export function VisionMission() {
   const { language } = useLanguage();
-
+  
   const cards = [
     {
       id: 'vision',
@@ -14,7 +14,9 @@ export function VisionMission() {
       description: { 
         ar: 'الريادة في قطاع توزيع السلع الاستهلاكية، لنكون الخيار الأول للعملاء والموردين في المملكة.', 
         en: 'Leadership in the FMCG distribution sector, to be the first choice for customers and suppliers in the Kingdom.' 
-      }
+      },
+      className: "md:col-span-3 bg-gradient-to-br from-green-900/40 to-black/60",
+      delay: 0.1
     },
     {
       id: 'mission',
@@ -23,7 +25,9 @@ export function VisionMission() {
       description: { 
         ar: 'توفير منتجات غذائية عالية الجودة بأسعار تنافسية، مع ضمان التوزيع الفعال والموثوق.', 
         en: 'Providing high-quality food products at competitive prices, while ensuring efficient and reliable distribution.' 
-      }
+      },
+      className: "md:col-span-2 bg-black/40",
+      delay: 0.2
     },
     {
       id: 'values',
@@ -32,7 +36,9 @@ export function VisionMission() {
       description: { 
         ar: 'الجودة، الموثوقية، النزاهة، الشراكة المستدامة، ورضا العملاء.', 
         en: 'Quality, Reliability, Integrity, Sustainable Partnership, and Customer Satisfaction.' 
-      }
+      },
+      className: "md:col-span-2 bg-black/40",
+      delay: 0.3
     },
     {
       id: 'goals',
@@ -41,14 +47,16 @@ export function VisionMission() {
       description: { 
         ar: 'توسيع شبكة التوزيع، تعزيز محفظة العلامات التجارية، وتطوير الكفاءات التشغيلية.', 
         en: 'Expanding the distribution network, enhancing the brand portfolio, and developing operational efficiencies.' 
-      }
+      },
+      className: "md:col-span-3 bg-gradient-to-br from-black/60 to-green-900/20",
+      delay: 0.4
     }
   ];
 
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-12 md:my-20">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8">
-        {cards.map((card, index) => {
+      <div className="grid grid-cols-1 md:grid-cols-5 gap-6 xl:gap-8 max-w-7xl mx-auto">
+        {cards.map((card) => {
           const Icon = card.icon;
           return (
             <motion.div 
@@ -56,16 +64,18 @@ export function VisionMission() {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
-              transition={{ duration: 0.8, delay: index * 0.1, ease: 'easeOut' }}
-              className="bg-black/40 backdrop-blur-md border border-white/10 p-8 rounded-[2rem] shadow-2xl hover:bg-black/60 hover:-translate-y-2 transition-all duration-500 group flex flex-col"
+              transition={{ duration: 0.8, delay: card.delay, ease: [0.23, 1, 0.32, 1] }}
+              className={`backdrop-blur-xl border border-white/10 p-8 sm:p-12 rounded-[2.5rem] shadow-2xl hover:-translate-y-2 hover:shadow-green-500/20 transition-all duration-500 group flex flex-col relative overflow-hidden ${card.className}`}
             >
-              <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center mb-6 group-hover:bg-green-500/20 group-hover:scale-110 transition-all duration-500">
-                <Icon className="w-8 h-8 text-green-400 group-hover:text-green-300 transition-colors" />
+              <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-green-500/20 transition-colors duration-700"></div>
+              
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10">
+                <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 group-hover:text-white transition-colors" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-4 drop-shadow-sm">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 drop-shadow-sm relative z-10">
                 {card.title[language as 'ar' | 'en']}
               </h3>
-              <p className="text-gray-400 font-medium leading-relaxed group-hover:text-gray-300 transition-colors flex-grow">
+              <p className="text-lg text-gray-300 leading-relaxed group-hover:text-white transition-colors flex-grow relative z-10 font-medium">
                 {card.description[language as 'ar' | 'en']}
               </p>
             </motion.div>

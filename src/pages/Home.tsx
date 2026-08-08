@@ -15,31 +15,8 @@ import { LogisticsCapabilities } from '../components/corporate/LogisticsCapabili
 import { CorporateSocialResponsibility } from '../components/corporate/CorporateSocialResponsibility';
 import { GlobalPartners } from '../components/corporate/GlobalPartners';
 import { WhyClientsChooseUs } from '../components/corporate/WhyClientsChooseUs';
-
-const ScrollReveal = ({ children, direction = "up", delay = 0, className = "" }: { children: React.ReactNode, direction?: "up" | "left" | "right" | "none" | "up-left" | "up-right" | "zoom", delay?: number, className?: string, key?: React.Key }) => {
-  let y = 0;
-  let x = 0;
-  
-  if (direction.includes("up")) y = 40;
-  if (direction.includes("right")) x = 40;
-  if (direction.includes("left")) x = -40;
-  
-  const initial = direction === "zoom" ? { opacity: 0, scale: 0.85 } : { opacity: 0, y, x };
-  const whileInView = direction === "zoom" ? { opacity: 1, scale: [1.05, 1] } : { opacity: 1, y: 0, x: 0 };
-  
-  return (
-    <motion.div
-      initial={initial}
-      whileInView={whileInView}
-      viewport={{ once: true, margin: "-10%" }}
-      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
-
+import { BranchesSlider } from '../components/corporate/BranchesSlider';
+import { ScrollReveal } from '../components/ui/ScrollReveal';
 
 export default function Home() {
   const { t } = useTranslation();
@@ -208,32 +185,36 @@ export default function Home() {
       <JourneyTimeline />
 
       {/* Services Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-6 md:my-10">
+      <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-16 md:my-32 relative">
+        <div className="absolute top-1/2 right-0 w-[30rem] h-[30rem] bg-green-500/5 rounded-full blur-[100px] -translate-y-1/2 pointer-events-none"></div>
+        
         <ScrollReveal direction="up">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="text-center max-w-3xl mx-auto mb-16 relative z-10">
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 drop-shadow-md">{t('home.ourServices')}</h2>
             <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
           </div>
         </ScrollReveal>
           
-        <div className="grid grid-cols-3 gap-2 sm:gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto relative z-10">
           {services.map((service, index) => {
             const Icon = service.icon === 'Package' ? Package : service.icon === 'Truck' ? Truck : TrendingUp;
             return (
               <ScrollReveal 
                 key={service.id} 
                 direction={index % 2 === 0 ? (isRTL ? "up-right" : "up-left") : (isRTL ? "up-left" : "up-right")} 
-                delay={index * 0.1}
+                delay={index * 0.15}
                 className="h-full"
               >
                 <div 
-                  className="bg-black/40 backdrop-blur-md border border-white/10 p-4 sm:p-10 rounded-2xl sm:rounded-[2rem] hover:-translate-y-2 hover:bg-black/60 transition-all duration-500 group shadow-2xl flex flex-col items-center sm:items-start text-center sm:text-start h-full"
+                  className="bg-black/40 backdrop-blur-xl border border-white/10 p-8 sm:p-12 rounded-[2.5rem] hover:-translate-y-2 hover:border-green-500/30 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-black/60 transition-all duration-500 group flex flex-col items-center sm:items-start text-center sm:text-start h-full relative overflow-hidden"
                 >
-                  <div className="w-10 h-10 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white/10 flex items-center justify-center mb-3 sm:mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500">
-                    <Icon className="w-5 h-5 sm:w-8 sm:h-8 text-green-400 group-hover:text-green-300 transition-colors" />
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
+                  
+                  <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 sm:mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10">
+                    <Icon className="w-8 h-8 sm:w-10 sm:h-10 text-green-400 group-hover:text-white transition-colors" />
                   </div>
-                  <h3 className="text-sm sm:text-2xl font-bold text-white mb-2 sm:mb-4 drop-shadow-sm leading-tight">{service.title[language as 'ar' | 'en']}</h3>
-                  <p className="text-gray-400 font-medium leading-relaxed group-hover:text-gray-300 transition-colors hidden sm:block text-sm sm:text-base">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-white mb-4 drop-shadow-sm leading-tight relative z-10">{service.title[language as 'ar' | 'en']}</h3>
+                  <p className="text-gray-300 font-medium leading-relaxed group-hover:text-white transition-colors text-base sm:text-lg relative z-10">
                     {service.description[language as 'ar' | 'en']}
                   </p>
                 </div>
@@ -347,50 +328,7 @@ export default function Home() {
       </section>
 
       {/* Branches Map Section */}
-      <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16 my-6 md:my-10 z-20">
-        <ScrollReveal direction="up">
-          <div className="text-center max-w-2xl mx-auto mb-16">
-            <h2 className="text-4xl font-bold text-white mb-6 drop-shadow-md">{t('home.ourBranches')}</h2>
-            <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
-          </div>
-        </ScrollReveal>
-        <div className="grid grid-cols-3 gap-4 sm:gap-8 max-w-7xl mx-auto justify-center">
-          {branches.map((branch, index) => (
-            <ScrollReveal direction={index % 2 === 0 ? (isRTL ? "up-right" : "up-left") : (isRTL ? "up-left" : "up-right")} delay={index * 0.1} key={branch.id} className="min-w-0 shrink-0">
-              <div className="rounded-3xl sm:rounded-[2.5rem] bg-black/40 backdrop-blur-md border border-white/10 hover:bg-black/60 shadow-2xl hover:shadow-green-500/10 hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col h-full group">
-                <div className="h-48 sm:h-72 w-full bg-white/5 relative overflow-hidden">
-                  {branch.iframe ? (
-                    <div className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full opacity-80 group-hover:opacity-100 transition-opacity duration-700" dangerouslySetInnerHTML={{ __html: branch.iframe }} />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center text-gray-500">
-                      <Map className="w-10 h-10" />
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-black/20 pointer-events-none group-hover:bg-transparent transition-colors duration-500"></div>
-                </div>
-                <div className="p-6 sm:p-10 flex-grow z-10 relative">
-                  <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2">
-                    <div>
-                      <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors leading-tight">{branch.name[language as 'ar' | 'en']}</h3>
-                      <p className="text-base text-gray-400 flex items-center gap-2 font-medium">
-                        <MapPin className="w-5 h-5 text-green-500 shrink-0" /> {branch.address[language as 'ar' | 'en']}
-                      </p>
-                    </div>
-                    <span className="inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-gray-200 border border-white/20 shadow-sm group-hover:bg-green-500/20 group-hover:text-green-300 group-hover:border-green-500/30 transition-colors">
-                      {branch.city[language as 'ar' | 'en']}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </ScrollReveal>
-          ))}
-        </div>
-        
-        {/* Contact Info Panel inside Branches section */}
-        <ScrollReveal direction="up">
-          <BranchContactInfo />
-        </ScrollReveal>
-      </section>
+      <BranchesSlider />
 
       {/* CTA Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 mb-16 md:mb-24 z-20">
