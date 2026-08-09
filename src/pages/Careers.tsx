@@ -28,7 +28,7 @@ export default function Careers() {
           <div className="inline-block p-6 bg-green-50 rounded-2xl border border-green-100">
              <p className="text-green-800 font-medium">
                {language === 'ar' ? 'يرجى إرسال سيرتك الذاتية إلى:' : 'Please send your CV to:'} <br/>
-               <a href="mailto:hr@rawafedj.com" className="font-bold text-green-600 hover:underline">hr@rawafedj.com</a>
+               <a href="mailto:info@rawafedj.com" className="font-bold text-green-600 hover:underline">info@rawafedj.com</a>
              </p>
           </div>
         </motion.div>

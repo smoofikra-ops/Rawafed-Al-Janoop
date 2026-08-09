@@ -28,7 +28,7 @@ export default function DistributionPartner() {
           <div className="inline-block p-6 bg-green-50 rounded-2xl border border-green-100">
              <p className="text-green-800 font-medium">
                {language === 'ar' ? 'لبحث فرص الشراكة، يرجى التواصل عبر:' : 'To discuss partnership opportunities, please contact us at:'} <br/>
-               <a href="mailto:partners@rawafedj.com" className="font-bold text-green-600 hover:underline">partners@rawafedj.com</a>
+               <a href="mailto:info@rawafedj.com" className="font-bold text-green-600 hover:underline">info@rawafedj.com</a>
              </p>
           </div>
         </motion.div>

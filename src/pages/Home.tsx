@@ -146,9 +146,9 @@ export default function Home() {
       {/* About Section */}
       <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-6 md:my-10">
         <ScrollReveal direction="left">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20 items-center max-w-7xl mx-auto bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 sm:p-16 shadow-2xl">
-            <div className="flex-1 space-y-8">
-              <div>
+          <div className="flex flex-col gap-12 items-center text-center max-w-5xl mx-auto bg-black/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-8 sm:p-16 shadow-2xl">
+            <div className="space-y-8">
+              <div className="flex flex-col items-center">
                 <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight tracking-tight drop-shadow-md">{t('home.aboutUs')}</h2>
                 <div className="h-1 w-24 bg-green-500 rounded"></div>
               </div>
@@ -157,22 +157,11 @@ export default function Home() {
               </p>
               <Link 
                 to="/about"
-                className="inline-flex items-center gap-2 text-green-400 font-bold hover:text-green-300 transition-colors group text-lg"
+                className="inline-flex items-center justify-center gap-2 text-green-400 font-bold hover:text-green-300 transition-colors group text-lg"
               >
                 {t('common.readMore')}
                 <ArrowIcon className="w-5 h-5 group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform" />
               </Link>
-            </div>
-            
-            <div className="flex-1 w-full max-w-lg lg:max-w-none">
-              <div className="relative aspect-square sm:aspect-[4/3] rounded-[2rem] overflow-hidden shadow-2xl border border-white/10">
-                <img 
-                  src="https://res.cloudinary.com/x6mkqvcj/image/upload/v1785723389/about-team.jpg.jpg" 
-                  alt={t('home.aboutUs')} 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-[10s] ease-out"
-                />
-                <div className="absolute inset-0 bg-black/40"></div>
-              </div>
             </div>
           </div>
         </ScrollReveal>

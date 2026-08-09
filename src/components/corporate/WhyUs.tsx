@@ -12,9 +12,10 @@ export function WhyUs() {
     { 
       icon: ShieldCheck, 
       title: { ar: 'شراكات حصرية', en: 'Exclusive Partnerships' },
-      className: "col-span-1 md:col-span-2 md:row-span-2 bg-gradient-to-br from-green-900/30 to-black/40 flex flex-col justify-end text-start relative overflow-hidden",
-      iconPlacement: "absolute top-8 rtl:left-8 ltr:right-8 w-24 h-24 opacity-20 text-green-400 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700",
-      contentClass: "mt-32"
+      image: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785723389/about-team.jpg.jpg',
+      className: "col-span-1 md:col-span-2 md:row-span-2 bg-gradient-to-br from-green-900/30 to-black/40 flex flex-col justify-end text-start relative overflow-hidden group",
+      iconPlacement: "absolute top-8 rtl:left-8 ltr:right-8 w-24 h-24 opacity-20 text-green-400 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700 z-10",
+      contentClass: "mt-32 relative z-10"
     },
     { 
       icon: Globe2, 
@@ -95,6 +96,12 @@ export function WhyUs() {
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
               className={`backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 sm:p-8 hover:border-green-500/30 transition-all duration-500 group shadow-xl hover:shadow-2xl hover:shadow-green-500/10 cursor-default ${item.className}`}
             >
+              {'image' in item && item.image && (
+                <>
+                  <img src={item.image} alt={item.title[language as 'ar' | 'en']} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700 mix-blend-overlay" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+                </>
+              )}
               {item.className.includes('absolute') ? (
                 <>
                   <Icon className={item.iconPlacement} />

@@ -28,7 +28,7 @@ export default function Suppliers() {
           <div className="inline-block p-6 bg-green-50 rounded-2xl border border-green-100">
              <p className="text-green-800 font-medium">
                {language === 'ar' ? 'للتسجيل كمورد، يرجى التواصل عبر:' : 'To register as a supplier, please contact us at:'} <br/>
-               <a href="mailto:purchasing@rawafedj.com" className="font-bold text-green-600 hover:underline">purchasing@rawafedj.com</a>
+               <a href="mailto:info@rawafedj.com" className="font-bold text-green-600 hover:underline">info@rawafedj.com</a>
              </p>
           </div>
         </motion.div>

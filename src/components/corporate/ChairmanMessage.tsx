@@ -10,7 +10,7 @@ export function ChairmanMessage() {
 
   const content = {
     title: { ar: 'كلمة رئيس مجلس الإدارة', en: 'Chairman Message' },
-    name: { ar: 'رئيس مجلس الإدارة', en: 'Chairman of the Board' },
+    name: { ar: 'علي احمد دهباش', en: 'Ali Ahmed Dahbash' },
     message: { 
       ar: 'نحن في شركة روافد الجنوب للتجارة، نفخر برحلتنا التي بدأناها برؤية طموحة لتطوير قطاع توزيع الأغذية في المملكة. بفضل الله ثم بشراكاتنا الاستراتيجية والتزامنا بالجودة، تمكنا من بناء شبكة توزيع قوية وموثوقة.', 
       en: 'At Rawafed Al Janoob Trading Company, we take pride in our journey, which began with an ambitious vision to develop the food distribution sector in the Kingdom. Thanks to our strategic partnerships and commitment to quality, we have built a strong and reliable distribution network.' 
