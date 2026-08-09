@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { motion } from 'framer-motion';
-import { Truck, Navigation, Box, Zap, Map } from 'lucide-react';
+import { Truck, Navigation, Box, Timer } from 'lucide-react';
 import { Counter } from '../ui/Counter';
 
 export function LogisticsCapabilities() {
@@ -38,11 +38,11 @@ export function LogisticsCapabilities() {
     },
     { 
       id: 'speed',
-      icon: Zap, 
+      icon: Timer, 
       value: 24, 
       suffix: 'h', 
       label: { ar: 'سرعة استجابة', en: 'Response' },
-      className: "col-span-1 md:col-span-2 md:row-span-1 bg-gradient-to-r from-black/60 to-green-900/20",
+      className: "col-span-1 md:col-span-2 md:row-span-1 bg-black/40 md:bg-gradient-to-r md:from-black/60 md:to-green-900/20",
       isPrimary: false
     },
   ];
@@ -83,41 +83,26 @@ export function LogisticsCapabilities() {
                 </>
               )}
               
-              {/* Background Accent for Speed */}
-              {stat.id === 'speed' && (
-                <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
-              )}
-
               {/* Icon Container */}
-              <div className={`${stat.isPrimary ? 'w-16 h-16 md:w-20 md:h-20 mb-auto mt-2 md:mt-4' : stat.id === 'speed' ? 'hidden md:flex w-16 h-16 mr-auto rtl:ml-auto rtl:mr-0 shrink-0' : 'w-10 h-10 md:w-16 md:h-16 mx-auto mb-2 md:mb-6'} rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex md:hidden items-center justify-center group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10 !flex`}>
+              <div className={`${stat.isPrimary ? 'w-16 h-16 md:w-20 md:h-20 mb-auto mt-2 md:mt-4' : 'w-10 h-10 md:w-16 md:h-16 mx-auto mb-2 md:mb-6'} rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10`}>
                 <Icon className={`${stat.isPrimary ? 'w-8 h-8 md:w-10 md:h-10' : 'w-5 h-5 md:w-8 md:h-8'} text-green-400 group-hover:text-white transition-colors`} />
               </div>
 
               {/* Content */}
-              <div className={`${stat.id === 'speed' ? 'flex flex-col md:flex-row items-center gap-2 md:gap-6 w-full' : ''} relative z-10 w-full`}>
-                {stat.id === 'speed' && (
-                  <div className="w-16 h-16 shrink-0 hidden md:block"></div> 
-                )}
-                <div className={stat.id === 'speed' ? 'flex-1 md:rtl:text-right md:ltr:text-left flex flex-col md:flex-row items-center md:justify-between w-full' : 'w-full'}>
-                  <div className="w-full flex flex-col items-center md:items-start text-center md:text-start">
-                    <div className={`${stat.isPrimary ? 'text-5xl md:text-8xl mt-4 md:mt-8' : 'text-xl sm:text-2xl md:text-5xl'} font-black text-white mb-1 md:mb-2 tracking-tight flex justify-center md:justify-start items-center gap-1 drop-shadow-md w-full`}>
-                      {stat.id === 'pos' ? (
-                        <Counter from={0} to={50} duration={2.5} />
-                      ) : (
-                        <Counter from={0} to={stat.value} duration={2.5} />
-                      )}
-                      {stat.id === 'pos' && <span className="text-xl sm:text-2xl md:text-5xl">K</span>}
-                      {stat.suffix && <span className="text-green-500 font-bold">{stat.suffix}</span>}
-                    </div>
-                    <h3 className={`${stat.isPrimary ? 'text-xl sm:text-3xl font-bold text-gray-200 text-center md:text-start' : 'text-[11px] sm:text-sm md:text-lg font-bold text-gray-300 text-center'} w-full`}>
-                      {stat.label[language as 'ar' | 'en']}
-                    </h3>
+              <div className="relative z-10 w-full flex flex-col items-center">
+                <div className={`w-full flex flex-col ${stat.isPrimary ? 'items-center md:items-start text-center md:text-start' : 'items-center text-center'}`}>
+                  <div className={`${stat.isPrimary ? 'text-5xl md:text-8xl mt-4 md:mt-8 justify-center md:justify-start' : 'text-xl sm:text-2xl md:text-5xl justify-center'} font-black text-white mb-1 md:mb-2 tracking-tight flex items-center gap-1 drop-shadow-md w-full`}>
+                    {stat.id === 'pos' ? (
+                      <Counter from={0} to={50} duration={2.5} />
+                    ) : (
+                      <Counter from={0} to={stat.value} duration={2.5} />
+                    )}
+                    {stat.id === 'pos' && <span className="text-xl sm:text-2xl md:text-5xl">K</span>}
+                    {stat.suffix && <span className="text-green-500 font-bold">{stat.suffix}</span>}
                   </div>
-                  {stat.id === 'speed' && (
-                     <div className="hidden md:block">
-                       <Truck className="w-24 h-24 text-white/5 group-hover:text-green-500/20 group-hover:translate-x-4 rtl:group-hover:-translate-x-4 transition-all duration-700" />
-                     </div>
-                  )}
+                  <h3 className={`${stat.isPrimary ? 'text-xl sm:text-3xl text-center md:text-start' : 'text-[11px] sm:text-sm md:text-lg text-center'} font-bold text-gray-300 w-full`}>
+                    {stat.label[language as 'ar' | 'en']}
+                  </h3>
                 </div>
               </div>
             </motion.div>

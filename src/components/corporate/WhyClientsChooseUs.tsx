@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { motion } from 'framer-motion';
-import { CheckCircle2, Star, Clock, Users2, ShieldCheck, Map } from 'lucide-react';
+import { CheckCircle2, Star, Timer, Users2, ShieldCheck, Map } from 'lucide-react';
 
 export function WhyClientsChooseUs() {
   const { language } = useLanguage();
@@ -27,22 +27,22 @@ export function WhyClientsChooseUs() {
       layout: "vertical"
     },
     { 
-      icon: Clock, 
+      icon: Timer, 
       title: { ar: 'سرعة التوصيل', en: 'Fast Delivery' },
-      className: "col-span-2 md:col-span-1 bg-black/40",
+      className: "col-span-3 md:col-span-1 bg-black/40",
+      layout: "vertical"
+    },
+    { 
+      icon: Users2, 
+      title: { ar: 'فريق عمل محترف', en: 'Professional Team' },
+      className: "col-span-3 md:col-span-1 bg-black/40",
       layout: "vertical"
     },
     { 
       icon: CheckCircle2, 
       title: { ar: 'شراكات موثوقة', en: 'Trusted Partnerships' },
-      className: "col-span-2 md:col-span-2 bg-gradient-to-bl from-green-900/30 to-black/60",
-      layout: "responsive"
-    },
-    { 
-      icon: Users2, 
-      title: { ar: 'فريق عمل محترف', en: 'Professional Team' },
-      className: "col-span-2 md:col-span-1 bg-black/40",
-      layout: "vertical"
+      className: "col-span-6 md:col-span-2 bg-gradient-to-bl from-green-900/30 to-black/60",
+      layout: "horizontal"
     }
   ];
 
@@ -60,7 +60,7 @@ export function WhyClientsChooseUs() {
         <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-6 max-w-6xl mx-auto relative z-10">
+      <div className="grid grid-cols-6 md:grid-cols-4 gap-3 md:gap-6 max-w-6xl mx-auto relative z-10">
         {reasons.map((reason, index) => {
           const Icon = reason.icon;
           const isHorizontal = reason.layout === 'horizontal';
