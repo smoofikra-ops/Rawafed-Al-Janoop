@@ -64,34 +64,34 @@ export function BranchesSlider() {
             return (
               <div 
                 key={`${branch.id}-${index}`} 
-                className="w-[300px] sm:w-[400px] shrink-0"
+                className="w-[calc(50vw-1rem)] md:w-[400px] shrink-0"
               >
                 <motion.div 
                   whileHover={{ scale: 1.05, y: -10 }}
-                  className="rounded-3xl sm:rounded-[2.5rem] bg-black/40 backdrop-blur-xl border border-white/10 hover:border-green-500/30 hover:bg-black/60 shadow-xl hover:shadow-2xl hover:shadow-green-500/20 transition-all duration-500 overflow-hidden flex flex-col h-full group"
+                  whileInView={{ scale: 1.02, boxShadow: "0px 10px 30px rgba(34,197,94,0.15)" }}
+                  className="rounded-2xl md:rounded-[2.5rem] bg-gray-900/80 md:bg-black/40 backdrop-blur-xl border border-white/10 hover:border-green-500/30 hover:bg-black/60 shadow-xl transition-all duration-500 overflow-hidden flex flex-col h-full group"
                 >
-                  <div className="h-48 sm:h-64 w-full bg-white/5 relative overflow-hidden pointer-events-none">
+                  <div className="h-32 md:h-64 w-full bg-white/5 relative overflow-hidden pointer-events-none">
                     {branch.iframe ? (
-                      <div className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" dangerouslySetInnerHTML={{ __html: branch.iframe }} />
+                      <div className="w-full h-full [&>iframe]:w-full [&>iframe]:h-full transition-opacity duration-700 pointer-events-none" dangerouslySetInnerHTML={{ __html: branch.iframe }} />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-gray-500">
-                        <Map className="w-10 h-10" />
+                        <Map className="w-6 h-6 md:w-10 md:h-10" />
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent pointer-events-none"></div>
                   </div>
                   
-                  <div className="p-6 sm:p-8 flex-grow z-10 relative bg-gradient-to-b from-black/50 to-transparent -mt-12 pt-16">
+                  <div className="p-4 md:p-8 flex-grow z-10 relative bg-gray-900 md:bg-transparent -mt-4 md:-mt-12 md:bg-gradient-to-b md:from-black/50 md:to-transparent rounded-t-xl md:rounded-none">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
                     
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-2 relative z-10">
+                    <div className="flex flex-col md:flex-row justify-between items-start gap-2 md:gap-4 mb-2 relative z-10">
                       <div>
-                        <h3 className="text-xl sm:text-2xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors leading-tight">{branch.name[language as 'ar' | 'en']}</h3>
-                        <p className="text-sm sm:text-base text-gray-300 flex items-center gap-2 font-medium leading-relaxed">
-                          <MapPin className="w-5 h-5 text-green-500 shrink-0" /> {branch.address[language as 'ar' | 'en']}
+                        <h3 className="text-[13px] md:text-2xl font-bold text-white mb-1 md:mb-3 group-hover:text-green-400 transition-colors leading-tight">{branch.name[language as 'ar' | 'en']}</h3>
+                        <p className="text-[10px] md:text-base text-gray-300 flex items-center gap-1 md:gap-2 font-medium leading-relaxed">
+                          <MapPin className="w-3 h-3 md:w-5 md:h-5 text-green-500 shrink-0" /> {branch.address[language as 'ar' | 'en']}
                         </p>
                       </div>
-                      <span className="inline-flex items-center rounded-full bg-white/5 px-4 py-2 text-sm font-bold text-gray-200 border border-white/10 shadow-sm group-hover:bg-green-500/20 group-hover:text-green-300 group-hover:border-green-500/30 transition-colors whitespace-nowrap">
+                      <span className="inline-flex items-center rounded-full bg-white/5 px-2 py-1 md:px-4 md:py-2 text-[9px] md:text-sm font-bold text-gray-200 border border-white/10 shadow-sm group-hover:bg-green-500/20 group-hover:text-green-300 group-hover:border-green-500/30 transition-colors whitespace-nowrap">
                         {branch.city[language as 'ar' | 'en']}
                       </span>
                     </div>

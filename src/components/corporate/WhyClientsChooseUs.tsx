@@ -11,37 +11,37 @@ export function WhyClientsChooseUs() {
     { 
       icon: Star, 
       title: { ar: 'الجودة العالية', en: 'High Quality' },
-      className: "md:col-span-2 bg-gradient-to-br from-green-900/40 to-black/60",
+      className: "col-span-6 md:col-span-2 bg-gradient-to-br from-green-900/40 to-black/60",
       layout: "horizontal"
     },
     { 
       icon: ShieldCheck, 
       title: { ar: 'الموثوقية التامة', en: 'Complete Reliability' },
-      className: "md:col-span-1 bg-black/40",
+      className: "col-span-3 md:col-span-1 bg-black/40",
       layout: "vertical"
     },
     { 
       icon: Map, 
-      title: { ar: 'توزيع وطني شامل', en: 'Nationwide Distribution' },
-      className: "md:col-span-1 bg-black/40",
+      title: { ar: 'التغطية الوطنية', en: 'Nationwide Distribution' },
+      className: "col-span-3 md:col-span-1 bg-black/40",
       layout: "vertical"
     },
     { 
       icon: Clock, 
       title: { ar: 'سرعة التوصيل', en: 'Fast Delivery' },
-      className: "md:col-span-1 bg-black/40",
+      className: "col-span-2 md:col-span-1 bg-black/40",
       layout: "vertical"
     },
     { 
       icon: CheckCircle2, 
       title: { ar: 'شراكات موثوقة', en: 'Trusted Partnerships' },
-      className: "md:col-span-2 bg-gradient-to-bl from-green-900/30 to-black/60",
-      layout: "horizontal"
+      className: "col-span-2 md:col-span-2 bg-gradient-to-bl from-green-900/30 to-black/60",
+      layout: "responsive"
     },
     { 
       icon: Users2, 
       title: { ar: 'فريق عمل محترف', en: 'Professional Team' },
-      className: "md:col-span-1 bg-black/40",
+      className: "col-span-2 md:col-span-1 bg-black/40",
       layout: "vertical"
     }
   ];

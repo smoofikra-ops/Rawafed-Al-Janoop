@@ -15,7 +15,7 @@ export function LogisticsCapabilities() {
       value: 150, 
       suffix: '+', 
       label: { ar: 'شاحنة مبردة وجافة', en: 'Refrigerated & Dry Trucks' },
-      className: "md:col-span-2 md:row-span-2 bg-gradient-to-br from-green-900/40 to-black/60",
+      className: "col-span-3 md:col-span-2 md:row-span-2 bg-gradient-to-br from-green-900/40 to-black/60",
       isPrimary: true
     },
     { 
@@ -23,8 +23,8 @@ export function LogisticsCapabilities() {
       icon: Box, 
       value: 50000, 
       suffix: '+', 
-      label: { ar: 'نقطة بيع مدعومة', en: 'Supported POS' },
-      className: "md:col-span-1 md:row-span-1 bg-black/40",
+      label: { ar: 'نقطة بيع', en: 'POS' },
+      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40",
       isPrimary: false
     },
     { 
@@ -32,8 +32,8 @@ export function LogisticsCapabilities() {
       icon: Navigation, 
       value: 13, 
       suffix: '', 
-      label: { ar: 'منطقة إدارية', en: 'Covered Regions' },
-      className: "md:col-span-1 md:row-span-1 bg-black/40",
+      label: { ar: 'منطقة إدارية', en: 'Regions' },
+      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40",
       isPrimary: false
     },
     { 
@@ -41,8 +41,8 @@ export function LogisticsCapabilities() {
       icon: Zap, 
       value: 24, 
       suffix: 'h', 
-      label: { ar: 'سرعة استجابة', en: 'Response Time' },
-      className: "md:col-span-2 md:row-span-1 bg-gradient-to-r from-black/60 to-green-900/20",
+      label: { ar: 'سرعة استجابة', en: 'Response' },
+      className: "col-span-1 md:col-span-2 md:row-span-1 bg-gradient-to-r from-black/60 to-green-900/20",
       isPrimary: false
     },
   ];
@@ -63,7 +63,7 @@ export function LogisticsCapabilities() {
         <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 auto-rows-[minmax(200px,auto)] gap-4 md:gap-6 max-w-6xl mx-auto relative z-10">
+      <div className="grid grid-cols-3 md:grid-cols-4 auto-rows-[minmax(140px,auto)] gap-3 md:gap-6 max-w-6xl mx-auto relative z-10">
         {stats.map((stat, index) => {
           const Icon = stat.icon;
           return (
@@ -73,43 +73,48 @@ export function LogisticsCapabilities() {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
-              className={`backdrop-blur-xl border border-white/10 rounded-[2rem] hover:border-green-500/30 hover:shadow-2xl hover:shadow-green-500/10 transition-all duration-500 group overflow-hidden relative ${stat.className} ${stat.isPrimary ? 'p-8 sm:p-12 flex flex-col justify-end' : 'p-6 sm:p-8 flex flex-col justify-center items-center text-center'}`}
+              className={`backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-[2rem] hover:border-green-500/30 hover:shadow-2xl hover:shadow-green-500/10 transition-all duration-500 group overflow-hidden relative ${stat.className} ${stat.isPrimary ? 'p-6 sm:p-12 flex flex-col justify-end min-h-[220px]' : 'p-3 sm:p-8 flex flex-col justify-center items-center text-center'}`}
             >
               {/* Background Accent for Primary */}
               {stat.isPrimary && (
                 <>
                   <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
-                  <Icon className="absolute -top-10 rtl:-left-10 ltr:-right-10 w-64 h-64 text-green-500 opacity-5 group-hover:opacity-10 group-hover:scale-110 transition-all duration-700 pointer-events-none" />
+                  <Icon className="absolute -top-10 rtl:-left-10 ltr:-right-10 w-48 h-48 md:w-64 md:h-64 text-green-500 opacity-5 group-hover:opacity-10 group-hover:scale-110 transition-all duration-700 pointer-events-none" />
                 </>
               )}
-
+              
               {/* Background Accent for Speed */}
               {stat.id === 'speed' && (
                 <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
               )}
 
               {/* Icon Container */}
-              <div className={`${stat.isPrimary ? 'w-20 h-20 mb-auto mt-4' : stat.id === 'speed' ? 'w-16 h-16 mr-auto rtl:ml-auto rtl:mr-0 shrink-0' : 'w-16 h-16 mx-auto mb-6'} rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10`}>
-                <Icon className={`${stat.isPrimary ? 'w-10 h-10' : 'w-8 h-8'} text-green-400 group-hover:text-white transition-colors`} />
+              <div className={`${stat.isPrimary ? 'w-16 h-16 md:w-20 md:h-20 mb-auto mt-2 md:mt-4' : stat.id === 'speed' ? 'hidden md:flex w-16 h-16 mr-auto rtl:ml-auto rtl:mr-0 shrink-0' : 'w-10 h-10 md:w-16 md:h-16 mx-auto mb-2 md:mb-6'} rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex md:hidden items-center justify-center group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10 !flex`}>
+                <Icon className={`${stat.isPrimary ? 'w-8 h-8 md:w-10 md:h-10' : 'w-5 h-5 md:w-8 md:h-8'} text-green-400 group-hover:text-white transition-colors`} />
               </div>
 
               {/* Content */}
-              <div className={`${stat.id === 'speed' ? 'flex flex-row items-center gap-6 w-full' : ''} relative z-10`}>
+              <div className={`${stat.id === 'speed' ? 'flex flex-col md:flex-row items-center gap-2 md:gap-6 w-full' : ''} relative z-10 w-full`}>
                 {stat.id === 'speed' && (
-                  <div className="w-16 h-16 shrink-0 md:hidden"></div> 
+                  <div className="w-16 h-16 shrink-0 hidden md:block"></div> 
                 )}
-                <div className={stat.id === 'speed' ? 'flex-1 rtl:text-right ltr:text-left flex flex-row items-center justify-between' : ''}>
-                  <div>
-                    <div className={`${stat.isPrimary ? 'text-6xl md:text-8xl mt-8' : 'text-4xl md:text-5xl'} font-black text-white mb-2 tracking-tight flex items-center gap-1 drop-shadow-md`}>
-                      <Counter from={0} to={stat.value} duration={2.5} />
+                <div className={stat.id === 'speed' ? 'flex-1 md:rtl:text-right md:ltr:text-left flex flex-col md:flex-row items-center md:justify-between w-full' : 'w-full'}>
+                  <div className="w-full flex flex-col items-center md:items-start text-center md:text-start">
+                    <div className={`${stat.isPrimary ? 'text-5xl md:text-8xl mt-4 md:mt-8' : 'text-xl sm:text-2xl md:text-5xl'} font-black text-white mb-1 md:mb-2 tracking-tight flex justify-center md:justify-start items-center gap-1 drop-shadow-md w-full`}>
+                      {stat.id === 'pos' ? (
+                        <Counter from={0} to={50} duration={2.5} />
+                      ) : (
+                        <Counter from={0} to={stat.value} duration={2.5} />
+                      )}
+                      {stat.id === 'pos' && <span className="text-xl sm:text-2xl md:text-5xl">K</span>}
                       {stat.suffix && <span className="text-green-500 font-bold">{stat.suffix}</span>}
                     </div>
-                    <h3 className={`${stat.isPrimary ? 'text-2xl sm:text-3xl font-bold text-gray-200' : 'text-lg font-bold text-gray-300'}`}>
+                    <h3 className={`${stat.isPrimary ? 'text-xl sm:text-3xl font-bold text-gray-200 text-center md:text-start' : 'text-[11px] sm:text-sm md:text-lg font-bold text-gray-300 text-center'} w-full`}>
                       {stat.label[language as 'ar' | 'en']}
                     </h3>
                   </div>
                   {stat.id === 'speed' && (
-                     <div className="hidden sm:block">
+                     <div className="hidden md:block">
                        <Truck className="w-24 h-24 text-white/5 group-hover:text-green-500/20 group-hover:translate-x-4 rtl:group-hover:-translate-x-4 transition-all duration-700" />
                      </div>
                   )}

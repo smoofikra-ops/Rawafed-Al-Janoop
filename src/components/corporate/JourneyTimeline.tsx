@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 
 export function JourneyTimeline() {
   const { language } = useLanguage();
@@ -14,7 +14,8 @@ export function JourneyTimeline() {
     { year: '2021', title: { ar: 'شراكات استراتيجية', en: 'Strategic Partnerships' } },
     { year: '2023', title: { ar: 'إطلاق العلامات الخاصة', en: 'Private Brands Launch' } },
     { year: '2025', title: { ar: 'شبكة توزيع وطنية', en: 'National Distribution Network' } },
-    { year: '2026', title: { ar: 'اليوم', en: 'Today' } },
+    { year: '2026', title: { ar: 'تطور مستمر', en: 'Continuous Development' } },
+    { year: 'اليوم', title: { ar: 'حاضرنا ومستقبلنا', en: 'Our Present & Future' }, summary: { ar: 'واليوم تواصل روافد الجنوب تعزيز مكانتها كشريك موثوق في الاستيراد والتوزيع والخدمات اللوجستية، مع شبكة تغطي مختلف مناطق المملكة وشراكات استراتيجية مع علامات تجارية محلية وعالمية.', en: 'Today, Rawafed Al-Janoob continues to strengthen its position as a trusted partner in import, distribution, and logistics, with a network covering various regions of the Kingdom and strategic partnerships with local and international brands.' } },
   ];
 
   const containerRef = useRef<HTMLDivElement>(null);
@@ -82,7 +83,8 @@ export function JourneyTimeline() {
 
 function TimelineItem({ milestone, index, isEven, language, isRTL }: any) {
   const itemRef = useRef<HTMLDivElement>(null);
-  
+  const isInView = useInView(itemRef, { once: true, amount: 0.5 });
+
   const { scrollYProgress } = useScroll({
     target: itemRef,
     offset: ["start 80%", "center center"]
@@ -130,7 +132,12 @@ function TimelineItem({ milestone, index, isEven, language, isRTL }: any) {
           <h3 className="text-xl sm:text-2xl font-bold text-white mb-2 tracking-tight group-hover:text-green-400 transition-colors">
             {milestone.title[language as 'ar' | 'en']}
           </h3>
-          <div className="h-1 w-12 bg-red-500 rounded opacity-50 group-hover:opacity-100 transition-opacity"></div>
+          <div className="h-1 w-12 bg-red-500 rounded opacity-50 group-hover:opacity-100 transition-opacity mb-2"></div>
+          {milestone.summary && (
+            <p className="text-sm sm:text-base text-gray-300 mt-4 leading-relaxed font-medium min-h-[100px]">
+              {milestone.summary[language as 'ar' | 'en']}
+            </p>
+          )}
         </div>
       </motion.div>
     </div>
