@@ -39,16 +39,32 @@ export default function Brands() {
                   className="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-300 mix-blend-multiply"
                 />
               </div>
+              {brand.badge && (
+                <div className="mb-3 text-sm font-semibold text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-100">
+                  {brand.badge[language as 'ar' | 'en']}
+                </div>
+              )}
               <h3 className="text-2xl font-bold text-gray-900 mb-4">{brand.name[language as 'ar' | 'en']}</h3>
-              <p className="text-gray-600 leading-relaxed mb-6 flex-grow">{brand.description[language as 'ar' | 'en']}</p>
+              <p className="text-gray-600 leading-relaxed mb-6 flex-grow whitespace-pre-line">{brand.description[language as 'ar' | 'en']}</p>
               
-              <div className="flex flex-wrap justify-center gap-2 mt-auto">
+              {brand.origin && (
+                <div className="mb-4 text-sm font-medium text-gray-500">
+                  {language === 'ar' ? 'بلد المنشأ: ' : 'Country of Origin: '}
+                  <span className="font-semibold text-gray-800">{brand.origin[language as 'ar' | 'en']}</span>
+                </div>
+              )}
+
+              <div className="flex flex-wrap justify-center gap-2 mt-auto mb-6">
                 {brand.categories.map((category, idx) => (
                   <span key={idx} className="bg-green-50 text-green-700 px-4 py-1.5 rounded-full text-sm font-semibold border border-green-100">
                     {category[language as 'ar' | 'en']}
                   </span>
                 ))}
               </div>
+
+              <button className="w-full bg-gray-900 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-xl transition-colors duration-300">
+                {language === 'ar' ? 'اكتشف المزيد' : 'Discover More'}
+              </button>
             </motion.div>
           ))}
         </div>

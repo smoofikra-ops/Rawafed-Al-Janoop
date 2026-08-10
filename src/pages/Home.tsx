@@ -244,8 +244,13 @@ export default function Home() {
                     <h3 className="text-4xl font-bold text-white group-hover:text-green-400 transition-colors text-center">{brands[0].name[language as 'ar' | 'en']}</h3>
                   </div>
                 )}
+                {brands[0].badge && (
+                  <div className="mb-3 text-xs md:text-sm font-semibold text-green-400 bg-green-500/10 px-3 py-1 rounded-full border border-green-500/20">
+                    {brands[0].badge[language as 'ar' | 'en']}
+                  </div>
+                )}
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 text-center">{brands[0].name[language as 'ar' | 'en']}</h3>
-                <p className="text-gray-400 font-medium text-center text-sm md:text-base">{brands[0].description[language as 'ar' | 'en']}</p>
+                <p className="text-gray-400 font-medium text-center text-sm md:text-base whitespace-pre-line">{brands[0].description[language as 'ar' | 'en']}</p>
               </Link>
             </ScrollReveal>
           </div>
@@ -265,8 +270,13 @@ export default function Home() {
                       <span className="text-sm md:text-3xl font-bold text-gray-300 group-hover:text-white transition-colors">{brand.name[language as 'ar' | 'en']}</span>
                     )}
                   </div>
+                  {brand.badge && (
+                    <div className="mb-2 md:mb-3 text-[9px] md:text-xs font-semibold text-green-400 bg-green-500/10 px-2 py-0.5 md:py-1 rounded-full border border-green-500/20 text-center">
+                      {brand.badge[language as 'ar' | 'en']}
+                    </div>
+                  )}
                   <h3 className="text-xs md:text-2xl font-bold text-white mb-1 md:mb-3 text-center line-clamp-1">{brand.name[language as 'ar' | 'en']}</h3>
-                  <p className="text-[10px] md:text-base text-gray-400 font-medium text-center line-clamp-2 md:line-clamp-none">{brand.description[language as 'ar' | 'en']}</p>
+                  <p className="text-[10px] md:text-base text-gray-400 font-medium text-center line-clamp-2 md:line-clamp-none whitespace-pre-line">{brand.description[language as 'ar' | 'en']}</p>
                 </Link>
               </ScrollReveal>
             ))}

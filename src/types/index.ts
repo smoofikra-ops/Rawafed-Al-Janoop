@@ -20,6 +20,8 @@ export interface Brand {
   description: Record<Language, string>;
   logo: string;
   categories: Record<Language, string>[];
+  badge?: Record<Language, string>;
+  origin?: Record<Language, string>;
 }
 
 export interface Product {

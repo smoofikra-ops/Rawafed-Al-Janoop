@@ -52,17 +52,20 @@ export const brands: Brand[] = [
       en: 'The finest premium Ceylon tea, hand-picked. It is distinguished by its rich flavor and authentic golden color to offer you an exceptional tea experience in every cup.' 
     },
     logo: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785951068/istkan_tea_logo_rqst8e.png',
-    categories: [{ ar: 'شاي', en: 'Tea' }]
+    categories: [{ ar: 'شاي', en: 'Tea' }],
+    badge: { ar: '🤝 شريك استراتيجي', en: '🤝 Strategic Partner' }
   },
   {
     id: 'lusail',
     name: { ar: 'لوسيل', en: 'Lusail' },
     description: { 
-      ar: 'منتجات عالية الجودة تلبي تطلعات المستهلكين. نقدم تشكيلة متنوعة من المشروبات المنعشة المصنعة بأعلى معايير الجودة والسلامة الغذائية.', 
-      en: 'High-quality products meeting consumer expectations. We offer a diverse range of refreshing beverages manufactured with the highest quality and food safety standards.' 
+      ar: 'لوسيل هي العلامة التجارية الخاصة بشركة روافد الجنوب، ويتم تطوير منتجاتها بالتعاون مع مصانع متخصصة وفق أعلى معايير الجودة.\n\nتضم العلامة مجموعة متنوعة من المنتجات الغذائية، من أبرزها:\n• الأجبان\n• الصلصات\n• الشطة الحارة\n\nوتركز العلامة على تقديم منتجات عالية الجودة تلبي احتياجات السوق السعودي.', 
+      en: 'Lusail is the private label of Rawafed Al-Janoob.\n\nIts products are developed in cooperation with specialized manufacturing partners while maintaining the highest quality standards.\n\nThe brand currently offers:\n• Cheese Products\n• Sauces\n• Hot Chili Sauce\n\nDesigned specifically to meet the needs of the Saudi market.' 
     },
     logo: lusailLogo,
-    categories: [{ ar: 'مشروبات', en: 'Beverages' }]
+    categories: [{ ar: 'أغذية', en: 'Food' }],
+    badge: { ar: '🏷️ العلامة التجارية الخاصة بنا', en: '🏷️ Our Private Label' },
+    origin: { ar: 'السعودية', en: 'Saudi Arabia' }
   },
   {
     id: 'muscat',
@@ -72,17 +75,20 @@ export const brands: Brand[] = [
       en: 'A leading Omani brand in the manufacture of fresh, crispy potato chips in various flavors that satisfy all tastes, made from the best natural ingredients.' 
     },
     logo: 'https://muscatchips.com/wp-content/uploads/al_opt_content/IMAGE/muscatchips.com/wp-content/uploads/2025/07/cropped-Logo-512x512-No_BG.png',
-    categories: [{ ar: 'وجبات خفيفة', en: 'Snacks' }]
+    categories: [{ ar: 'وجبات خفيفة', en: 'Snacks' }],
+    badge: { ar: '🤝 شريك استراتيجي', en: '🤝 Strategic Partner' }
   },
   {
     id: 'simak',
-    name: { ar: 'سماك', en: 'Simak' },
+    name: { ar: 'سماك', en: 'Samak' },
     description: {
-      ar: 'علامة تجارية متميزة تقدم أفضل المنتجات الغذائية والمشروبات المستوحاة من الطبيعة. نلتزم بتقديم الجودة والمذاق الرائع لتلبية احتياجاتك اليومية.',
-      en: 'A premium brand offering the best natural-inspired food and beverage products. We are committed to delivering quality and great taste to meet your daily needs.'
+      ar: 'سماك هي علامة تجارية ومصنع عُماني متخصص في إنتاج التونة.\n\nتقوم شركة روافد الجنوب بتوزيع منتجات سماك في السوق السعودي مع الالتزام بأعلى معايير الجودة وسلامة المنتجات.',
+      en: 'Samak is an Omani brand and manufacturer specializing exclusively in tuna products.\n\nRawafed Al-Janoob distributes Samak products across the Saudi market while maintaining high standards of quality and food safety.'
     },
     logo: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785951068/simak_logo_vcxta6.png',
-    categories: [{ ar: 'أغذية ومشروبات', en: 'Food & Beverages' }]
+    categories: [{ ar: 'أغذية ومشروبات', en: 'Food & Beverages' }],
+    badge: { ar: '🌍 علامة تجارية دولية', en: '🌍 International Brand' },
+    origin: { ar: 'سلطنة عُمان', en: 'Oman' }
   }
 ];
 

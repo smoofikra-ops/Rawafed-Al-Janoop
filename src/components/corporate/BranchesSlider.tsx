@@ -52,8 +52,6 @@ export function BranchesSlider() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#111827] to-transparent z-10 pointer-events-none"></div>
-        <div className="absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#111827] to-transparent z-10 pointer-events-none"></div>
 
         <motion.div 
           className="flex gap-8 cursor-grab active:cursor-grabbing w-max"
