@@ -15,6 +15,7 @@ export function VisionMission() {
         ar: 'الريادة في قطاع توزيع السلع الاستهلاكية، لنكون الخيار الأول للعملاء والموردين في المملكة.', 
         en: 'Leadership in the FMCG distribution sector, to be the first choice for customers and suppliers in the Kingdom.' 
       },
+      image: 'https://nmolabs-cdn.b-cdn.net/rawafed-aljanoob/services/cards-covers/%D8%B1%D9%88%D9%94%D9%8A%D8%AA%D9%86%D8%A7.jpg.jpeg',
       className: "md:col-span-2 bg-gradient-to-br from-green-900/40 to-black/60",
       delay: 0.1
     },
@@ -26,6 +27,7 @@ export function VisionMission() {
         ar: 'توفير منتجات غذائية عالية الجودة بأسعار تنافسية، مع ضمان التوزيع الفعال والموثوق.', 
         en: 'Providing high-quality food products at competitive prices, while ensuring efficient and reliable distribution.' 
       },
+      image: 'https://nmolabs-cdn.b-cdn.net/rawafed-aljanoob/services/cards-covers/%D8%B1%D8%B3%D8%A7%D9%84%D8%AA%D9%86%D8%A7.jpg.jpeg',
       className: "md:col-span-3 bg-black/40",
       delay: 0.2
     },
@@ -37,6 +39,7 @@ export function VisionMission() {
         ar: 'الجودة، الموثوقية، النزاهة، الشراكة المستدامة، ورضا العملاء.', 
         en: 'Quality, Reliability, Integrity, Sustainable Partnership, and Customer Satisfaction.' 
       },
+      image: 'https://nmolabs-cdn.b-cdn.net/rawafed-aljanoob/services/cards-covers/%D8%A7%D9%84%D8%A7%D9%84%D8%AA%D8%B2%D8%A7%D9%85%20%D9%88%D8%A7%D9%84%D9%85%D8%B5%D8%AF%D8%A7%D9%82%D9%8A%D8%A9.jpg.jpeg',
       className: "md:col-span-3 bg-black/40",
       delay: 0.3
     },
@@ -48,6 +51,7 @@ export function VisionMission() {
         ar: 'توسيع شبكة التوزيع، تعزيز محفظة العلامات التجارية، وتطوير الكفاءات التشغيلية.', 
         en: 'Expanding the distribution network, enhancing the brand portfolio, and developing operational efficiencies.' 
       },
+      image: 'https://nmolabs-cdn.b-cdn.net/rawafed-aljanoob/services/cards-covers/%D8%A7%D9%84%D8%A7%D8%A8%D8%AF%D8%A7%D8%B9%20%D9%88%D8%A7%D9%84%D8%A7%D8%A8%D8%AA%D9%83%D8%A7%D8%B1.jpg.jpeg',
       className: "md:col-span-2 bg-gradient-to-br from-black/60 to-green-900/20",
       delay: 0.4
     }
@@ -72,7 +76,14 @@ export function VisionMission() {
               transition={{ duration: 0.8, delay: card.delay, ease: [0.23, 1, 0.32, 1] }}
               className={`backdrop-blur-xl border border-white/10 p-4 sm:p-12 rounded-2xl sm:rounded-[2.5rem] shadow-2xl hover:-translate-y-2 hover:shadow-green-500/20 transition-all duration-500 group flex flex-col relative overflow-hidden ${card.className} ${isLarge ? 'min-h-[220px] md:min-h-[250px]' : 'min-h-[160px] md:min-h-[200px]'}`}
             >
-              <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-green-500/20 transition-colors duration-700"></div>
+              {card.image && (
+                <div className="absolute inset-0 z-0">
+                  <img src={card.image} alt={card.title[language as 'ar' | 'en']} className="w-full h-full object-cover opacity-30 group-hover:opacity-40 transition-opacity duration-500 mix-blend-overlay" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                </div>
+              )}
+              
+              <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
               
               <div className="w-12 h-12 sm:w-20 sm:h-20 rounded-xl sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-4 sm:mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10">
                 <Icon className="w-6 h-6 sm:w-10 sm:h-10 text-green-400 group-hover:text-white transition-colors" />
