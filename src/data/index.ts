@@ -46,7 +46,7 @@ export const stats: Stat[] = [
 export const brands: Brand[] = [
   {
     id: 'estikan',
-    name: { ar: 'شاي استكان', en: 'Estikan Tea' },
+    name: { ar: 'شاي استكان', en: 'Istikan Tea' },
     description: { 
       ar: 'أجود أنواع الشاي السيلاني الفاخر المقطوف يدوياً. يتميز بنكهته الغنية ولونه الذهبي الأصيل ليقدم لك تجربة شاي استثنائية في كل كوب.', 
       en: 'The finest premium Ceylon tea, hand-picked. It is distinguished by its rich flavor and authentic golden color to offer you an exceptional tea experience in every cup.' 
@@ -80,10 +80,10 @@ export const brands: Brand[] = [
   },
   {
     id: 'simak',
-    name: { ar: 'سماك', en: 'Samak' },
+    name: { ar: 'سماك', en: 'Simak' },
     description: {
       ar: 'سماك هي علامة تجارية ومصنع عُماني متخصص في إنتاج التونة.\n\nتقوم شركة روافد الجنوب بتوزيع منتجات سماك في السوق السعودي مع الالتزام بأعلى معايير الجودة وسلامة المنتجات.',
-      en: 'Samak is an Omani brand and manufacturer specializing exclusively in tuna products.\n\nRawafed Al-Janoob distributes Samak products across the Saudi market while maintaining high standards of quality and food safety.'
+      en: 'Simak is an Omani brand and manufacturer specializing exclusively in tuna products.\n\nRawafed Al-Janoob distributes Simak products across the Saudi market while maintaining high standards of quality and food safety.'
     },
     logo: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785951068/simak_logo_vcxta6.png',
     categories: [{ ar: 'أغذية ومشروبات', en: 'Food & Beverages' }],
