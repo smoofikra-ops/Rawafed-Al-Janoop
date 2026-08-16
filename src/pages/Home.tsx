@@ -184,32 +184,37 @@ export default function Home() {
           </div>
         </ScrollReveal>
           
-        <div className="grid grid-cols-6 sm:grid-cols-3 gap-3 sm:gap-8 max-w-7xl mx-auto relative z-10">
-          {services.map((service, index) => {
-            const Icon = service.icon === 'Package' ? Package : service.icon === 'Truck' ? Truck : TrendingUp;
-            return (
-              <ScrollReveal 
-                key={service.id} 
-                direction={index % 2 === 0 ? (isRTL ? "up-right" : "up-left") : (isRTL ? "up-left" : "up-right")} 
-                delay={index * 0.15}
-                className={`h-full ${index < 2 ? 'col-span-3 sm:col-span-1' : 'col-span-2 sm:col-span-1'}`}
-              >
-                <div 
-                  className="bg-black/40 backdrop-blur-xl border border-white/10 p-4 sm:p-12 rounded-[1.5rem] sm:rounded-[2.5rem] hover:-translate-y-2 hover:border-green-500/30 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-black/60 transition-all duration-500 group flex flex-col items-center sm:items-start text-center sm:text-start h-full relative overflow-hidden"
+        <div className="relative max-w-7xl mx-auto">
+          <div className="flex overflow-x-auto lg:grid lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 pb-8 snap-x snap-mandatory hide-scrollbar relative z-10">
+            {services.map((service, index) => {
+              const Icon = service.icon === 'Package' ? Package : service.icon === 'Truck' ? Truck : TrendingUp;
+              return (
+                <ScrollReveal 
+                  key={service.id} 
+                  direction="up"
+                  delay={index * 0.1}
+                  className="snap-center shrink-0 w-[260px] sm:w-[320px] lg:w-auto h-full"
                 >
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
-                  
-                  <div className="w-10 h-10 sm:w-20 sm:h-20 rounded-[0.8rem] sm:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-3 sm:mb-8 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10">
-                    <Icon className="w-5 h-5 sm:w-10 sm:h-10 text-green-400 group-hover:text-white transition-colors" />
+                  <div 
+                    className="bg-black/40 backdrop-blur-xl border border-white/10 p-6 sm:p-10 rounded-3xl hover:-translate-y-1 hover:border-green-500/30 hover:shadow-2xl hover:shadow-green-500/10 hover:bg-gradient-to-b hover:from-green-900/20 hover:to-black/60 transition-all duration-500 group flex flex-col items-center sm:items-start text-center sm:text-start h-full relative overflow-hidden"
+                  >
+                    <div className="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/5 transition-colors duration-500 pointer-events-none"></div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
+                    
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-500/20 group-hover:border-green-500/30 transition-all duration-500 relative z-10">
+                      <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-green-400 group-hover:text-white transition-colors" />
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-white mb-4 drop-shadow-sm leading-tight relative z-10 group-hover:-translate-y-1 transition-transform duration-300">
+                      {service.title[language as 'ar' | 'en']}
+                    </h3>
+                    <p className="text-gray-400 font-medium leading-relaxed group-hover:text-gray-300 transition-colors text-sm sm:text-base relative z-10 flex-grow">
+                      {service.description[language as 'ar' | 'en']}
+                    </p>
                   </div>
-                  <h3 className="text-[11px] sm:text-3xl font-bold text-white mb-2 sm:mb-4 drop-shadow-sm leading-tight relative z-10">{service.title[language as 'ar' | 'en']}</h3>
-                  <p className="hidden sm:block text-gray-300 font-medium leading-relaxed group-hover:text-white transition-colors text-base sm:text-lg relative z-10">
-                    {service.description[language as 'ar' | 'en']}
-                  </p>
-                </div>
-              </ScrollReveal>
-            );
-          })}
+                </ScrollReveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 

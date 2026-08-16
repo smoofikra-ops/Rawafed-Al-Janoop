@@ -1,70 +1,41 @@
 import React from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { motion } from 'framer-motion';
-import { ShieldCheck, Globe2, Truck, Map, Warehouse, Users, Award, Handshake } from 'lucide-react';
+import { ShieldCheck, Globe2, Truck, Map, Warehouse, Users, Award, Handshake, ArrowRight, ArrowLeft } from 'lucide-react';
 
 export function WhyUs() {
-  const { language } = useLanguage();
+  const { language, isRTL } = useLanguage();
   
   const title = { ar: 'لماذا روافد الجنوب؟', en: 'Why Rawafed Al-Janoob?' };
   
   const strengths = [
     { 
-      icon: ShieldCheck, 
-      title: { ar: 'شراكات حصرية', en: 'Exclusive Partnerships' },
-      image: 'https://res.cloudinary.com/x6mkqvcj/image/upload/v1785723389/about-team.jpg.jpg',
-      className: "col-span-2 md:col-span-2 md:row-span-2 bg-gradient-to-br from-green-900/30 to-black/40 flex flex-col justify-end text-center md:text-center relative overflow-hidden group min-h-[200px] md:min-h-0",
-      iconPlacement: "absolute top-4 rtl:left-4 ltr:right-4 md:top-8 md:rtl:left-8 md:ltr:right-8 w-16 h-16 md:w-24 md:h-24 opacity-20 text-green-400 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700 z-10",
-      contentClass: "mt-16 md:mt-32 relative z-10 flex flex-col items-center"
-    },
-    { 
       icon: Globe2, 
-      title: { ar: 'علامات عالمية', en: 'International Brands' },
-      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40 flex flex-col items-center text-center justify-center min-h-[120px] md:min-h-0",
-      iconPlacement: "w-8 h-8 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
-      contentClass: ""
+      title: { ar: 'علامات عالمية', en: 'International Brands' }
     },
     { 
       icon: Truck, 
-      title: { ar: 'شبكة لوجستية', en: 'Strong Logistics' },
-      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40 flex flex-col items-center text-center justify-center min-h-[120px] md:min-h-0",
-      iconPlacement: "w-8 h-8 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
-      contentClass: ""
+      title: { ar: 'شبكة لوجستية', en: 'Strong Logistics' }
     },
     { 
       icon: Map, 
-      title: { ar: 'تغطية شاملة', en: 'Nationwide Coverage' },
-      className: "col-span-2 md:col-span-2 md:row-span-1 bg-gradient-to-r from-black/40 to-green-900/20 flex flex-col md:flex-col items-center text-center justify-center gap-2 md:gap-4 min-h-[120px] md:min-h-0",
-      iconPlacement: "w-10 h-10 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
-      contentClass: "flex flex-col items-center"
+      title: { ar: 'تغطية شاملة', en: 'Nationwide Coverage' }
     },
     { 
       icon: Warehouse, 
-      title: { ar: 'مستودعات حديثة', en: 'Modern Warehouses' },
-      className: "col-span-2 md:col-span-1 md:row-span-2 bg-gradient-to-b from-green-900/20 to-black/40 flex flex-col justify-center items-center text-center relative overflow-hidden min-h-[140px] md:min-h-0",
-      iconPlacement: "w-12 h-12 md:w-20 md:h-20 rounded-full bg-white/5 flex items-center justify-center mb-2 md:mb-6 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
-      contentClass: ""
+      title: { ar: 'مستودعات حديثة', en: 'Modern Warehouses' }
     },
     { 
       icon: Users, 
-      title: { ar: 'فريق محترف', en: 'Professional Team' },
-      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40 flex flex-col items-center text-center justify-center min-h-[120px] md:min-h-0",
-      iconPlacement: "w-8 h-8 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
-      contentClass: ""
+      title: { ar: 'فريق محترف', en: 'Professional Team' }
     },
     { 
       icon: Award, 
-      title: { ar: 'ضمان الجودة', en: 'Quality Assurance' },
-      className: "col-span-1 md:col-span-1 md:row-span-1 bg-gradient-to-l from-black/40 to-green-900/20 flex flex-col items-center text-center justify-center gap-2 md:gap-4 min-h-[120px] md:min-h-0",
-      iconPlacement: "w-8 h-8 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
-      contentClass: "flex flex-col items-center"
+      title: { ar: 'ضمان الجودة', en: 'Quality Assurance' }
     },
     { 
       icon: Handshake, 
-      title: { ar: 'شراكات مستدامة', en: 'Long-Term Partnerships' },
-      className: "col-span-2 md:col-span-1 md:row-span-1 bg-black/40 flex flex-col items-center text-center justify-center min-h-[120px] md:min-h-0",
-      iconPlacement: "w-10 h-10 md:w-14 md:h-14 rounded-xl md:rounded-2xl bg-white/5 flex items-center justify-center mb-2 md:mb-4 group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500",
-      contentClass: ""
+      title: { ar: 'شراكات مستدامة', en: 'Long-Term Partnerships' }
     }
   ];
 
@@ -84,62 +55,59 @@ export function WhyUs() {
         <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
       </motion.div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 auto-rows-[minmax(120px,auto)] gap-3 md:gap-6 max-w-7xl mx-auto relative z-10">
-        {strengths.map((item, index) => {
-          const Icon = item.icon;
-          return (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, scale: 0.95, y: 20 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              viewport={{ once: true, margin: "-5%" }}
-              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
-              className={`backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-[2rem] p-3 md:p-8 hover:border-green-500/30 transition-all duration-500 group shadow-xl hover:shadow-2xl hover:shadow-green-500/10 cursor-default ${item.className}`}
-            >
-              {'image' in item && item.image && (
-                <>
-                  <img src={item.image} alt={item.title[language as 'ar' | 'en']} className="absolute inset-0 w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-opacity duration-700 mix-blend-overlay" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
-                </>
-              )}
-              {item.className.includes('absolute') ? (
-                <>
-                  <Icon className={item.iconPlacement} />
-                  <div className={item.contentClass}>
-                    <div className="w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-white/10 flex items-center justify-center mb-3 md:mb-6 group-hover:scale-110 group-hover:bg-green-500/40 transition-all duration-500 relative z-10">
-                       <Icon className="w-6 h-6 md:w-8 md:h-8 text-green-400 group-hover:text-white" />
-                    </div>
-                    <h3 className="text-lg md:text-3xl font-bold text-white leading-tight relative z-10 drop-shadow-sm text-center">
-                      {item.title[language as 'ar' | 'en']}
-                    </h3>
+      <div className="flex flex-col gap-8 max-w-7xl mx-auto relative z-10">
+        
+        {/* Main Card: Exclusive Partnerships */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden relative group min-h-[300px] flex flex-col justify-end p-8 sm:p-12"
+        >
+          <img src="https://res.cloudinary.com/x6mkqvcj/image/upload/v1785723389/about-team.jpg.jpg" alt="Exclusive Partnerships" className="absolute inset-0 w-full h-full object-cover opacity-50 group-hover:opacity-70 transition-opacity duration-700 mix-blend-overlay" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent"></div>
+          
+          <ShieldCheck className="absolute top-8 rtl:left-8 ltr:right-8 w-24 h-24 opacity-20 text-green-400 group-hover:scale-110 group-hover:opacity-40 transition-all duration-700 z-10" />
+          
+          <div className="relative z-10 flex items-center gap-4">
+             <div className="w-16 h-16 rounded-2xl bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+               <ShieldCheck className="w-8 h-8 text-green-400" />
+             </div>
+             <h3 className="text-3xl md:text-4xl font-bold text-white drop-shadow-md">
+               {language === 'ar' ? 'شراكات حصرية' : 'Exclusive Partnerships'}
+             </h3>
+          </div>
+        </motion.div>
+
+        {/* Secondary Strengths (Horizontal scroll on mobile, grid on desktop) */}
+        <div className="flex overflow-x-auto lg:grid lg:grid-cols-4 xl:grid-cols-7 gap-4 pb-4 snap-x snap-mandatory hide-scrollbar">
+          {strengths.map((item, index) => {
+            const Icon = item.icon;
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                viewport={{ once: true, margin: "-10%" }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="snap-center shrink-0 w-[200px] sm:w-[220px] lg:w-auto relative group"
+              >
+                <div className="backdrop-blur-md border border-white/5 rounded-2xl p-6 bg-black/40 hover:bg-gradient-to-br hover:from-green-900/30 hover:to-black/60 hover:border-green-500/30 shadow-xl hover:shadow-green-500/10 transition-all duration-300 flex flex-col items-center text-center h-full gap-4 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/5 transition-colors duration-500"></div>
+                  
+                  <div className="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:scale-110 group-hover:bg-green-500/20 group-hover:border-green-500/40 transition-all duration-500 relative z-10">
+                    <Icon className="w-7 h-7 text-green-400 group-hover:text-white transition-colors duration-300" />
                   </div>
-                </>
-              ) : item.className.includes('md:flex-col') || item.className.includes('gap-') ? (
-                <>
-                  <div className={item.iconPlacement}>
-                    <Icon className="w-5 h-5 md:w-8 md:h-8 text-green-400 group-hover:text-white" />
-                  </div>
-                  <div className={item.contentClass}>
-                    <h3 className="text-[11px] md:text-2xl font-bold text-white leading-tight drop-shadow-sm text-center">
-                      {item.title[language as 'ar' | 'en']}
-                    </h3>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className={item.iconPlacement}>
-                    <Icon className="w-4 h-4 md:w-7 md:h-7 text-green-400 group-hover:text-white" />
-                  </div>
-                  <div className={item.contentClass}>
-                    <h3 className="text-[11px] md:text-xl font-bold text-white leading-tight drop-shadow-sm text-center">
-                      {item.title[language as 'ar' | 'en']}
-                    </h3>
-                  </div>
-                </>
-              )}
-            </motion.div>
-          );
-        })}
+                  
+                  <h3 className="text-sm font-bold text-white relative z-10 drop-shadow-sm group-hover:-translate-y-0.5 transition-transform duration-300">
+                    {item.title[language as 'ar' | 'en']}
+                  </h3>
+                </div>
+              </motion.div>
+            );
+          })}
+        </div>
+
       </div>
     </section>
   );

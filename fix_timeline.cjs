@@ -1,4 +1,6 @@
-import React, { useRef } from 'react';
+const fs = require('fs');
+
+const code = `import React, { useRef } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 
@@ -144,7 +146,7 @@ function TimelineItem({ milestone, index, isEven, language, isRTL }: any) {
   const glowOpacity = useTransform(scrollYProgress, [0, 1], [0, 0.4]);
 
   return (
-    <div ref={itemRef} className={`flex flex-col md:flex-row items-center w-full ${isEven ? 'md:flex-row-reverse' : ''} group relative`}>
+    <div ref={itemRef} className={\`flex flex-col md:flex-row items-center w-full \${isEven ? 'md:flex-row-reverse' : ''} group relative\`}>
       {/* Mobile only connection line fix */}
       <div className="absolute rtl:right-8 ltr:left-8 h-full w-px bg-transparent md:hidden" />
       
@@ -168,10 +170,10 @@ function TimelineItem({ milestone, index, isEven, language, isRTL }: any) {
       {/* Content Card */}
       <motion.div 
         style={{ opacity, scale }}
-        className={`w-full md:w-1/2 flex ${isEven ? 'md:justify-start md:pr-12 lg:pr-16' : 'md:justify-end md:pl-12 lg:pl-16'} mt-6 md:mt-0 px-12 md:px-0 relative`}
+        className={\`w-full md:w-1/2 flex \${isEven ? 'md:justify-start md:pr-12 lg:pr-16' : 'md:justify-end md:pl-12 lg:pl-16'} mt-6 md:mt-0 px-12 md:px-0 relative\`}
       >
         {/* Arrow connector (Desktop) */}
-        <div className={`hidden md:block absolute top-1/2 -translate-y-1/2 w-8 h-px bg-green-500/50 ${isEven ? 'right-0' : 'left-0'}`}></div>
+        <div className={\`hidden md:block absolute top-1/2 -translate-y-1/2 w-8 h-px bg-green-500/50 \${isEven ? 'right-0' : 'left-0'}\`}></div>
         
         {/* Arrow connector (Mobile) */}
         <div className="md:hidden absolute top-1/2 -translate-y-1/2 w-8 h-px bg-green-500/50 rtl:-right-4 ltr:-left-4"></div>
@@ -198,3 +200,6 @@ function TimelineItem({ milestone, index, isEven, language, isRTL }: any) {
     </div>
   );
 }
+`
+
+fs.writeFileSync('src/components/corporate/JourneyTimeline.tsx', code);

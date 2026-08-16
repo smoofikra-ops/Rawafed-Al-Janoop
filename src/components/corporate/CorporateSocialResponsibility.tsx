@@ -1,46 +1,38 @@
 import React from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { motion } from 'framer-motion';
-import { HeartHandshake, Leaf, Users, GraduationCap } from 'lucide-react';
+import { Leaf, Heart, Users, TrendingUp } from 'lucide-react';
 
 export function CorporateSocialResponsibility() {
   const { language } = useLanguage();
   const title = { ar: 'المسؤولية المجتمعية', en: 'Corporate Social Responsibility' };
   
-  const initiatives = [
-    {
-      icon: Leaf,
+  const items = [
+    { 
+      icon: Leaf, 
       title: { ar: 'الاستدامة البيئية', en: 'Environmental Sustainability' },
-      description: { ar: 'تقليل البصمة الكربونية من خلال تحسين مسارات أسطول النقل واعتماد ممارسات صديقة للبيئة.', en: 'Reducing carbon footprint through optimized transport fleet routes and adopting eco-friendly practices.' },
-      className: "col-span-2 md:col-span-2 md:row-span-2 bg-gradient-to-br from-green-900/40 to-black/60",
-      isPrimary: true
+      description: { ar: 'نلتزم بتطبيق ممارسات صديقة للبيئة لتقليل البصمة الكربونية في جميع عملياتنا التشغيلية.', en: 'Committed to implementing eco-friendly practices to reduce our carbon footprint in all operations.' }
     },
-    {
-      icon: HeartHandshake,
+    { 
+      icon: Heart, 
       title: { ar: 'دعم المجتمع', en: 'Community Support' },
-      description: { ar: 'المشاركة الفعالة في رعاية الفعاليات والمبادرات الخيرية في مختلف المناطق.', en: 'Active participation in sponsoring events and charitable initiatives in various regions.' },
-      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40",
-      isPrimary: false
+      description: { ar: 'نساهم بفعالية في المبادرات الاجتماعية والخيرية لدعم الفئات المحتاجة وتعزيز التكافل.', en: 'Actively contributing to social and charitable initiatives to support those in need and foster solidarity.' }
     },
-    {
-      icon: Users,
+    { 
+      icon: Users, 
       title: { ar: 'التوطين', en: 'Job Localization' },
-      description: { ar: 'دعم وتمكين الكفاءات الوطنية الشابة في قطاع المبيعات والتوزيع.', en: 'Supporting and empowering young national talents in the sales and distribution sector.' },
-      className: "col-span-1 md:col-span-1 md:row-span-1 bg-black/40",
-      isPrimary: false
+      description: { ar: 'ندعم الكفاءات الوطنية من خلال توفير فرص عمل وتطوير مهارات الشباب السعودي.', en: 'Supporting national talents by providing job opportunities and developing the skills of Saudi youth.' }
     },
-    {
-      icon: GraduationCap,
+    { 
+      icon: TrendingUp, 
       title: { ar: 'التطوير', en: 'Continuous Development' },
-      description: { ar: 'توفير برامج تدريبية لرفع كفاءة العاملين في القطاع.', en: 'Providing training programs to raise the efficiency of workers in the sector.' },
-      className: "col-span-2 md:col-span-2 md:row-span-1 bg-gradient-to-r from-black/60 to-green-900/20 md:flex-row items-center",
-      isPrimary: false
+      description: { ar: 'الاستثمار في تدريب وتطوير فريق العمل لضمان تقديم أعلى مستويات الخدمة لعملائنا.', en: 'Investing in training and developing our team to ensure providing the highest levels of service.' }
     }
   ];
 
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-16 md:my-32 relative">
-      <div className="absolute top-1/2 left-0 w-[40rem] h-[40rem] bg-green-500/5 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none"></div>
+      <div className="absolute top-1/2 right-0 w-[30rem] h-[30rem] bg-green-500/5 rounded-full blur-[100px] -translate-y-1/2 pointer-events-none"></div>
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -54,10 +46,9 @@ export function CorporateSocialResponsibility() {
         <div className="h-1 w-24 bg-green-500 mx-auto rounded"></div>
       </motion.div>
 
-      <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[minmax(140px,auto)] gap-3 md:gap-6 max-w-6xl mx-auto relative z-10">
-        {initiatives.map((item, index) => {
+      <div className="flex overflow-x-auto lg:grid lg:grid-cols-4 gap-4 sm:gap-6 max-w-7xl mx-auto relative z-10 pb-8 snap-x snap-mandatory hide-scrollbar">
+        {items.map((item, index) => {
           const Icon = item.icon;
-          const isRowLayout = item.className.includes('md:flex-row');
           return (
             <motion.div
               key={index}
@@ -65,24 +56,20 @@ export function CorporateSocialResponsibility() {
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 0.6, delay: index * 0.1, ease: [0.23, 1, 0.32, 1] }}
-              className={`backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-[2rem] hover:border-green-500/30 hover:shadow-2xl hover:shadow-green-500/10 transition-all duration-500 group overflow-hidden relative cursor-default ${item.className} ${item.isPrimary ? 'p-6 sm:p-12 flex flex-col justify-end min-h-[200px] md:min-h-[220px]' : isRowLayout ? 'p-4 sm:p-8 flex flex-col md:flex-row gap-2 md:gap-6 text-center md:text-start justify-center items-center' : 'p-4 sm:p-8 flex flex-col justify-center text-center items-center'}`}
+              className="snap-center shrink-0 w-[260px] sm:w-[320px] lg:w-auto relative group"
             >
-              {item.isPrimary && (
-                <div className="absolute top-0 right-0 w-64 h-64 bg-green-500/10 rounded-full blur-3xl -mr-20 -mt-20 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
-              )}
-              {isRowLayout && (
-                <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/10 rounded-full blur-2xl -mr-10 -mt-10 group-hover:bg-green-500/20 transition-colors duration-700 pointer-events-none"></div>
-              )}
-              
-              <div className={`${item.isPrimary ? 'w-16 h-16 md:w-20 md:h-20 mb-auto mt-2 md:mt-4' : isRowLayout ? 'w-10 h-10 md:w-16 md:h-16 shrink-0 mb-2 md:mb-0' : 'w-10 h-10 md:w-14 md:h-14 mb-2 md:mb-4'} rounded-xl md:rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center group-hover:scale-110 group-hover:bg-green-500/20 transition-all duration-500 relative z-10`}>
-                <Icon className={`${item.isPrimary ? 'w-8 h-8 md:w-10 md:h-10' : 'w-5 h-5 md:w-7 md:h-7'} text-green-400 group-hover:text-white transition-colors`} />
-              </div>
-              
-              <div className="relative z-10 flex-1 w-full">
-                <h3 className={`${item.isPrimary ? 'text-2xl sm:text-4xl font-bold text-white mb-2 md:mb-4' : 'text-[11px] sm:text-lg md:text-2xl font-bold text-white mb-1 md:mb-3'} drop-shadow-sm`}>
+              <div className="backdrop-blur-md bg-black/40 border border-white/5 rounded-3xl p-6 sm:p-8 hover:bg-gradient-to-br hover:from-green-900/30 hover:to-black/60 hover:border-green-500/30 shadow-xl hover:shadow-green-500/10 transition-all duration-300 h-full flex flex-col relative overflow-hidden">
+                <div className="absolute inset-0 bg-green-500/0 group-hover:bg-green-500/5 transition-colors duration-500"></div>
+                
+                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-green-500/20 group-hover:border-green-500/30 transition-all duration-500 relative z-10">
+                  <Icon className="w-7 h-7 sm:w-8 sm:h-8 text-green-400 group-hover:text-white transition-colors" />
+                </div>
+                
+                <h3 className="text-lg sm:text-xl font-bold text-white mb-3 relative z-10 drop-shadow-sm group-hover:-translate-y-1 transition-transform duration-300">
                   {item.title[language as 'ar' | 'en']}
                 </h3>
-                <p className={`${item.isPrimary ? 'text-sm md:text-lg sm:text-xl' : 'hidden md:block text-sm md:text-base'} text-gray-300 font-medium leading-relaxed group-hover:text-white transition-colors`}>
+                
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors relative z-10 flex-grow">
                   {item.description[language as 'ar' | 'en']}
                 </p>
               </div>
