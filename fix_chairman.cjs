@@ -1,4 +1,6 @@
-import React, { useMemo } from 'react';
+const fs = require('fs');
+
+const code = `import React, { useMemo } from 'react';
 import { useLanguage } from '../../hooks/useLanguage';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -30,7 +32,7 @@ export function ChairmanMessage() {
   const segmentsEn = [
     { text: 'At Rawafed Al-Janoob Trading Company, we are proud of our journey, which began with an ' },
     { words: ['ambitious', 'promising', 'leading', 'ambitious'] },
-    { text: ' vision to develop the food distribution sector in the Kingdom, relying, after God\'s success, on our strategic partnerships and commitment to ' },
+    { text: ' vision to develop the food distribution sector in the Kingdom, relying, after God\\'s success, on our strategic partnerships and commitment to ' },
     { words: ['quality', 'perfection', 'excellence', 'quality'] },
     { text: ' at every stage of our operations, placing ' },
     { words: ['trust', 'credibility', 'commitment', 'trust'] },
@@ -41,8 +43,8 @@ export function ChairmanMessage() {
 
   // Mobile speed adjustments
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
-  const speed = isMobile ? 45 : 65;
-  const wordPause = isMobile ? 800 : 1200;
+  const speed = isMobile ? 30 : 45;
+  const wordPause = isMobile ? 600 : 800;
 
   return (
     <section className="container mx-auto px-4 sm:px-6 lg:px-8 my-12 md:my-20">
@@ -87,3 +89,5 @@ export function ChairmanMessage() {
     </section>
   );
 }
+`;
+fs.writeFileSync('src/components/corporate/ChairmanMessage.tsx', code);
